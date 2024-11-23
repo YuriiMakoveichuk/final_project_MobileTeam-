@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Gilroy";
+  src: url("Gilroy-Bold.ttff");
+  src: local("Gilroy-Bold"), local("Gilroy-Bold"),
+    url("../font/Gilroy/Gilroy-Bold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("Gilroy-Regular.ttf");
+  src: local("Gilroy-Regular"), local("Gilroy-Regular"),
+    url("../font/Gilroy/Gilroy-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("Poppins-Bold.ttf");
+  src: local("Poppins-Bold"), local("Poppins-Bold"),
+    url("../font/Poppins/Poppins-Bold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("Poppins-Regular.ttf");
+  src: local("Poppins-Regular"), local("Poppins-Regular"),
+    url("../font/Poppins/Poppins-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+}
