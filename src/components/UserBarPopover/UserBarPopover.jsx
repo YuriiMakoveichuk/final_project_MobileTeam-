@@ -13,7 +13,7 @@ const UserBarPopover = () => {
 
       <button className={css.btnUserBarPopover} type="button">
         <svg className={css.iconLogOut} width="16" height="16">
-          {/* <use href=""></use> */}
+          <use href={`${sprite}#icon-log-out`}></use>
         </svg>
         Log out
       </button>
