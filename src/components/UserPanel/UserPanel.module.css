@@ -1,0 +1,30 @@
+.wrapperUserPanel {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.titleUserPanel {
+    font-family: "Gilroy", sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: #323f47;
+}
+
+.nameAcceptWeight {
+    font-weight: 700;
+}
+
+@media only screen and (min-width: 768px) {
+    .wrapperUserPanel {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .titleUserPanel {
+        font-size: 36px;
+        line-height: 1.06;
+    }
+}

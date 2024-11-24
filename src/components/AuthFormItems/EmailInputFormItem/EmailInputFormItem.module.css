@@ -1,0 +1,28 @@
+.email-item {
+  border: none;
+}
+
+.email-label {
+  font-weight: 700;
+  /* font-size: 14px; */
+  margin-bottom: 8px;
+  display: block;
+}
+
+.email-input {
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  padding: 16px 184px 16px 16px;
+  /* width: 436px; */
+  /* height: 50px; */
+  display: block;
+}
+
+.email-input::placeholder {
+  font-size: 14px;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.email-error {
+  color: #ef5050;
+}
