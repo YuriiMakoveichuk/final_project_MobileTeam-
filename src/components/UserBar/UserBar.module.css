@@ -25,6 +25,12 @@
     border-radius: 50%;
 }
 
+.iconArrowDown,
+.iconArrowUp {
+    height: 16px;
+    width: 16px;
+}
+
 @media only screen and (min-width: 768px) {
     .btnUserBar {
         min-width: 157px;
@@ -40,4 +46,11 @@
         width: 44px;
         height: 44px;
     }
+
+    .iconArrowDown,
+    .iconArrowUp {
+        height: 20px;
+        width: 20px;
+    }
+
 }
