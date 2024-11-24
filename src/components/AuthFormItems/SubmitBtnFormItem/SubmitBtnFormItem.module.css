@@ -1,0 +1,11 @@
+.auth-button {
+  border: none;
+  border-radius: 30px;
+  padding: 16px 129px;
+  /* width: 436px; */
+  height: 50px;
+  color: #323f47;
+  background-color: #9be1a0;
+  font-weight: 700;
+  font-size: 14px;
+}
