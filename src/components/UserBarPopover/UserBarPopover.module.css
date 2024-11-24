@@ -38,3 +38,15 @@
     color: #323f47;
     stroke: #323f47;
 }
+
+@media only screen and (min-width: 768px) {
+    .wrapperUserBarPopover {
+        max-width: 157px;
+    }
+
+    .btnUserBarPopover {
+        min-width: 80px;
+        font-size: 15px;
+        line-height: 1.49;
+    }
+}
