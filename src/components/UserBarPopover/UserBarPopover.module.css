@@ -16,6 +16,8 @@
     min-width: 77px;
     border: none;
     background-color: transparent;
+    stroke: rgba(50, 63, 71, 0.4);
+    fill: transparent;
 
     font-weight: 700;
     font-size: 14px;
@@ -26,10 +28,13 @@
     align-items: center;
     column-gap: 8px;
 
-    transition: color 250ms linear;
+    transition:
+        color 250ms linear,
+        stroke 250ms linear;
 }
 
 .btnUserBarPopover:hover,
 .btnUserBarPopover:focus {
     color: #323f47;
+    stroke: #323f47;
 }
