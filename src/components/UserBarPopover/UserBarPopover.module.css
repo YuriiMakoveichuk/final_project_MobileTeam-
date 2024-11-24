@@ -1,0 +1,35 @@
+.wrapperUserBarPopover {
+    border-radius: 15px;
+    padding: 14px 20px;
+    max-width: 137px;
+
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    align-items: flex-start;
+}
+
+.btnUserBarPopover {
+    min-width: 77px;
+    border: none;
+    background-color: transparent;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    color: rgba(50, 63, 71, 0.4);
+
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+    transition: color 250ms linear;
+}
+
+.btnUserBarPopover:hover,
+.btnUserBarPopover:focus {
+    color: #323f47;
+}
