@@ -2,10 +2,31 @@
   border: none;
   border-radius: 30px;
   padding: 16px 129px;
-  /* width: 436px; */
   height: 50px;
   color: #323f47;
   background-color: #9be1a0;
   font-weight: 700;
-  font-size: 14px;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.auth-button:hover,
+.auth-button:focus {
+  background-color: #87d28d;
+}
+
+@media only screen and (max-width: 374px) {
+  .auth-button {
+    padding: 16px 100px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .auth-button {
+    padding: 18px 187px;
+    height: 60px;
+    color: #323f47;
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }

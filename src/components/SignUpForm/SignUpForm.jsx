@@ -20,7 +20,7 @@ export const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
       <EmailInputFormItem
         label="Email"
         name="email"
@@ -46,7 +46,7 @@ export const SignUpForm = () => {
         register={register}
         errors={errors}
         required={true}
-        placeholder="Repeat your password"
+        placeholder="Repeat password"
       />
       <SubmitBtnFormItem title={"Sign Up"} />
     </form>
