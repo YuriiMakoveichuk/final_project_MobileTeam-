@@ -1,7 +1,21 @@
 import css from "./UserBarPopover.module.css";
 import sprite from "../../img/sprite.svg";
+import { useEffect } from "react";
 
-const UserBarPopover = () => {
+const UserBarPopover = ({ closeUserBarPopover }) => {
+  useEffect(() => {
+    const handleClickDown = (event) => {
+      if (event.code === "Escape") {
+        closeUserBarPopover();
+      }
+    };
+
+    window.addEventListener("keydown", handleClickDown);
+    return () => {
+      window.removeEventListener("keydown", handleClickDown);
+    };
+  }, [closeUserBarPopover]);
+
   return (
     <div className={css.wrapperUserBarPopover}>
       <button className={css.btnUserBarPopover} type="button">
