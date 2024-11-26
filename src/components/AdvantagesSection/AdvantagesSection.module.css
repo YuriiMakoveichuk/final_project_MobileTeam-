@@ -1,0 +1,183 @@
+.background {
+  border-radius: 30px;
+  padding-top: 16px;
+}
+.imageContainer {
+  position: relative;
+}
+
+@media only screen and (min-width: 375px) {
+  .customerSection {
+    position: absolute;
+    top: 209px;
+    left: 16px;
+    background-color: #fff;
+    padding: 10px 14px;
+    display: flex;
+    border-radius: 30px;
+  }
+
+  .customerText {
+    color: #323f47;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    text-align: left;
+  }
+  .highlightText {
+    color: #9be1a0;
+  }
+  .customerPhotos {
+    display: flex;
+  }
+  .customerPhoto {
+    display: flex;
+    width: 26.4px;
+    height: 28px;
+    border-radius: 50px;
+  }
+  .customerPhotosContainer {
+    position: relative;
+    padding: 0px 32px;
+  }
+  .photoContainer {
+    position: absolute;
+  }
+  .photoContainer:nth-child(1) {
+    top: 0px;
+    left: 35px;
+  }
+
+  .photoContainer:nth-child(2) {
+    top: 0px;
+    left: 18px;
+  }
+
+  .photoContainer:nth-child(3) {
+    top: 0px;
+    left: 0px;
+  }
+
+  .TextSection {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 265px;
+    left: 159px;
+  }
+
+  .TextBox,
+  .statistics,
+  .rate {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 9px 12px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 8px;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+
+  .TextBox {
+    background-color: #323f47;
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+
+  .statistics {
+    background-color: #9be1a0;
+    color: #323f47;
+  }
+
+  .iconCircle {
+    width: 8px;
+    height: 8px;
+    background-color: #9be1a0;
+    border-radius: 50%;
+  }
+
+  .Text {
+    padding-left: 4px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .customerSection {
+    top: 283px;
+    left: 32px;
+    padding: 10px 20px;
+    display: flex;
+  }
+  .customerPhoto {
+    display: flex;
+    width: 47px;
+    height: 47px;
+    border-radius: 50px;
+  }
+  .customerText {
+    font-size: 15px;
+    line-height: 22.4px;
+  }
+  .customerPhotosContainer {
+    position: relative;
+    padding: 0px 56px;
+  }
+  .photoContainer:nth-child(1) {
+    top: 0px;
+    left: 60px;
+  }
+
+  .photoContainer:nth-child(2) {
+    top: 0px;
+    left: 30px;
+  }
+
+  .photoContainer:nth-child(3) {
+    top: 0px;
+    left: 0px;
+  }
+  .TextSection {
+    gap: 10px;
+    top: 336px;
+    left: 430px;
+  }
+  .TextBox,
+  .statistics,
+  .rate {
+    border-radius: 30px;
+    padding: 11px 16px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .iconCircle {
+    width: 8px;
+    height: 8px;
+    background-color: #9be1a0;
+    border-radius: 50%;
+  }
+}
+
+/* DECKTOP 1440PX*/
+@media only screen and (min-width: 1440px) {
+  .background {
+    padding-top: 0px;
+    padding-left: 32px;
+  }
+  .womanimg {
+    display: flex;
+    align-items: center;
+    height: auto;
+    max-width: max-content;
+  }
+  .customerSection {
+    top: 537px;
+  }
+  .TextSection {
+    top: 594px;
+    left: 398px;
+  }
+}
