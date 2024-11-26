@@ -10,9 +10,19 @@ const UserBarPopover = ({ closeUserBarPopover }) => {
       }
     };
 
+    const handleClickBackDrop = (event) => {
+      if (event.target.className !== css.wrapperUserBarPopover) {
+        closeUserBarPopover();
+      }
+    };
+
     window.addEventListener("keydown", handleClickDown);
+
+    window.addEventListener("mousedown", handleClickBackDrop);
+
     return () => {
       window.removeEventListener("keydown", handleClickDown);
+      window.removeEventListener("mousedown", handleClickBackDrop);
     };
   }, [closeUserBarPopover]);
 
