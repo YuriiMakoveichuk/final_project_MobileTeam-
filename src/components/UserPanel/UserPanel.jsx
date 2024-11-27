@@ -4,7 +4,8 @@ import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 import css from "./UserPanel.module.css";
 import Modal from "../Modal/Modal.jsx";
-import { Section } from "../Section/Section.jsx";
+import LogOutModal from "../LogOutModal/LogOutModal.jsx";
+import UserSettingsModal from "../UserSettingsModal/UserSettingsModal.jsx";
 
 const UserPanel = () => {
   const userName = "Nadia";
@@ -64,13 +65,19 @@ const UserPanel = () => {
         )}
       </div>
       {isOpenUserSettingsModal && (
-        <Modal onCloseModal={closeUserSettingsModal}>
-          <Section>Component UserSettingsModal</Section>
+        <Modal
+          onCloseModal={closeUserSettingsModal}
+          top="40px"
+          transform="translateX(-50%)"
+        >
+          {/* <Section> */}
+          <UserSettingsModal />
+          {/* </Section> */}
         </Modal>
       )}
       {isOpenLogOutModal && (
         <Modal onCloseModal={closeLogOutModal}>
-          <Section>Component LogOutModal</Section>
+          <LogOutModal />
         </Modal>
       )}
     </div>

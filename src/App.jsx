@@ -12,6 +12,7 @@ const NotFoundPage = lazy(() =>
 );
 
 import "./App.css";
+import UserPanel from "./components/UserPanel/UserPanel.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           </Routes>
         </Suspense>
       </main>
+      <UserPanel />
     </>
   );
 }
