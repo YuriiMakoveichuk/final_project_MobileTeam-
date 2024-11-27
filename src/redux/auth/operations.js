@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const instance = axios.create({
+export const INSTANCE = axios.create({
     baseURL: "https://final-project-mobileteam-backend.onrender.com/",
 })
 
 const setAuthHeaders = (token) => {
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+    INSTANCE.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 
@@ -15,7 +15,8 @@ export const apiLogout = createAsyncThunk(
     "auth/logout",
     async (_, thunkApi) => {
         try {
-            await instance.post("user/logout");
+            console.log("start thunk logout")
+            await INSTANCE.post("user/logout");
             setAuthHeaders("");
             return;
         } catch (error) {

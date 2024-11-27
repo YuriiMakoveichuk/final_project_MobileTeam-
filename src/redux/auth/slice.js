@@ -3,10 +3,15 @@ import { apiLogout } from "./operations";
 
 const INITIAL_STATE = {
     user: {
-        name: null,
+        // name: null,
+        name: "Nadia",
+
         email: null,
         gender: null,
-        photo: null,
+
+        // photo: null,
+        photo: "https://imgcdn.stablediffusionweb.com/2024/3/31/a07c234b-ab97-4ad4-96b1-e1e88ec45e45.jpg",
+
         waterNorm: null,
         sportHours: null,
         weight: null,
