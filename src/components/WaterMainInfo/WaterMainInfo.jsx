@@ -7,15 +7,15 @@ import { Section } from "../Section/Section";
 
 export const WaterMainInfo = () => {
  return (
-  <Container>
-    <Section>
+  <Section>
+    <Container>
       <div className={styles.box}>
           <h2 className={styles.title}>Aquatrack</h2>
           <WaterDailyNorma />
           <WaterProgressBar />
           <AddWaterBtn />
         </div>
-    </Section>
-  </Container>
+    </Container>
+  </Section>
  );
 }
