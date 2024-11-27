@@ -5,7 +5,7 @@ import { EmailInputFormItem } from '../AuthFormItems/EmailInputFormItem/EmailInp
 import { PasswordInputFormItem } from '../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem';
 import { SubmitBtnFormItem } from '../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem';
 
-export const SignUpForm = () => {
+export const SignInForm = () => {
   const {
     register,
     handleSubmit,
@@ -39,16 +39,7 @@ export const SignUpForm = () => {
         required={true}
         placeholder="Enter your password"
       />
-      <PasswordInputFormItem
-        label="Repeat Password"
-        name="repeatPassword"
-        id="repeatPassword"
-        register={register}
-        errors={errors}
-        required={true}
-        placeholder="Repeat password"
-      />
-      <SubmitBtnFormItem title={'Sign Up'} />
+      <SubmitBtnFormItem title={'Sign In'} />
     </form>
   );
 };
