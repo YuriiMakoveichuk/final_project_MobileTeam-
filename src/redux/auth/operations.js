@@ -15,7 +15,6 @@ export const apiLogout = createAsyncThunk(
     "auth/logout",
     async (_, thunkApi) => {
         try {
-            console.log("start thunk logout")
             await INSTANCE.post("user/logout");
             setAuthHeaders("");
             return;
