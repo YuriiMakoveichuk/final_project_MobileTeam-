@@ -3,7 +3,7 @@
   padding-bottom: 16px;
 }
 
-@media only screen and (min-width: 765px) {
+@media only screen and (min-width: 768px) {
   .section {
     padding-top: 32px;
     padding-bottom: 32px;
