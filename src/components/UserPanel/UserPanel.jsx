@@ -3,6 +3,8 @@ import UserBar from "../UserBar/UserBar.jsx";
 import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 import css from "./UserPanel.module.css";
+import Modal from "../Modal/Modal.jsx";
+import { Section } from "../Section/Section.jsx";
 
 const UserPanel = () => {
   const userName = "Nadia";
@@ -10,6 +12,8 @@ const UserPanel = () => {
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
   const [showIconArrowUp, setShowIconArrowUp] = useState(false);
   const [showIconArrowDown, setShowIconArrowDown] = useState(true);
+  const [isOpenUserSettingsModal, setIsOpenUserSettingsModal] = useState(false);
+  const [isOpenLogOutModal, setIsOpenLogOutModal] = useState(false);
 
   const handleClickUserBar = () => {
     setIsOpenUserBarPopover((prevState) => !prevState);
@@ -21,6 +25,22 @@ const UserPanel = () => {
     setIsOpenUserBarPopover(false);
     setShowIconArrowUp(false);
     setShowIconArrowDown(true);
+  };
+
+  const closeUserSettingsModal = () => {
+    setIsOpenUserSettingsModal(false);
+  };
+
+  const closeLogOutModal = () => {
+    setIsOpenLogOutModal(false);
+  };
+
+  const openUserSettingsModal = () => {
+    setIsOpenUserSettingsModal(true);
+  };
+
+  const openLogOutModal = () => {
+    setIsOpenLogOutModal(true);
   };
 
   return (
@@ -36,9 +56,23 @@ const UserPanel = () => {
           userName={userName}
         />
         {isOpenUserBarPopover && (
-          <UserBarPopover closeUserBarPopover={closeUserBarPopover} />
+          <UserBarPopover
+            closeUserBarPopover={closeUserBarPopover}
+            openUserSettingsModal={openUserSettingsModal}
+            openLogOutModal={openLogOutModal}
+          />
         )}
       </div>
+      {isOpenUserSettingsModal && (
+        <Modal onCloseModal={closeUserSettingsModal}>
+          <Section>Component UserSettingsModal</Section>
+        </Modal>
+      )}
+      {isOpenLogOutModal && (
+        <Modal onCloseModal={closeLogOutModal}>
+          <Section>Component LogOutModal</Section>
+        </Modal>
+      )}
     </div>
   );
 };
