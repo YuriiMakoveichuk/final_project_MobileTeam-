@@ -16,6 +16,11 @@
     font-weight: 700;
 }
 
+.wrapperUserBar {
+    max-width: 137px;
+    position: relative;
+}
+
 @media only screen and (min-width: 768px) {
     .wrapperUserPanel {
         flex-direction: row;
@@ -26,5 +31,9 @@
     .titleUserPanel {
         font-size: 36px;
         line-height: 1.06;
+    }
+
+    .wrapperUserBar {
+        max-width: 157px;
     }
 }
