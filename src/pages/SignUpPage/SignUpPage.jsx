@@ -1,4 +1,3 @@
-import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
 import { AuthFormLayout } from "../../components/AuthFormLayout/AuthFormLayout";
 import { Container } from "../../components/Container/Container";
 import { Section } from "../../components/Section/Section";
@@ -9,13 +8,12 @@ export const SignUpPage = () => (
     <Section>
       <AuthFormLayout
         title="Sign Up"
-        footerText="Already have account? "
+        footerText="Already have account?"
         footerLink="/signin"
         footerLinkText="Sign In"
       >
         <SignUpForm />
       </AuthFormLayout>
-      <AdvantagesSection />
     </Section>
   </Container>
 );

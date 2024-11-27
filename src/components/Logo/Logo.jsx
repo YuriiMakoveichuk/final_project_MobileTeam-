@@ -1,8 +1,8 @@
 import css from "./Logo.module.css";
 
-const Logo = () => {
+const Logo = ({className}) => {
   return (
-    <div>
+    <div className={className}>
       <p className={css.logo}>AQUATRACK</p>
     </div>
   );
