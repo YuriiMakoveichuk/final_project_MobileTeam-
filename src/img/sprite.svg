@@ -51,6 +51,21 @@
 <symbol id="icon-minus" viewBox="0 0 32 32">
 <path fill="none" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.2" stroke="#323f47" d="M16 0.6c8.505 0 15.4 6.895 15.4 15.4s-6.895 15.4-15.4 15.4c-8.505 0-15.4-6.895-15.4-15.4s6.895-15.4 15.4-15.4z"></path>
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.44" stroke="#323f47" d="M10.286 16h11.429"></path>
+
+<symbol id="icon-log-out" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M12 28h-5.333c-0.707 0-1.386-0.281-1.886-0.781s-0.781-1.178-0.781-1.886v-18.667c0-0.707 0.281-1.386 0.781-1.886s1.178-0.781 1.886-0.781h5.333"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M21.334 22.667l6.667-6.667-6.667-6.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M28 16h-16"></path>
+</symbol>
+<symbol id="icon-plus" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M16 6.667v18.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M6.667 16h18.667"></path>
+</symbol>
+<symbol id="icon-chevron-up" viewBox="0 0 32 32">
+<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M8 20l8-8 8 8"></path>
+</symbol>
+<symbol id="icon-chevron-down" viewBox="0 0 32 32">
+<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M8 12l8 8 8-8"></path>
 </symbol>
 </defs>
 </svg>
