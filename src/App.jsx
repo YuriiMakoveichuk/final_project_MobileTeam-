@@ -1,3 +1,4 @@
+
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
@@ -13,9 +14,11 @@ const NotFoundPage = lazy(() =>
 
 import "./App.css";
 
+
 function App() {
   return (
     <>
+
       <main>
         <Suspense fallback={<Loader />}>
           <Routes>

@@ -27,19 +27,24 @@
   padding-bottom: 68px;
   padding-top: 74px;
 }
-.tryTrackerButton {
-  padding: 14px 19px;
-  gap: 10px;
-  border-radius: 30px;
-  border: none;
-  background-color: #9be1a0;
-}
-.signInButton {
+
+.Button {
   padding: 14px 19px;
   border-radius: 30px;
-  border-color: #323f47;
+  border-color: #323f47 1px;
+  border: 1px solid #323f47;
   background-color: #f0eff4;
 }
+.Button:hover {
+  background-color: #9be1a0;
+  border: none;
+}
+
+.Button:focus {
+  background-color: #9be1a0;
+  border: none;
+}
+
 .buttonText {
   font-size: 14px;
   font-weight: 700;

@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media only screen and (min-width: 1440px) {
+  .box {
+    flex-direction: row;
+    gap: 32px;
+  }
+}

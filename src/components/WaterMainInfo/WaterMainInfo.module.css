@@ -1,17 +1,17 @@
 .box {
   position: relative;
-  background-color: #9BE1A0;
+  background-color: #9be1a0;
   width: 100%;
   padding: 24px 16px 32px;
   border-radius: 30px;
-  background-image: url('/src/img/bottle/bottle-mobile.png');
+  background-image: url("/src/img/bottle/bottle-mobile.png");
   background-position: center;
   background-repeat: no-repeat;
 }
 
 @media (min-resolution: 192dpi) {
   .box {
-    background-image: url('/src/img/bottle/bottle-mobile@2x.png');
+    background-image: url("/src/img/bottle/bottle-mobile@2x.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 77%;
@@ -20,7 +20,7 @@
 
 .title {
   text-transform: uppercase;
-  color: #323F47;
+  color: #323f47;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.12;
@@ -33,16 +33,16 @@
 @media screen and (min-width: 768px) {
   .box {
     padding: 32px 32px 64px;
-    background-image: url('/src/img/bottle/bottle-tablet.png');
+    background-image: url("/src/img/bottle/bottle-tablet.png");
     background-size: 55%;
   }
 
   @media (min-resolution: 192dpi) {
     .box {
-      background-image: url('/src/img/bottle/bottle-tablet@2x.png');
+      background-image: url("/src/img/bottle/bottle-tablet@2x.png");
       background-size: 55%;
     }
-  }  
+  }
 
   .title {
     font-size: 24px;
@@ -56,16 +56,18 @@
 
 @media screen and (min-width: 1440px) {
   .box {
-    background-image: url('/src/img/bottle/bottle-desktop.png');
+    background-image: url("/src/img/bottle/bottle-desktop.png");
     background-size: 70%;
     background-position: center 92px;
+    width: 672px;
   }
 
   @media (min-resolution: 192dpi) {
     .box {
-      background-image: url('/src/img/bottle/bottle-desktop@2x.png');
-      background-size: 70%; 
+      background-image: url("/src/img/bottle/bottle-desktop@2x.png");
+      background-size: 70%;
       background-position: center 92px;
+      width: 672px;
     }
-  }  
+  }
 }

@@ -13,6 +13,9 @@ const SignUpPage = () => {
             footerText="Already have account?"
             footerLink="/signin"
             footerLinkText="Sign In"
+            paddingMd="170px 16px"
+            paddingLg="227px 134px"
+            paddingXl="130px 118px 100px"
           >
             <SignUpForm />
           </AuthFormLayout>

@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors.js";
+
+import Modal from "../Modal/Modal.jsx";
+import { Section } from "../Section/Section.jsx";
 import UserBar from "../UserBar/UserBar.jsx";
 import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 import css from "./UserPanel.module.css";
-import Modal from "../Modal/Modal.jsx";
-import { Section } from "../Section/Section.jsx";
 
 const UserPanel = () => {
-  const userName = "Nadia";
+  const user = useSelector(selectUser);
 
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
   const [showIconArrowUp, setShowIconArrowUp] = useState(false);
@@ -46,14 +49,14 @@ const UserPanel = () => {
   return (
     <div className={css.wrapperUserPanel}>
       <p className={css.titleUserPanel}>
-        Hello<span className={css.nameAcceptWeight}>, {userName}!</span>
+        Hello<span className={css.nameAcceptWeight}>, {user.name}!</span>
       </p>
       <div className={css.wrapperUserBar}>
         <UserBar
           clickUserBar={handleClickUserBar}
           iconArrowUp={showIconArrowUp}
           iconArrowDown={showIconArrowDown}
-          userName={userName}
+          userName={user.name}
         />
         {isOpenUserBarPopover && (
           <UserBarPopover
