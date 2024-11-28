@@ -5,8 +5,8 @@ import { Section } from '../../components/Section/Section';
 import { SignInForm } from '../../components/SignInForm/SignInForm';
 
 export const SignInPage = () => (
-  <Container>
     <Section>
+  <Container>
       <AuthFormLayout
         title="Sign In"
         footerText="Don't have an account?"
@@ -16,6 +16,6 @@ export const SignInPage = () => (
         <SignInForm />
       </AuthFormLayout>
       <AdvantagesSection />
-    </Section>
   </Container>
+    </Section>
 );
