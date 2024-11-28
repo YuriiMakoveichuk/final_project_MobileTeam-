@@ -1,14 +1,8 @@
 import './App.css';
-import { SignInPage } from './pages/SignInPage/SignInPage.jsx';
 import { SignUpPage } from './pages/SignUpPage/SignUpPage.jsx';
 
 function App() {
-  return (
-    <>
-      <SignInPage />
-      <SignUpPage />
-    </>
-  );
+  return <></>;
 }
 
 export default App;

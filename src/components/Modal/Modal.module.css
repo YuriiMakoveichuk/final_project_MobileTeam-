@@ -42,5 +42,7 @@
 
   .svg {
     stroke-width: 3px;
+    width: 28px;
+    height: 28px;
   }
 }
