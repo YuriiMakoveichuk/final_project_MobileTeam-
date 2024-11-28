@@ -1,20 +1,17 @@
-import css from "./UserBarPopover.module.css";
-import sprite from "../../img/sprite.svg";
 import { useEffect } from "react";
 
-const UserBarPopover = ({
-  closeUserBarPopover,
-  openUserSettingsModal,
-  openLogOutModal,
-}) => {
+import sprite from "../../img/sprite.svg";
+import css from "./UserBarPopover.module.css";
+
+const UserBarPopover = ({ closeUserBarPopover, openModal }) => {
   const handleClickSetting = () => {
     closeUserBarPopover();
-    openUserSettingsModal();
+    openModal("userSettings");
   };
 
   const handleClickLogOut = () => {
     closeUserBarPopover();
-    openLogOutModal();
+    openModal("logOut");
   };
   useEffect(() => {
     const handleClickDown = (event) => {

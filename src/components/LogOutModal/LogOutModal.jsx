@@ -6,7 +6,7 @@ import { Container } from "../Container/Container.jsx";
 
 import css from "./LogOutModal.module.css";
 
-const LogOutModal = () => {
+const LogOutModal = ({ onCloseModal }) => {
   // const dispatch = useDispatch();
   // const isOpenModal = useSelector((state) => state.modal.isOpen);
 
@@ -29,7 +29,7 @@ const LogOutModal = () => {
             <button
               className={clsx(css.btn, css.btnCancel)}
               type="button"
-              // onClick={onCloseModal}
+              onClick={onCloseModal}
             >
               Cancel
             </button>
