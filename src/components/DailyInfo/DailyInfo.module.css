@@ -1,8 +1,6 @@
 /* header section */
 .dailyInfo {
-  background-color: #F0EFF4;
   min-height: 160px;
-  padding: 0 16px;
 }
 
 /* @media screen and (min-width: 768px) {
@@ -13,18 +11,17 @@
 
 } */
 
-
 .dailyHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .DailyInfoTitle {
   font-size: 20px;
   font-weight: 700;
-  color: #323F47;
+  color: #323f47;
 }
 
 .addWaterWrap {
@@ -62,11 +59,8 @@
 .swiperContainer {
   width: 100%;
   display: flex;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
 }
-
-
-
 
 .cardsList {
   display: flex;
@@ -99,17 +93,17 @@
 }
 
 .waterAmount {
-font-size: 14px;
-font-weight: 700;
-line-height: 14px;
-color: #323F47;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  color: #323f47;
 }
 
 .time {
-font-size: 12px;
-font-weight: 400;
-line-height: 12px;
-color: #2F2F2F99;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #2f2f2f99;
 }
 
 .btnWrap {
@@ -136,11 +130,8 @@ color: #2F2F2F99;
 .iconTrash,
 .iconEdit {
   fill: #fff;
-  stroke: #323F47;
+  stroke: #323f47;
 }
-
-
-
 
 @media screen and (min-width: 768px) {
   .card {
@@ -156,7 +147,6 @@ color: #2F2F2F99;
   }
 
   .dailyInfo {
-    padding: 0 32px;
     max-width: 640px;
   }
 
