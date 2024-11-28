@@ -6,18 +6,21 @@ import { SignUpForm } from "../../components/SignUpForm/SignUpForm";
 const SignUpPage = () => {
   return (
     <>
-      <Container>
-        <Section>
+      <Section>
+        <Container>
           <AuthFormLayout
             title="Sign Up"
             footerText="Already have account?"
             footerLink="/signin"
             footerLinkText="Sign In"
+            paddingMd="170px 16px"
+            paddingLg="227px 134px"
+            paddingXl="130px 118px 100px"
           >
             <SignUpForm />
           </AuthFormLayout>
-        </Section>
-      </Container>
+        </Container>
+      </Section>
     </>
   );
 };

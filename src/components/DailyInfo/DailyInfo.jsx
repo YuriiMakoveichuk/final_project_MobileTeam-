@@ -9,7 +9,7 @@ import {
   setRecordToDelete,
 } from "../../redux/dailyInfoSlice";
 import { openModal } from "../../redux/modal";
-import { Container } from "../Container/Container";
+
 import EditModal from "../EditModal/EditModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 
@@ -40,88 +40,81 @@ const DailyInfo = () => {
     dispatch(addWater(newRecord));
   };
 
-const openDeleteModal = (id) => {
-  setModalType("delete");
-  const recordToDelete = waterRecords.find((record) => record.id === id); 
-  dispatch(setRecordToDelete(recordToDelete)); // Передаем целый объект записи
-  dispatch(openModal());
-};
+  const openDeleteModal = (id) => {
+    setModalType("delete");
+    const recordToDelete = waterRecords.find((record) => record.id === id);
+    dispatch(setRecordToDelete(recordToDelete)); // Передаем целый объект записи
+    dispatch(openModal());
+  };
 
   const openEditModal = (id) => {
-  setModalType("edit");
-  const recordToEdit = waterRecords.find((record) => record.id === id);
-  dispatch(setEditingRecord(recordToEdit)); 
-  dispatch(openModal()); 
-};
-
+    setModalType("edit");
+    const recordToEdit = waterRecords.find((record) => record.id === id);
+    dispatch(setEditingRecord(recordToEdit));
+    dispatch(openModal());
+  };
 
   const handleDeleteWater = (id) => {
     openDeleteModal(id);
   };
 
   return (
-    <Container>
-      <div className={`${styles.dailyInfo}`}>
-        <div className={styles.dailyHeader}>
-          <h3 className={styles.DailyInfoTitle}>Today</h3>
-          <div className={styles.addWaterWrap}>
-            <button className={styles.addWaterBtn} onClick={handleAddWater}>
-              <svg className={styles.iconAddWater} width={30} height={30}>
-                <use href={`${sprite}#icon-add`} />
-              </svg>
-            </button>
-            <p className={styles.addWaterText}>Add water</p>
-          </div>
+    <div className={`${styles.dailyInfo}`}>
+      <div className={styles.dailyHeader}>
+        <h3 className={styles.DailyInfoTitle}>Today</h3>
+        <div className={styles.addWaterWrap}>
+          <button className={styles.addWaterBtn} onClick={handleAddWater}>
+            <svg className={styles.iconAddWater} width={30} height={30}>
+              <use href={`${sprite}#icon-add`} />
+            </svg>
+          </button>
+          <p className={styles.addWaterText}>Add water</p>
         </div>
-        <div className={styles.cardsContainer}>
-          {waterRecords.length > 0 && 
-            <ul className={styles.cardsList}>
-              {waterRecords.map((record) => (
-                <li key={record.id} className={styles.card}>
-                  <div className={styles.cardContent}>
-                    <svg className={styles.glassIcon} width={38} height={38}>
-                      <use href={`${sprite}#icon-glass`} />
-                    </svg>
-                    <div className={styles.contentTextWrap}>
-                      <span className={styles.waterAmount}>
-                        {record.amount} ml
-                      </span>
-                      <span className={styles.time}>{record.time}</span>
-                    </div>
-                    <div className={styles.btnWrap}>
-                      <button
-                        className={styles.editBtn}
-                        onClick={() => openEditModal(record.id)}
-                      >
-                        <svg className={styles.iconEdit} width={14} height={14}>
-                          <use href={`${sprite}#icon-edit`} />
-                        </svg>
-                      </button>
-                      <button
-                        className={styles.deleteBtn}
-                        onClick={() => handleDeleteWater(record.id)}
-                      >
-                        <svg
-                          className={styles.iconTrash}
-                          width={14}
-                          height={14}
-                        >
-                          <use href={`${sprite}#icon-trash`} />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          }
-        </div>
-
-        {isModalOpen && modalType === "delete" && <DeleteWaterModal />}
-
-        {isModalOpen && modalType === "edit" && <EditModal /> }
       </div>
-    </Container>
+      <div className={styles.cardsContainer}>
+        {waterRecords.length > 0 && (
+          <ul className={styles.cardsList}>
+            {waterRecords.map((record) => (
+              <li key={record.id} className={styles.card}>
+                <div className={styles.cardContent}>
+                  <svg className={styles.glassIcon} width={38} height={38}>
+                    <use href={`${sprite}#icon-glass`} />
+                  </svg>
+                  <div className={styles.contentTextWrap}>
+                    <span className={styles.waterAmount}>
+                      {record.amount} ml
+                    </span>
+                    <span className={styles.time}>{record.time}</span>
+                  </div>
+                  <div className={styles.btnWrap}>
+                    <button
+                      className={styles.editBtn}
+                      onClick={() => openEditModal(record.id)}
+                    >
+                      <svg className={styles.iconEdit} width={14} height={14}>
+                        <use href={`${sprite}#icon-edit`} />
+                      </svg>
+                    </button>
+                    <button
+                      className={styles.deleteBtn}
+                      onClick={() => handleDeleteWater(record.id)}
+                    >
+                      <svg className={styles.iconTrash} width={14} height={14}>
+                        <use href={`${sprite}#icon-trash`} />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {isModalOpen && modalType === "delete" && <DeleteWaterModal />}
+
+      {isModalOpen && modalType === "edit" && <EditModal />}
+    </div>
   );
 };
 

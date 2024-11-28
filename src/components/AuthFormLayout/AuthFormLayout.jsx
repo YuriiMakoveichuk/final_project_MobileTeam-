@@ -9,12 +9,22 @@ export const AuthFormLayout = ({
   footerText,
   footerLink,
   footerLinkText,
+  paddingMd = "16px",
+  paddingLg = "32px",
+  paddingXl = "40px",
 }) => (
   <div className={css["auth-layout-wrap"]}>
-    <div className={css["auth-layout"]}>
+    <div
+      className={css["auth-layout"]}
+      style={{
+        "--padding-md": paddingMd,
+        "--padding-lg": paddingLg,
+        "--padding-xl": paddingXl,
+      }}
+    >
       <Logo className={css["auth-logo"]} />
       <h1 className={css["auth-title"]}>{title}</h1>
-      <div className="auth-content">{children}</div>
+      <div className={css["auth-content"]}>{children}</div>
       <p className={css["auth-footer"]}>
         {footerText}
         <Link to={footerLink} className={css["auth-link"]}>
