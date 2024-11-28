@@ -3,16 +3,27 @@ import clsx from "clsx";
 import { closeModal } from "../../redux/modal.js";
 import Modal from "../Modal/Modal.jsx";
 import { Container } from "../Container/Container.jsx";
+import { deleteWater } from "../../redux/dailyInfoSlice.js"  //added this
 
 import css from "./DeleteWaterModal.module.css";
 
 const DeleteWaterModal = () => {
   const dispatch = useDispatch();
   const isOpenModal = useSelector((state) => state.modal.isOpen);
+  const recordToDelete = useSelector((state) => state.water.recordToDelete); //added this
 
   const onCloseModal = () => {
     dispatch(closeModal());
   };
+
+  // added this
+    const confirmDelete = () => {
+      if (recordToDelete) {
+        dispatch(deleteWater(recordToDelete.id));
+      }
+      onCloseModal();
+  };
+  // ends here
 
   return (
     <>
@@ -25,7 +36,7 @@ const DeleteWaterModal = () => {
                 Are you sure you want to delete the entry?
               </p>
               <div className={css.boxBtn}>
-                <button className={clsx(css.btn, css.btnLogout)} type="button">
+                <button className={clsx(css.btn, css.btnLogout)} type="button" onClick={confirmDelete}>
                   Delete
                 </button>
                 <button
