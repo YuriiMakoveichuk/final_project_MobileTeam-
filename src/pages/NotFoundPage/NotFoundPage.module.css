@@ -1,0 +1,19 @@
+.box {
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  transition: background-color 250ms linear, color 250ms linear;
+}
+
+.link:hover,
+.link:focus {
+  background-color: black;
+  color: white;
+}
