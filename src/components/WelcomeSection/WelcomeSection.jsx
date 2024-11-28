@@ -16,19 +16,19 @@ function WelcomeSection() {
         </div>
         <div className={css.buttonGroup}>
           <div className={css.tryTrackerButtonWrapper}>
-            <button className={css.tryTrackerButton}>
-              <Link to="/signup">
+            <Link to="/signup">
+              <div className={css.Button} tabIndex="0">
                 <p className={css.buttonText}>Try tracker</p>
-              </Link>
-            </button>
+              </div>
+            </Link>
           </div>
 
           <div className={css.signInButtonWrapper}>
-            <button className={css.signInButton}>
-              <Link to="/signin">
+            <Link to="/signin">
+              <div className={css.Button} tabIndex="0">
                 <p className={css.buttonText}>Sign In</p>
-              </Link>
-            </button>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

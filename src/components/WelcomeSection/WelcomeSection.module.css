@@ -3,57 +3,61 @@
   border-radius: 30px;
 }
 /* MOBILE 320PX - 375PX */
-@media only screen and (min-width: 375px) {
-  .subtitle {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18px;
-    letter-spacing: 0.06em;
-    padding-bottom: 16px;
-  }
-  .title {
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 38px;
-    letter-spacing: -0.01em;
-    color: #323f47;
-    padding-bottom: 32px;
-  }
-  .contentBox {
-    display: block;
-    align-items: center;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 68px;
-    padding-top: 74px;
-  }
-  .tryTrackerButton {
-    padding: 14px 19px;
-    gap: 10px;
-    border-radius: 30px;
-    border: none;
-    background-color: #9be1a0;
-  }
-  .signInButton {
-    padding: 14px 19px;
-    border-radius: 30px;
-    border-color: #323f47;
-    background-color: #f0eff4;
-  }
-  .buttonText {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18px;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #323f47;
-  }
-  .buttonGroup {
-    display: flex;
-  }
-  .tryTrackerButtonWrapper {
-    padding-right: 10px;
-  }
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  padding-bottom: 16px;
+}
+.title {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  padding-bottom: 32px;
+}
+.contentBox {
+  display: block;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 68px;
+  padding-top: 74px;
+}
+
+.Button {
+  padding: 14px 19px;
+  border-radius: 30px;
+  border-color: #323f47 1px;
+  border: 1px solid #323f47;
+  background-color: #f0eff4;
+}
+.Button:hover {
+  background-color: #9be1a0;
+  border: none;
+}
+
+.Button:focus {
+  background-color: #9be1a0;
+  border: none;
+}
+
+.buttonText {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+}
+.buttonGroup {
+  display: flex;
+}
+.tryTrackerButtonWrapper {
+  padding-right: 10px;
 }
 
 /* TABLET 768PX*/
