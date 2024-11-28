@@ -6,8 +6,8 @@ import { SignUpForm } from "../../components/SignUpForm/SignUpForm";
 const SignUpPage = () => {
   return (
     <>
-      <Container>
-        <Section>
+      <Section>
+        <Container>
           <AuthFormLayout
             title="Sign Up"
             footerText="Already have account?"
@@ -16,8 +16,8 @@ const SignUpPage = () => {
           >
             <SignUpForm />
           </AuthFormLayout>
-        </Section>
-      </Container>
+        </Container>
+      </Section>
     </>
   );
 };

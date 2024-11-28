@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding-left: 16px;
   padding-right: 16px;
   background-color: #f0eff4;
   border-radius: 30px;
-  min-height: calc(100dvh - 32px);
   position: relative;
+  padding-top: 170px;
+  padding-bottom: 170px;
 }
 
 .auth-logo {
@@ -53,11 +53,12 @@
 
 @media only screen and (min-width: 768px) {
   .auth-layout {
-    min-height: calc(100dvh - 64px);
     padding-left: 134px;
     padding-right: 134px;
     font-size: 16px;
     line-height: 1.5;
+    padding-top: 227px;
+    padding-bottom: 227px;
   }
 
   .auth-title {
@@ -80,6 +81,8 @@
   .auth-layout {
     padding-left: 118px;
     padding-right: 118px;
+    padding-top: 130px;
+    padding-bottom: 100px;
   }
 
   .auth-layout-picture > div {
