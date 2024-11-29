@@ -18,6 +18,7 @@
 }
 
 .wrapperUserBar {
+  border-radius: 30px;
   max-width: 137px;
   position: relative;
 }

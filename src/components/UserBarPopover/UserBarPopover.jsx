@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import sprite from "../../img/sprite.svg";
 import css from "./UserBarPopover.module.css";
 
-const UserBarPopover = ({ closeUserBarPopover, openModal }) => {
+const UserBarPopover = ({ closeUserBarPopover, openModal, userBarRef }) => {
   const handleClickSetting = () => {
     closeUserBarPopover();
     openModal("userSettings");
@@ -21,10 +21,7 @@ const UserBarPopover = ({ closeUserBarPopover, openModal }) => {
     };
 
     const handleClickBackDrop = (event) => {
-      const classList = [css.wrapperUserBarPopover, css.btnUserBarPopover];
-      const isClassInClassList = classList.includes(event.target.className);
-
-      if (!isClassInClassList) {
+      if (userBarRef.current && !userBarRef.current.contains(event.target)) {
         closeUserBarPopover();
       }
     };
@@ -37,7 +34,7 @@ const UserBarPopover = ({ closeUserBarPopover, openModal }) => {
       window.removeEventListener("keydown", handleClickDown);
       window.removeEventListener("mousedown", handleClickBackDrop);
     };
-  }, [closeUserBarPopover]);
+  }, [closeUserBarPopover, userBarRef]);
 
   return (
     <div className={css.wrapperUserBarPopover}>
