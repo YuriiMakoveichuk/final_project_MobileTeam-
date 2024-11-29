@@ -1,19 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 
-import Modal from "../Modal/Modal.jsx";
 import LogOutModal from "../LogOutModal/LogOutModal.jsx";
 import UserSettingsModal from "../UserSettingsModal/UserSettingsModal.jsx";
 import UserBar from "../UserBar/UserBar.jsx";
 
 import css from "./UserPanel.module.css";
-import {
-  closeModal,
-  // closeUserBarPopoverModal,
-  openModal,
-  selectIsOpenModal,
-  // selectIsOpenUserBarPopover,
-} from "../../redux/modal.js";
+import { openModal, selectIsOpenModal } from "../../redux/modal.js";
 import { useState } from "react";
 import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
@@ -26,11 +19,6 @@ const UserPanel = () => {
 
   const user = useSelector(selectUser);
   const isOpenModal = useSelector(selectIsOpenModal);
-  // const isOpenUserBarPopover = useSelector(selectIsOpenUserBarPopover);
-
-  // const toggleIconArrow = () => {
-  //   setShowIconArrow((prevState) => !prevState);
-  // };
 
   const toggleUserBarPopover = () => {
     setIsOpenUserBarPopover((prevState) => !prevState);
@@ -39,9 +27,6 @@ const UserPanel = () => {
 
   const openModalWindow = (modalType) => {
     switch (modalType) {
-      // case "userBarPopover":
-      //   setIsOpenUserBarPopover(true);
-      //   break;
       case "userSettings":
         dispatch(openModal());
         setModalType("userSettings");
@@ -55,24 +40,9 @@ const UserPanel = () => {
     }
   };
 
-  const closeModalWindow = (modalType) => {
-    switch (modalType) {
-      case "userBarPopover":
-        // dispatch(closeUserBarPopoverModal());
-        setIsOpenUserBarPopover(false);
-        setShowIconArrow(true);
-        break;
-      case "userSettings":
-        dispatch(closeModal());
-        setModalType(null);
-        break;
-      case "logOut":
-        dispatch(closeModal());
-        setModalType(null);
-        break;
-      default:
-        break;
-    }
+  const closeModalWindow = () => {
+    setIsOpenUserBarPopover(false);
+    setShowIconArrow(true);
   };
 
   return (
@@ -94,21 +64,9 @@ const UserPanel = () => {
         )}
       </div>
 
-      {isOpenModal && modalType === "userSettings" && (
-        <Modal
-          onCloseModal={() => closeModalWindow("userSettings")}
-          top="40px"
-          transform="translateX(-50%)"
-        >
-          <UserSettingsModal />
-        </Modal>
-      )}
+      {isOpenModal && modalType === "userSettings" && <UserSettingsModal />}
 
-      {isOpenModal && modalType === "logOut" && (
-        <Modal onCloseModal={() => closeModalWindow("logOut")}>
-          <LogOutModal onCloseModal={() => closeModalWindow("logOut")} />
-        </Modal>
-      )}
+      {isOpenModal && modalType === "logOut" && <LogOutModal />}
     </div>
   );
 };
