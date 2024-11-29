@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
@@ -13,20 +12,21 @@ const NotFoundPage = lazy(() =>
 );
 
 import "./App.css";
-
+import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
 
 function App() {
   return (
     <>
-
       <main>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signin" element={<SingInPage />} />
-            <Route path="/tracker" element={<TrackerPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/" element={<SharedLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="signup" element={<SignUpPage />} />
+              <Route path="signin" element={<SingInPage />} />
+              <Route path="tracker" element={<TrackerPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
           </Routes>
         </Suspense>
       </main>

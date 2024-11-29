@@ -3,13 +3,21 @@
   border-radius: 30px;
 }
 /* MOBILE 320PX - 375PX */
+.contentBox {
+  display: block;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 67px;
+  padding-top: 74px;
+}
 
 .subtitle {
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0.06em;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
 }
 .title {
   font-size: 38px;
@@ -17,67 +25,51 @@
   line-height: 38px;
   letter-spacing: -0.01em;
   color: #323f47;
-  padding-bottom: 32px;
-}
-.contentBox {
-  display: block;
-  align-items: center;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-bottom: 68px;
-  padding-top: 74px;
-}
-.signinButton {
-  padding: 14px 19px;
-  border-radius: 30px;
-  border: 1px solid #323f47;
-}
-.btnsignIntext:hover {
-  color: #87d28d;
-}
-.signinButton:hover {
-  border: 1px solid #87d28d;
-}
-.btnsignIntext:focus {
-  color: #87d28d;
-}
-.signinButton:focus {
-  border: 1px solid #87d28d;
-}
-
-.signupButton {
-  padding: 14px 19px;
-  border-radius: 30px;
-  background-color: #9be1a0;
-}
-.signupButton:hover {
-  background-color: #87d28d;
-  border: none;
-}
-
-.signupButton:focus {
-  background-color: #87d28d;
-  border: none;
-}
-
-.buttonText {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #323f47;
+  margin-bottom: 32px;
 }
 
 .buttonGroup {
   display: flex;
 }
+
+.button {
+  font-weight: 700;
+  transition: all 250ms linear;
+}
+
 .tryTrackerButtonWrapper {
-  padding-right: 10px;
+  margin-right: 10px;
+  padding: 14px 19px;
+  border-radius: 30px;
+  background-color: #9be1a0;
+}
+
+.tryTrackerButtonWrapper:hover,
+.tryTrackerButtonWrapper:focus {
+  background-color: #87d28d;
+}
+
+.signInButtonWrapper {
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: 1px solid #323f47;
+}
+
+.signInButtonWrapper:hover,
+.signInButtonWrapper:focus {
+  border: 1px solid #87d28d;
+  color: #87d28d;
 }
 
 /* TABLET 768PX*/
 @media only screen and (min-width: 768px) {
+  .contentBox {
+    padding-left: 64px;
+    padding-right: 93px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
+
   .subtitle {
     font-size: 16px;
     line-height: 24px;
@@ -86,38 +78,31 @@
     font-size: 64px;
     line-height: 70px;
   }
-  .contentBox {
-    padding-left: 64px;
-    padding-right: 94px;
-    padding-bottom: 50px;
-    padding-top: 50px;
-  }
-  .tryTrackerButton {
-    padding: 18px 40px;
-  }
-  .signInButton {
-    padding: 18px 40px;
-  }
-  .buttonText {
+
+  .button {
     font-size: 16px;
     line-height: 24px;
-    text-align: center;
   }
+
   .tryTrackerButtonWrapper {
-    padding-right: 16px;
+    margin-right: 16px;
+    padding: 18px 40px;
+  }
+
+  .signInButtonWrapper {
+    padding: 18px 40px;
   }
 }
 
 /* DECKTOP 1440PX*/
 @media only screen and (min-width: 1440px) {
+  .contentBox {
+    padding-right: 64px;
+    padding-bottom: 188px;
+    padding-top: 132px;
+  }
   .title {
     font-size: 80px;
     line-height: 76px;
-  }
-  .contentBox {
-    padding-left: 64px;
-    padding-right: 61px;
-    padding-bottom: 188px;
-    padding-top: 132px;
   }
 }

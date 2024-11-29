@@ -3,7 +3,6 @@
   min-height: 160px;
 }
 
-
 .dailyHeader {
   display: flex;
   justify-content: space-between;
@@ -49,24 +48,17 @@
 
 /* ================================== */
 
-
-.cardsList {
-  display: flex;
-  gap: 8px;
-}
-
 .card {
   background-color: #fff;
   border-radius: 8px;
-  width: 149px;
-  height: 74px;
-  padding: 14px 14px 21px;
+  padding: 18px 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .contentTextWrap {
+  width: 49px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,7 +69,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 .waterAmount {
@@ -123,11 +114,17 @@
 
 @media screen and (min-width: 768px) {
   .card {
+    padding: 20px;
     width: 192px;
   }
 
-  .cardsList {
-    gap: 32px;
+  .contentTextWrap {
+    width: 52px;
+    gap: 6px;
+  }
+
+  .btnWrap {
+    gap: 14px;
   }
 
   .waterAmount {
