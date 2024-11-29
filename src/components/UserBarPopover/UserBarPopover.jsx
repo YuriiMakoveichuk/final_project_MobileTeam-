@@ -21,7 +21,7 @@ const UserBarPopover = ({ closeUserBarPopover, openModal, userBarRef }) => {
     };
 
     const handleClickBackDrop = (event) => {
-      if (userBarRef.current && !userBarRef.current.contains(event.target)) {
+      if (!userBarRef.current?.contains(event.target)) {
         closeUserBarPopover();
       }
     };
