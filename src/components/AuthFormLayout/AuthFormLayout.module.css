@@ -2,19 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-left: 16px;
-  padding-right: 16px;
   background-color: #f0eff4;
   border-radius: 30px;
-  min-height: calc(100dvh - 32px);
   position: relative;
+  padding: var(--padding-md);
 }
 
 .auth-logo {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.auth-content {
+  margin-top: 32px;
 }
 
 @media only screen and (max-height: 650px) {
@@ -53,11 +54,9 @@
 
 @media only screen and (min-width: 768px) {
   .auth-layout {
-    min-height: calc(100dvh - 64px);
-    padding-left: 134px;
-    padding-right: 134px;
     font-size: 16px;
     line-height: 1.5;
+    padding: var(--padding-lg);
   }
 
   .auth-title {
@@ -78,8 +77,7 @@
   }
 
   .auth-layout {
-    padding-left: 118px;
-    padding-right: 118px;
+    padding: var(--padding-xl);
   }
 
   .auth-layout-picture > div {

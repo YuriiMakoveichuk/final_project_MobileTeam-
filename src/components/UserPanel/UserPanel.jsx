@@ -1,78 +1,72 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors.js";
+
+import LogOutModal from "../LogOutModal/LogOutModal.jsx";
+import UserSettingsModal from "../UserSettingsModal/UserSettingsModal.jsx";
 import UserBar from "../UserBar/UserBar.jsx";
-import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 import css from "./UserPanel.module.css";
-import Modal from "../Modal/Modal.jsx";
-import { Section } from "../Section/Section.jsx";
+import { openModal, selectIsOpenModal } from "../../redux/modal.js";
+import { useState } from "react";
+import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 const UserPanel = () => {
-  const userName = "Nadia";
+  const dispatch = useDispatch();
 
+  const [modalType, setModalType] = useState(null);
+  const [showIconArrow, setShowIconArrow] = useState(true);
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
-  const [showIconArrowUp, setShowIconArrowUp] = useState(false);
-  const [showIconArrowDown, setShowIconArrowDown] = useState(true);
-  const [isOpenUserSettingsModal, setIsOpenUserSettingsModal] = useState(false);
-  const [isOpenLogOutModal, setIsOpenLogOutModal] = useState(false);
 
-  const handleClickUserBar = () => {
+  const user = useSelector(selectUser);
+  const isOpenModal = useSelector(selectIsOpenModal);
+
+  const toggleUserBarPopover = () => {
     setIsOpenUserBarPopover((prevState) => !prevState);
-    setShowIconArrowUp((prevState) => !prevState);
-    setShowIconArrowDown((prevState) => !prevState);
+    setShowIconArrow((prevState) => !prevState);
   };
 
-  const closeUserBarPopover = () => {
+  const openModalWindow = (modalType) => {
+    switch (modalType) {
+      case "userSettings":
+        dispatch(openModal());
+        setModalType("userSettings");
+        break;
+      case "logOut":
+        dispatch(openModal());
+        setModalType("logOut");
+        break;
+      default:
+        break;
+    }
+  };
+
+  const closeModalWindow = () => {
     setIsOpenUserBarPopover(false);
-    setShowIconArrowUp(false);
-    setShowIconArrowDown(true);
-  };
-
-  const closeUserSettingsModal = () => {
-    setIsOpenUserSettingsModal(false);
-  };
-
-  const closeLogOutModal = () => {
-    setIsOpenLogOutModal(false);
-  };
-
-  const openUserSettingsModal = () => {
-    setIsOpenUserSettingsModal(true);
-  };
-
-  const openLogOutModal = () => {
-    setIsOpenLogOutModal(true);
+    setShowIconArrow(true);
   };
 
   return (
     <div className={css.wrapperUserPanel}>
       <p className={css.titleUserPanel}>
-        Hello<span className={css.nameAcceptWeight}>, {userName}!</span>
+        Hello<span className={css.nameAcceptWeight}>, {user.name}!</span>
       </p>
       <div className={css.wrapperUserBar}>
         <UserBar
-          clickUserBar={handleClickUserBar}
-          iconArrowUp={showIconArrowUp}
-          iconArrowDown={showIconArrowDown}
-          userName={userName}
+          openModal={openModalWindow}
+          toggleUserBarPopover={toggleUserBarPopover}
+          showIconArrow={showIconArrow}
         />
         {isOpenUserBarPopover && (
           <UserBarPopover
-            closeUserBarPopover={closeUserBarPopover}
-            openUserSettingsModal={openUserSettingsModal}
-            openLogOutModal={openLogOutModal}
+            openModal={openModalWindow}
+            closeUserBarPopover={() => closeModalWindow("userBarPopover")}
           />
         )}
       </div>
-      {isOpenUserSettingsModal && (
-        <Modal onCloseModal={closeUserSettingsModal}>
-          <Section>Component UserSettingsModal</Section>
-        </Modal>
-      )}
-      {isOpenLogOutModal && (
-        <Modal onCloseModal={closeLogOutModal}>
-          <Section>Component LogOutModal</Section>
-        </Modal>
-      )}
+
+      {isOpenModal && modalType === "userSettings" && <UserSettingsModal />}
+
+      {isOpenModal && modalType === "logOut" && <LogOutModal />}
     </div>
   );
 };

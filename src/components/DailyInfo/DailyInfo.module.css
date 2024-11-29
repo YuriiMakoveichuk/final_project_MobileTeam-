@@ -1,0 +1,151 @@
+/* header section */
+.dailyInfo {
+  min-height: 160px;
+}
+
+.dailyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.DailyInfoTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #323f47;
+}
+
+.addWaterWrap {
+  display: flex;
+  align-items: center;
+  min-width: 124px;
+  gap: 10px;
+}
+
+.addWaterText {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+}
+
+.addWaterBtn {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* ================================== */
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contentTextWrap {
+  width: 49px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.waterAmount {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  color: #323f47;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #2f2f2f99;
+}
+
+.btnWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deleteBtn,
+.editBtn {
+  width: 14px;
+  height: 14px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.iconTrash,
+.iconEdit {
+  fill: #fff;
+  stroke: #323f47;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    padding: 20px;
+    width: 192px;
+  }
+
+  .contentTextWrap {
+    width: 52px;
+    gap: 6px;
+  }
+
+  .btnWrap {
+    gap: 14px;
+  }
+
+  .waterAmount {
+    font-size: 15px;
+  }
+
+  .dailyInfo {
+    max-width: 640px;
+  }
+
+  .time {
+    font-size: 14px;
+  }
+
+  .DailyInfoTitle {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .dailyInfo {
+    max-width: 608px;
+  }
+}

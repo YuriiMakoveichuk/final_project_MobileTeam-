@@ -7,14 +7,14 @@ import css from "./HomePage.module.css";
 function HomePage() {
   return (
     <div>
-      <Container>
-        <Section>
+      <Section>
+        <Container>
           <div className={css.HomePageContainer}>
             <WelcomeSection />
             <AdvantagesSection />
           </div>
-        </Section>
-      </Container>
+        </Container>
+      </Section>
     </div>
   );
 }

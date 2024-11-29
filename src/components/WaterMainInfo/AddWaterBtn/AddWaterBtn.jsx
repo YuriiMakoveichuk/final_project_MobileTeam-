@@ -1,13 +1,13 @@
-import styles from './AddWaterBtn.module.css';
+import styles from "./AddWaterBtn.module.css";
+import sprite from "../../../img/sprite.svg";
 
 export const AddWaterBtn = () => {
   return (
     <button className={styles.btn}>
       <svg className={styles.icon}>
-        <use href={'./src/img/sprite.svg#icon-plus'}></use>
+        <use href={`${sprite}#icon-plus-white`} />
       </svg>
       <span className={styles.sign}>Add water</span>
     </button>
   );
- }
- 
+};
