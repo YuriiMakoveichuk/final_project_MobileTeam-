@@ -1,49 +1,78 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 
 import Modal from "../Modal/Modal.jsx";
-import { Section } from "../Section/Section.jsx";
+import LogOutModal from "../LogOutModal/LogOutModal.jsx";
+import UserSettingsModal from "../UserSettingsModal/UserSettingsModal.jsx";
 import UserBar from "../UserBar/UserBar.jsx";
-import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 import css from "./UserPanel.module.css";
+import {
+  closeModal,
+  // closeUserBarPopoverModal,
+  openModal,
+  selectIsOpenModal,
+  // selectIsOpenUserBarPopover,
+} from "../../redux/modal.js";
+import { useState } from "react";
+import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 const UserPanel = () => {
-  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
+  const [modalType, setModalType] = useState(null);
+  const [showIconArrow, setShowIconArrow] = useState(true);
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
-  const [showIconArrowUp, setShowIconArrowUp] = useState(false);
-  const [showIconArrowDown, setShowIconArrowDown] = useState(true);
-  const [isOpenUserSettingsModal, setIsOpenUserSettingsModal] = useState(false);
-  const [isOpenLogOutModal, setIsOpenLogOutModal] = useState(false);
 
-  const handleClickUserBar = () => {
+  const user = useSelector(selectUser);
+  const isOpenModal = useSelector(selectIsOpenModal);
+  // const isOpenUserBarPopover = useSelector(selectIsOpenUserBarPopover);
+
+  // const toggleIconArrow = () => {
+  //   setShowIconArrow((prevState) => !prevState);
+  // };
+
+  const toggleUserBarPopover = () => {
     setIsOpenUserBarPopover((prevState) => !prevState);
-    setShowIconArrowUp((prevState) => !prevState);
-    setShowIconArrowDown((prevState) => !prevState);
+    setShowIconArrow((prevState) => !prevState);
   };
 
-  const closeUserBarPopover = () => {
-    setIsOpenUserBarPopover(false);
-    setShowIconArrowUp(false);
-    setShowIconArrowDown(true);
+  const openModalWindow = (modalType) => {
+    switch (modalType) {
+      // case "userBarPopover":
+      //   setIsOpenUserBarPopover(true);
+      //   break;
+      case "userSettings":
+        dispatch(openModal());
+        setModalType("userSettings");
+        break;
+      case "logOut":
+        dispatch(openModal());
+        setModalType("logOut");
+        break;
+      default:
+        break;
+    }
   };
 
-  const closeUserSettingsModal = () => {
-    setIsOpenUserSettingsModal(false);
-  };
-
-  const closeLogOutModal = () => {
-    setIsOpenLogOutModal(false);
-  };
-
-  const openUserSettingsModal = () => {
-    setIsOpenUserSettingsModal(true);
-  };
-
-  const openLogOutModal = () => {
-    setIsOpenLogOutModal(true);
+  const closeModalWindow = (modalType) => {
+    switch (modalType) {
+      case "userBarPopover":
+        // dispatch(closeUserBarPopoverModal());
+        setIsOpenUserBarPopover(false);
+        setShowIconArrow(true);
+        break;
+      case "userSettings":
+        dispatch(closeModal());
+        setModalType(null);
+        break;
+      case "logOut":
+        dispatch(closeModal());
+        setModalType(null);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -53,27 +82,31 @@ const UserPanel = () => {
       </p>
       <div className={css.wrapperUserBar}>
         <UserBar
-          clickUserBar={handleClickUserBar}
-          iconArrowUp={showIconArrowUp}
-          iconArrowDown={showIconArrowDown}
-          userName={user.name}
+          openModal={openModalWindow}
+          toggleUserBarPopover={toggleUserBarPopover}
+          showIconArrow={showIconArrow}
         />
         {isOpenUserBarPopover && (
           <UserBarPopover
-            closeUserBarPopover={closeUserBarPopover}
-            openUserSettingsModal={openUserSettingsModal}
-            openLogOutModal={openLogOutModal}
+            openModal={openModalWindow}
+            closeUserBarPopover={() => closeModalWindow("userBarPopover")}
           />
         )}
       </div>
-      {isOpenUserSettingsModal && (
-        <Modal onCloseModal={closeUserSettingsModal}>
-          <Section>Component UserSettingsModal</Section>
+
+      {isOpenModal && modalType === "userSettings" && (
+        <Modal
+          onCloseModal={() => closeModalWindow("userSettings")}
+          top="40px"
+          transform="translateX(-50%)"
+        >
+          <UserSettingsModal />
         </Modal>
       )}
-      {isOpenLogOutModal && (
-        <Modal onCloseModal={closeLogOutModal}>
-          <Section>Component LogOutModal</Section>
+
+      {isOpenModal && modalType === "logOut" && (
+        <Modal onCloseModal={() => closeModalWindow("logOut")}>
+          <LogOutModal onCloseModal={() => closeModalWindow("logOut")} />
         </Modal>
       )}
     </div>
