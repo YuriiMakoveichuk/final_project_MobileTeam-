@@ -3,13 +3,6 @@
   min-height: 160px;
 }
 
-/* @media screen and (min-width: 768px) {
-
-}
-
-@media screen and (min-width: 1440px) {
-
-} */
 
 .dailyHeader {
   display: flex;
@@ -56,11 +49,6 @@
 
 /* ================================== */
 
-.swiperContainer {
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-}
 
 .cardsList {
   display: flex;
