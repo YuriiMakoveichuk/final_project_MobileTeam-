@@ -27,21 +27,36 @@
   padding-bottom: 68px;
   padding-top: 74px;
 }
-
-.Button {
+.signinButton {
   padding: 14px 19px;
   border-radius: 30px;
-  border-color: #323f47 1px;
   border: 1px solid #323f47;
-  background-color: #f0eff4;
 }
-.Button:hover {
+.btnsignIntext:hover {
+  color: #87d28d;
+}
+.signinButton:hover {
+  border: 1px solid #87d28d;
+}
+.btnsignIntext:focus {
+  color: #87d28d;
+}
+.signinButton:focus {
+  border: 1px solid #87d28d;
+}
+
+.signupButton {
+  padding: 14px 19px;
+  border-radius: 30px;
   background-color: #9be1a0;
+}
+.signupButton:hover {
+  background-color: #87d28d;
   border: none;
 }
 
-.Button:focus {
-  background-color: #9be1a0;
+.signupButton:focus {
+  background-color: #87d28d;
   border: none;
 }
 
@@ -53,6 +68,7 @@
   text-align: center;
   color: #323f47;
 }
+
 .buttonGroup {
   display: flex;
 }

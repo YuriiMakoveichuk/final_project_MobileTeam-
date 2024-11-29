@@ -17,7 +17,7 @@ function WelcomeSection() {
         <div className={css.buttonGroup}>
           <div className={css.tryTrackerButtonWrapper}>
             <Link to="/signup">
-              <div className={css.Button} tabIndex="0">
+              <div className={css.signupButton} tabIndex="0">
                 <p className={css.buttonText}>Try tracker</p>
               </div>
             </Link>
@@ -25,8 +25,10 @@ function WelcomeSection() {
 
           <div className={css.signInButtonWrapper}>
             <Link to="/signin">
-              <div className={css.Button} tabIndex="0">
-                <p className={css.buttonText}>Sign In</p>
+              <div className={css.signinButton} tabIndex="0">
+                <p className={`${css.buttonText} ${css.btnsignIntext}`}>
+                  Sign In
+                </p>
               </div>
             </Link>
           </div>
