@@ -7,11 +7,13 @@ import UserBar from "../UserBar/UserBar.jsx";
 
 import css from "./UserPanel.module.css";
 import { openModal, selectIsOpenModal } from "../../redux/modal.js";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 const UserPanel = () => {
   const dispatch = useDispatch();
+
+  const userBarRef = useRef(null);
 
   const [modalType, setModalType] = useState(null);
   const [showIconArrow, setShowIconArrow] = useState(true);
@@ -50,7 +52,7 @@ const UserPanel = () => {
       <p className={css.titleUserPanel}>
         Hello<span className={css.nameAcceptWeight}>, {user.name}!</span>
       </p>
-      <div className={css.wrapperUserBar}>
+      <div ref={userBarRef} className={css.wrapperUserBar}>
         <UserBar
           openModal={openModalWindow}
           toggleUserBarPopover={toggleUserBarPopover}
@@ -58,6 +60,7 @@ const UserPanel = () => {
         />
         {isOpenUserBarPopover && (
           <UserBarPopover
+            userBarRef={userBarRef}
             openModal={openModalWindow}
             closeUserBarPopover={() => closeModalWindow("userBarPopover")}
           />
