@@ -1,0 +1,11 @@
+.waterModalContent {
+  padding: 40px 20px;
+  min-width: 343px;
+}
+
+@media screen and (min-width: 768px) {
+  .waterModalContent {
+    min-width: 518px;
+    padding: 40px;
+  }
+}
