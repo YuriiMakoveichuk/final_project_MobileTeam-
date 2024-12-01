@@ -5,10 +5,10 @@ import { registrationSchema } from '../AuthValidation/AuthValidation';
 import { EmailInputFormItem } from '../AuthFormItems/EmailInputFormItem/EmailInputFormItem';
 import { PasswordInputFormItem } from '../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem';
 import { SubmitBtnFormItem } from '../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem';
-import { apiLogin } from '../../redux/auth/operations';
+import { apiLogin } from '../../redux/auth/operations.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectAuthError } from '../../redux/auth/selectors';
+import { selectAuthError } from '../../redux/auth/selectors.js';
 import toast from 'react-hot-toast';
 
 export const SignInForm = () => {
