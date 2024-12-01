@@ -21,8 +21,8 @@ const UserBar = ({ showIconArrow, toggleUserBarPopover }) => {
       type="button"
       onClick={toggleUserBarPopover}
     >
-      <p className={css.nameUserBar}>{user.name}</p>
-      <img className={css.photoUser} src={user.photo} alt="user's photo" />
+      <p className={css.nameUserBar}>{user.data.name}</p>
+      <img className={css.photoUser} src={user.data.photo} alt="user's photo" />
       {showIconArrow && (
         <svg className={css.iconArrowDown}>
           <use href={`${sprite}#icon-chevron-down`}></use>
