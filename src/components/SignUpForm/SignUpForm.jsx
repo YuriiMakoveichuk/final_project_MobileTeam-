@@ -30,7 +30,7 @@ export const SignUpForm = () => {
   }, [error]);
 
   const onSubmit = async (values) => {
-    const { repeatPassword, ...submissionData } = values;
+    const { repeatPassword, ...submissionData } = values; // eslint-disable-line no-unused-vars
     const response = await dispatch(registration(submissionData));
     if (!response.error) {
       toast.success("Registration successful!");
