@@ -13,9 +13,10 @@ import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 const UserPanel = () => {
   const dispatch = useDispatch();
 
+  const modalType = useSelector((state) => state.modal.modalType);
+
   const userBarRef = useRef(null);
 
-  const [modalType, setModalType] = useState(null);
   const [showIconArrow, setShowIconArrow] = useState(true);
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
 
@@ -30,12 +31,10 @@ const UserPanel = () => {
   const openModalWindow = (modalType) => {
     switch (modalType) {
       case "userSettings":
-        dispatch(openModal());
-        setModalType("userSettings");
+        dispatch(openModal("userSettings"));
         break;
       case "logOut":
-        dispatch(openModal());
-        setModalType("logOut");
+        dispatch(openModal("logOut"));
         break;
       default:
         break;
@@ -48,29 +47,33 @@ const UserPanel = () => {
   };
 
   return (
-    <div className={css.wrapperUserPanel}>
-      <p className={css.titleUserPanel}>
-        Hello<span className={css.nameAcceptWeight}>, {user.name}!</span>
-      </p>
-      <div ref={userBarRef} className={css.wrapperUserBar}>
-        <UserBar
-          openModal={openModalWindow}
-          toggleUserBarPopover={toggleUserBarPopover}
-          showIconArrow={showIconArrow}
-        />
-        {isOpenUserBarPopover && (
-          <UserBarPopover
-            userBarRef={userBarRef}
-            openModal={openModalWindow}
-            closeUserBarPopover={() => closeModalWindow("userBarPopover")}
-          />
-        )}
-      </div>
+    <>
+      <div className={css.wrapperUserPanel}>
+        <div>
+          <p className={css.titleUserPanel}>
+            Hello<span className={css.nameAcceptWeight}>, {user.name}!</span>
+          </p>
+        </div>
 
+        <div ref={userBarRef} className={css.wrapperUserBar}>
+          <UserBar
+            openModal={openModalWindow}
+            toggleUserBarPopover={toggleUserBarPopover}
+            showIconArrow={showIconArrow}
+          />
+          {isOpenUserBarPopover && (
+            <UserBarPopover
+              userBarRef={userBarRef}
+              openModal={openModalWindow}
+              closeUserBarPopover={() => closeModalWindow("userBarPopover")}
+            />
+          )}
+        </div>
+      </div>
       {isOpenModal && modalType === "userSettings" && <UserSettingsModal />}
 
       {isOpenModal && modalType === "logOut" && <LogOutModal />}
-    </div>
+    </>
   );
 };
 

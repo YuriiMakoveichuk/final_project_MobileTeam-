@@ -40,12 +40,12 @@ function App() {
                 path="signup"
                 element={<RestrictedRoute component={SignUpPage} />}
               />
-              <Route path="/signin" element={<SingInPage />} />
-              <Route path="/tracker" element={<TrackerPage />} />
-              {/* <Route
+              <Route path="signin" element={<SingInPage />} />
+              {/* <Route path="tracker" element={<TrackerPage />} /> */}
+              <Route
                 path="tracker"
                 element={<PrivateRoute component={TrackerPage} />}
-              /> */}
+              />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>

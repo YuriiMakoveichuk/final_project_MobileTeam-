@@ -3,10 +3,12 @@ import sprite from "../../img/sprite.svg";
 import css from "./UserSettingsForm.module.css";
 import clsx from "clsx";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors.js";
 
 const INITIAL_VALUES = {
-  avatar: "",
-  gender: "",
+  photo: "",
+  userGender: "woman",
   userName: "",
   userEmail: "",
   userWeight: "",
@@ -15,8 +17,8 @@ const INITIAL_VALUES = {
 };
 
 const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
-  avatar: Yup.mixed(),
-  gender: Yup.string(),
+  photo: Yup.mixed(),
+  userGender: Yup.string(),
   userName: Yup.string().min(2).max(50),
   userEmail: Yup.string().email(),
   userWeight: Yup.number().positive(),
@@ -25,15 +27,18 @@ const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
 });
 
 const UserSettingsForm = ({ onUserChange }) => {
+  const user = useSelector(selectUser);
+  console.log(user.data);
+
   const handleSubmit = (values, actions) => {
     const userObject = {
-      avatar: "",
+      photo: "",
       gender: values.userGender,
       name: values.userName,
       email: values.userEmail,
       weight: values.userWeight,
-      activeTime: values.userActiveTime,
-      dailyWaterIntake: values.dailyWaterIntake,
+      sportHours: values.userActiveTime,
+      waterNorma: values.dailyWaterIntake,
     };
 
     onUserChange(userObject);
@@ -49,7 +54,9 @@ const UserSettingsForm = ({ onUserChange }) => {
       >
         <Form className={css.form}>
           <div className={css.boxAvatar}>
-            <div className={css.avatar}></div>
+            <div className={css.avatar}>
+              <img src={user.data.photo} alt={user.data.name} />
+            </div>
             <label htmlFor="avatar" className={css.labelAvatar}>
               <svg className={css.svg} width={20} height={20}>
                 <use href={`${sprite}#icon-upload`}></use>
@@ -67,7 +74,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                   <Field
                     className={css.field}
                     type="radio"
-                    name="gender"
+                    name="userGender"
                     value="woman"
                   />
                   Woman
@@ -85,7 +92,11 @@ const UserSettingsForm = ({ onUserChange }) => {
 
               <label className={css.label}>
                 <h3 className={css.title}>Your name</h3>
-                <Field type="text" name="userName" placeholder="Nadia" />
+                <Field
+                  type="text"
+                  name="userName"
+                  placeholder={user.data.name}
+                />
                 <ErrorMessage
                   className={css.errorText}
                   name="userName"
@@ -98,7 +109,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="userEmail"
-                  placeholder="nadia10@gmail.com"
+                  placeholder={user.data.email}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -141,7 +152,11 @@ const UserSettingsForm = ({ onUserChange }) => {
             <div className={clsx(css.boxData, css.box)}>
               <label className={css.label}>
                 <p>Your weight in kilograms:</p>
-                <Field type="tex3" name="userWeight" placeholder="0" />
+                <Field
+                  type="tex3"
+                  name="userWeight"
+                  placeholder={user.data.weight}
+                />
                 <ErrorMessage
                   className={css.errorText}
                   name="userWeight"
@@ -151,7 +166,11 @@ const UserSettingsForm = ({ onUserChange }) => {
 
               <label className={clsx(css.label, css.labelSize)}>
                 <p>The time of active participation in sports:</p>
-                <Field type="text" name="userActiveTime" placeholder="0" />
+                <Field
+                  type="text"
+                  name="userActiveTime"
+                  placeholder={user.data.sportHours}
+                />
                 <ErrorMessage
                   className={css.errorText}
                   name="userActiveTime"
@@ -168,7 +187,11 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <h3 className={css.title}>
                   Write down how much water you will drink:
                 </h3>
-                <Field type="text" name="dailyWaterIntake" placeholder="1.8" />
+                <Field
+                  type="text"
+                  name="dailyWaterIntake"
+                  placeholder={user.data.waterNorma / 1000}
+                />
                 <ErrorMessage
                   className={css.errorText}
                   name="dailyWaterIntake"
