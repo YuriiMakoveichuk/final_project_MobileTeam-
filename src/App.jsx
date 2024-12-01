@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 
 import Loader from "./components/Loader/Loader.jsx";
 
@@ -13,8 +13,22 @@ const NotFoundPage = lazy(() =>
 
 import "./App.css";
 import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
+import RestrictedRoute from "./routes/RestrictedRoute.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsRefreshing } from "./redux/auth/selectors.js";
+import { refreshUser } from "./redux/auth/operations.js";
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) return <Loader />;
+
   return (
     <>
       <main>
@@ -22,9 +36,16 @@ function App() {
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="signup" element={<SignUpPage />} />
-              <Route path="signin" element={<SingInPage />} />
-              <Route path="tracker" element={<TrackerPage />} />
+              <Route
+                path="signup"
+                element={<RestrictedRoute component={SignUpPage} />}
+              />
+              <Route path="/signin" element={<SingInPage />} />
+              <Route path="/tracker" element={<TrackerPage />} />
+              {/* <Route
+                path="tracker"
+                element={<PrivateRoute component={TrackerPage} />}
+              /> */}
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
