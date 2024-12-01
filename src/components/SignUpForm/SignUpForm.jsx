@@ -1,9 +1,14 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { registrationSchema } from '../AuthValidation/AuthValidation';
-import { EmailInputFormItem } from '../AuthFormItems/EmailInputFormItem/EmailInputFormItem';
-import { PasswordInputFormItem } from '../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem';
-import { SubmitBtnFormItem } from '../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registrationSchema } from "../AuthValidation/AuthValidation";
+import { EmailInputFormItem } from "../AuthFormItems/EmailInputFormItem/EmailInputFormItem";
+import { PasswordInputFormItem } from "../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem";
+import { SubmitBtnFormItem } from "../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem";
+import { useDispatch, useSelector } from "react-redux";
+import { registration } from "../../redux/auth/operations";
+import { selectAuthError } from "../../redux/auth/selectors";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 export const SignUpForm = () => {
   const {
@@ -15,8 +20,22 @@ export const SignUpForm = () => {
     resolver: yupResolver(registrationSchema),
   });
 
-  const onSubmit = () => {
-    reset();
+  const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
+  const onSubmit = async (values) => {
+    const { repeatPassword, ...submissionData } = values;
+    const response = await dispatch(registration(submissionData));
+    if (!response.error) {
+      toast.success("Registration successful!");
+      reset();
+    }
   };
 
   return (
@@ -48,7 +67,7 @@ export const SignUpForm = () => {
         required={true}
         placeholder="Repeat password"
       />
-      <SubmitBtnFormItem title={'Sign Up'} />
+      <SubmitBtnFormItem title={"Sign Up"} />
     </form>
   );
 };
