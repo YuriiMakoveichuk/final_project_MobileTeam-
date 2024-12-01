@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
 
 import sprite from "../../img/sprite.svg";
 import styles from "./DailyInfo.module.css";
@@ -22,8 +21,7 @@ const DailyInfo = () => {
   const dispatch = useDispatch();
   const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
-
-  const [modalType, setModalType] = useState(null); // Для определения типа модалки
+  const modalType = useSelector((state) => state.modal.modalType); // Для определения типа модалки
 
   const handleAddWater = () => {
     const now = new Date();
@@ -46,17 +44,15 @@ const DailyInfo = () => {
   };
 
   const openDeleteModal = (id) => {
-    setModalType("delete");
     const recordToDelete = waterRecords.find((record) => record.id === id);
     dispatch(setRecordToDelete(recordToDelete)); // Передаем целый объект записи
-    dispatch(openModal());
+    dispatch(openModal("delete"));
   };
 
   const openEditModal = (id) => {
-    setModalType("edit");
     const recordToEdit = waterRecords.find((record) => record.id === id);
     dispatch(setEditingRecord(recordToEdit));
-    dispatch(openModal());
+    dispatch(openModal("edit"));
   };
 
   const handleDeleteWater = (id) => {

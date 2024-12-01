@@ -13,9 +13,10 @@ import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 const UserPanel = () => {
   const dispatch = useDispatch();
 
+  const modalType = useSelector((state) => state.modal.modalType);
+
   const userBarRef = useRef(null);
 
-  const [modalType, setModalType] = useState(null);
   const [showIconArrow, setShowIconArrow] = useState(true);
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
 
@@ -30,12 +31,10 @@ const UserPanel = () => {
   const openModalWindow = (modalType) => {
     switch (modalType) {
       case "userSettings":
-        dispatch(openModal());
-        setModalType("userSettings");
+        dispatch(openModal("userSettings"));
         break;
       case "logOut":
-        dispatch(openModal());
-        setModalType("logOut");
+        dispatch(openModal("logOut"));
         break;
       default:
         break;
