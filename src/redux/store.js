@@ -5,7 +5,6 @@ import { waterReducer } from "./dailyInfoSlice";
 
 import { authReducer } from "./auth/slice.js";
 
-
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -13,6 +12,5 @@ export const store = configureStore({
     water: waterReducer,
 
     auth: authReducer,
-
   },
 });
