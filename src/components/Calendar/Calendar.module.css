@@ -1,5 +1,27 @@
 .calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 2fr);
-  gap: 18px;
+  height: 300px;
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 375px) {
+  .calendar {
+    column-gap: 18px;
+    row-gap: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .calendar {
+    height: 305px;
+    column-gap: 48px;
+    row-gap: 15px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .calendar {
+    column-gap: 43px;
+  }
 }

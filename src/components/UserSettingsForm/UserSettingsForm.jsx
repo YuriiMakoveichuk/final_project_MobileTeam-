@@ -28,7 +28,7 @@ const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
 
 const UserSettingsForm = ({ onUserChange }) => {
   const user = useSelector(selectUser);
-  console.log(user.data);
+  console.log(user);
 
   const handleSubmit = (values, actions) => {
     const userObject = {

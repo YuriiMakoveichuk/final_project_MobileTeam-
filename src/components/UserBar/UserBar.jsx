@@ -9,6 +9,7 @@ const UserBar = ({ showIconArrow, toggleUserBarPopover }) => {
   // const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+  console.log(user);
 
   // const handleClickUserBar = () => {
   //   toggleIconArrow();
@@ -21,8 +22,12 @@ const UserBar = ({ showIconArrow, toggleUserBarPopover }) => {
       type="button"
       onClick={toggleUserBarPopover}
     >
-      {/* <p className={css.nameUserBar}>{user.data.name}</p>
-      <img className={css.photoUser} src={user.data.photo} alt="user's photo" /> */}
+      <p className={css.nameUserBar}>{/* {user.data.name} */}</p>
+      <img
+        className={css.photoUser}
+        // src={user.data.photo}
+        alt="user's photo"
+      />
       {showIconArrow && (
         <svg className={css.iconArrowDown}>
           <use href={`${sprite}#icon-chevron-down`}></use>
