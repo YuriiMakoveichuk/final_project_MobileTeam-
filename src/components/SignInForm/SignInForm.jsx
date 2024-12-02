@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { registrationSchema } from '../AuthValidation/AuthValidation';
+import { loginSchema } from '../AuthValidation/AuthValidation';
 import { EmailInputFormItem } from '../AuthFormItems/EmailInputFormItem/EmailInputFormItem';
 import { PasswordInputFormItem } from '../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem';
 import { SubmitBtnFormItem } from '../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem';
@@ -18,7 +18,7 @@ export const SignInForm = () => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(registrationSchema),
+    resolver: yupResolver(loginSchema),
   });
 
   const dispatch = useDispatch();
