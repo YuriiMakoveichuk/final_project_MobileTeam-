@@ -14,13 +14,15 @@ const setAuthHeaders = (token) => {
 export const apiLogin = createAsyncThunk(
   "auth/login",
   async (credentials, thunkApi) => {
+    console.log("API login values:", credentials);
     try {
-      const response = await INSTANCE.post("/user/login", credentials);
-      const token = response.data?.data?.accessToken;
-      const user = response.data?.data?.user;
+      const { data } = await INSTANCE.post("user/login", credentials);
+      const token = data?.data?.accessToken;
+      // const user = data?.data?.user;
       setAuthHeaders(token);
-      return { token, user };
+      return data;
     } catch (error) {
+      console.error("API login error:", error);
       return thunkApi.rejectWithValue(error.message);
     }
   }

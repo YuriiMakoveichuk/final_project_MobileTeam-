@@ -1,15 +1,15 @@
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { registrationSchema } from '../AuthValidation/AuthValidation';
-import { EmailInputFormItem } from '../AuthFormItems/EmailInputFormItem/EmailInputFormItem';
-import { PasswordInputFormItem } from '../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem';
-import { SubmitBtnFormItem } from '../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem';
-import { apiLogin } from '../../redux/auth/operations.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { selectAuthError } from '../../redux/auth/selectors.js';
-import toast from 'react-hot-toast';
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../AuthValidation/AuthValidation";
+import { EmailInputFormItem } from "../AuthFormItems/EmailInputFormItem/EmailInputFormItem";
+import { PasswordInputFormItem } from "../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem";
+import { SubmitBtnFormItem } from "../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem";
+import { apiLogin } from "../../redux/auth/operations.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { selectAuthError } from "../../redux/auth/selectors.js";
+import toast from "react-hot-toast";
 
 export const SignInForm = () => {
   const {
@@ -18,7 +18,7 @@ export const SignInForm = () => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(registrationSchema),
+    resolver: yupResolver(loginSchema),
   });
 
   const dispatch = useDispatch();
@@ -34,16 +34,16 @@ export const SignInForm = () => {
   const onSubmit = async (values) => {
     try {
       await dispatch(apiLogin(values)).unwrap();
-      toast.success('Login successful!');
+      toast.success("Login successful!");
       reset();
-      navigate('/tracker');
+      navigate("/tracker");
     } catch (err) {
-      if (err === 'User not found') {
+      if (err === "User not found") {
         toast.error(
-          'No such user found. Please check your credentials or sign up.',
+          "No such user found. Please check your credentials or sign up."
         );
-      } else if (err === 'Invalid credentials') {
-        toast.error('Invalid password. Please try again.');
+      } else if (err === "Invalid credentials") {
+        toast.error("Invalid password. Please try again.");
       } else {
         toast.error(`Login failed: ${err}`);
       }
@@ -70,7 +70,7 @@ export const SignInForm = () => {
         required={true}
         placeholder="Enter your password"
       />
-      <SubmitBtnFormItem title={'Sign In'} />
+      <SubmitBtnFormItem title={"Sign In"} />
     </form>
   );
 };
