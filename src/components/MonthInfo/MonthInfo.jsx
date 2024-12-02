@@ -28,7 +28,7 @@ const MonthInfo = () => {
   return (
     <>
       <div className={css.calendarHeader}>
-        <h1>Month</h1>
+        <h1 className={css.title}>Month</h1>
         <CalendarPagination
           handleNextMonth={handleNextMonth}
           handlePrevMonth={handlePrevMonth}

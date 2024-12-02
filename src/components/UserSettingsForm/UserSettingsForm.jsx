@@ -28,7 +28,7 @@ const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
 
 const UserSettingsForm = ({ onUserChange }) => {
   const user = useSelector(selectUser);
-  console.log(user.data);
+  console.log(user);
 
   const handleSubmit = (values, actions) => {
     const userObject = {
@@ -55,7 +55,7 @@ const UserSettingsForm = ({ onUserChange }) => {
         <Form className={css.form}>
           <div className={css.boxAvatar}>
             <div className={css.avatar}>
-              <img src={user.data.photo} alt={user.data.name} />
+              {/* <img src={user.data.photo} alt={user.data.name} /> */}
             </div>
             <label htmlFor="avatar" className={css.labelAvatar}>
               <svg className={css.svg} width={20} height={20}>
@@ -95,7 +95,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="userName"
-                  placeholder={user.data.name}
+                  // placeholder={user.data.name}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -109,7 +109,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="userEmail"
-                  placeholder={user.data.email}
+                  // placeholder={user.data.email}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -155,7 +155,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="tex3"
                   name="userWeight"
-                  placeholder={user.data.weight}
+                  // placeholder={user.data.weight}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -169,7 +169,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="userActiveTime"
-                  placeholder={user.data.sportHours}
+                  // placeholder={user.data.sportHours}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -190,7 +190,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="dailyWaterIntake"
-                  placeholder={user.data.waterNorma / 1000}
+                  // placeholder={user.data.waterNorma / 1000}
                 />
                 <ErrorMessage
                   className={css.errorText}
