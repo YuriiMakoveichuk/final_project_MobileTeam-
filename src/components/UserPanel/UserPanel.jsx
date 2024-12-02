@@ -21,6 +21,7 @@ const UserPanel = () => {
   const [isOpenUserBarPopover, setIsOpenUserBarPopover] = useState(false);
 
   const user = useSelector(selectUser);
+  console.log("panel", user);
 
   const isOpenModal = useSelector(selectIsOpenModal);
 
@@ -53,7 +54,7 @@ const UserPanel = () => {
         <div>
           <p className={css.titleUserPanel}>
             Hello
-            <span className={css.nameAcceptWeight}>, {user.data.name}!</span>
+            {/* <span className={css.nameAcceptWeight}>, {user.data.name}!</span> */}
           </p>
         </div>
 

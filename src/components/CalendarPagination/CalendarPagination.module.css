@@ -1,23 +1,50 @@
 .monthSelect {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+  display: flex;
+  padding: 1px 0;
 }
 
 .button {
+  padding: 0;
   color: #000;
-  background-color: #f4f4f9;
+  background-color: inherit;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .title {
-  font-family: "Poppins", sans-serif;
+  width: 110px;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  text-align: center;
+  font-size: 14px;
+  line-height: 1.28571;
   color: #323f47;
-  margin-left: 20px;
-  margin-right: 20px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .boxBtn {
+    margin-right: 20px;
+    display: flex;
+    padding: 3px 0;
+  }
+
+  .title {
+    width: 125px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
 }
