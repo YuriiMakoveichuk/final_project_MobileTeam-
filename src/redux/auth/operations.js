@@ -30,11 +30,12 @@ export const registration = createAsyncThunk(
   "auth/register",
   async (credentials, thunkApi) => {
     try {
-      await INSTANCE.post("/user/register", credentials);
+      const registrationResponse = await INSTANCE.post("/user/register", credentials);
+      const userData = registrationResponse.data;
       const loginResponse = await INSTANCE.post("/user/login", credentials);
       const token = loginResponse.data?.data?.accessToken;
       setAuthHeaders(token);
-      return { token, user: credentials.email };
+      return { token, user: userData };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
