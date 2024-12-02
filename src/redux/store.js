@@ -1,23 +1,5 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import { modalReducer } from "./modal.js";
-
-// import { waterReducer } from "./dailyInfoSlice";
-
-// import { authReducer } from "./auth/slice.js";
-
-// export const store = configureStore({
-//   reducer: {
-//     modal: modalReducer,
-
-//     water: waterReducer,
-
-//     auth: authReducer,
-
-//   },
-// });
 import { modalReducer } from "./modal.js";
 import { waterReducer } from "./dailyInfoSlice";
-
 import { authReducer } from "./auth/slice.js";
 import { configureStore } from "@reduxjs/toolkit";
 import {
@@ -31,7 +13,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import {authReducer} from "./auth/";
 
 const authPersistConfig = {
   key: "auth",
@@ -43,8 +24,6 @@ export const store = configureStore({
   reducer: {
     modal: modalReducer,
     water: waterReducer,
-
-    // auth: authReducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
 

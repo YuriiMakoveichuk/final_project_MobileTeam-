@@ -5,7 +5,6 @@ import { SignUpForm } from "../../components/SignUpForm/SignUpForm";
 
 const SignUpPage = () => {
   return (
-    <>
       <Section>
         <Container>
           <AuthFormLayout
@@ -21,7 +20,6 @@ const SignUpPage = () => {
           </AuthFormLayout>
         </Container>
       </Section>
-    </>
   );
 };
 
