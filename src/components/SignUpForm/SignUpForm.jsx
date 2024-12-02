@@ -4,11 +4,10 @@ import { registrationSchema } from "../AuthValidation/AuthValidation";
 import { EmailInputFormItem } from "../AuthFormItems/EmailInputFormItem/EmailInputFormItem";
 import { PasswordInputFormItem } from "../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem";
 import { SubmitBtnFormItem } from "../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registration } from "../../redux/auth/operations";
-import { selectAuthError } from "../../redux/auth/selectors";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
   const {
@@ -21,13 +20,7 @@ export const SignUpForm = () => {
   });
 
   const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     const { repeatPassword, ...submissionData } = values; // eslint-disable-line no-unused-vars
@@ -35,6 +28,10 @@ export const SignUpForm = () => {
     if (!response.error) {
       toast.success("Registration successful!");
       reset();
+    } else if (
+      response.payload === "User already exists. Redirecting to login..."
+    ) { 
+      navigate("/signin");
     }
   };
 

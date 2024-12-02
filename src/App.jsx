@@ -40,7 +40,10 @@ function App() {
                 path="signup"
                 element={<RestrictedRoute component={SignUpPage} />}
               />
-              <Route path="signin" element={<SingInPage />} />
+                 <Route
+                path="signin"
+                element={<RestrictedRoute component={SingInPage} />}
+              />
               {/* <Route path="tracker" element={<TrackerPage />} /> */}
               <Route
                 path="tracker"

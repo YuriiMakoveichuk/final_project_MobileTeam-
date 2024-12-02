@@ -1,6 +1,5 @@
 
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../AuthValidation/AuthValidation";
 import { EmailInputFormItem } from "../AuthFormItems/EmailInputFormItem/EmailInputFormItem";
@@ -23,7 +22,6 @@ export const SignInForm = () => {
   });
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const error = useSelector(selectAuthError);
 
   useEffect(() => {
@@ -37,7 +35,6 @@ export const SignInForm = () => {
       await dispatch(apiLogin(values)).unwrap();
       toast.success("Login successful!");
       reset();
-      navigate("/tracker");
     } catch (err) {
       if (err === "User not found") {
         toast.error(
