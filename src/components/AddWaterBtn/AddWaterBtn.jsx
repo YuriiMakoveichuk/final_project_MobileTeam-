@@ -1,9 +1,12 @@
 import styles from "./AddWaterBtn.module.css";
-import sprite from "../../../img/sprite.svg";
+import sprite from "../../img/sprite.svg";
 
-export const AddWaterBtn = () => {
+const AddWaterBtn = ({ openModal }) => {
   return (
-    <button className={styles.btn}>
+    <button 
+      className={styles.btn}
+      onClick={openModal}
+      >
       <svg className={styles.icon}>
         <use href={`${sprite}#icon-plus-white`} />
       </svg>
@@ -11,3 +14,5 @@ export const AddWaterBtn = () => {
     </button>
   );
 };
+
+export default AddWaterBtn;

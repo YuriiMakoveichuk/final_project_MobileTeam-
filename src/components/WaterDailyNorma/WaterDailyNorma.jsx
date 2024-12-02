@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import styles from './WaterDailyNorma.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const WaterDailyNorma = () => {
-  const [norma, seNorma] = useState('1.5');
+const WaterDailyNorma = () => {
+  const [norma, setNorma] = useState('1.5');
   
   return (
     <div className={styles.wrapper}>
@@ -11,4 +12,6 @@ export const WaterDailyNorma = () => {
     </div>
   );
  }
+
+ export default WaterDailyNorma;
  

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './WaterProgressBar.module.css';
 
-export const WaterProgressBar = () => {
+const WaterProgressBar = () => {
   const [value, setValue] = useState(50);
 
   return (
@@ -25,4 +25,6 @@ export const WaterProgressBar = () => {
     </div>
   );
  }
+
+ export default WaterProgressBar;
  
