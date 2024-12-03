@@ -2,10 +2,17 @@ import * as Yup from "yup";
 
 const emailValidation = Yup.string()
   .email("Invalid email format")
+  .test(
+    "valid-domain",
+    "Email must have a valid domain (e.g. .com, .org)",
+    (value) => {
+      if (!value) return true;
+      return /^[^@]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|gov|info|io)$/.test(value);
+    })
   .required("Email is required");
 
 const passwordValidation = Yup.string()
-  .min(6, "Password must be at least 6 characters")
+  .min(3, "Password must be at least 3 characters")
   .required("Password is required");
 
 export const loginSchema = Yup.object().shape({

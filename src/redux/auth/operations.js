@@ -17,11 +17,9 @@ export const apiLogin = createAsyncThunk(
     try {
       const { data } = await INSTANCE.post("user/login", credentials);
       const token = data?.data?.accessToken;
-      // const user = data?.data?.user;
-      console.log(data);
-
+      const user = data?.data?.user;
       setAuthHeaders(token);
-      return data;
+      return { token, user };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -42,7 +40,19 @@ export const registration = createAsyncThunk(
       setAuthHeaders(token);
       return { token, user: userData };
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      if (error.response && error.response.status === 409) {
+        return thunkApi.rejectWithValue(
+          "User already exists. Redirecting to login..."
+        );
+      }
+      if (error.response && error.response.status === 500) {
+        return thunkApi.rejectWithValue(
+          "Server error. Please try again later."
+        );
+      }
+      return thunkApi.rejectWithValue(
+        "Unexpected error. Please check your internet connection."
+      );
     }
   }
 );
