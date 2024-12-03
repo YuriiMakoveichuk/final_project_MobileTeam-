@@ -3,18 +3,11 @@ import { selectUser } from "../../redux/auth/selectors.js";
 
 import sprite from "../../img/sprite.svg";
 import css from "./UserBar.module.css";
-// import { toggleUserBarPopoverModal } from "../../redux/modal.js";
 
 const UserBar = ({ showIconArrow, toggleUserBarPopover }) => {
-  // const dispatch = useDispatch();
-
   const user = useSelector(selectUser);
-  console.log(user);
 
-  // const handleClickUserBar = () => {
-  //   toggleIconArrow();
-  //   dispatch(toggleUserBarPopoverModal());
-  // };
+  const newUser = user.data.user || user.data;
 
   return (
     <button
@@ -22,12 +15,8 @@ const UserBar = ({ showIconArrow, toggleUserBarPopover }) => {
       type="button"
       onClick={toggleUserBarPopover}
     >
-      <p className={css.nameUserBar}>{/* {user.data.name} */}</p>
-      <img
-        className={css.photoUser}
-        // src={user.data.photo}
-        alt="user's photo"
-      />
+      <p className={css.nameUserBar}>{newUser.name}</p>
+      <img className={css.photoUser} src={newUser.photo} alt="user's photo" />
       {showIconArrow && (
         <svg className={css.iconArrowDown}>
           <use href={`${sprite}#icon-chevron-down`}></use>
