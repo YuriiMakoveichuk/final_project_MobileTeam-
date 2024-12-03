@@ -3,18 +3,20 @@ import sprite from "../../img/sprite.svg";
 import css from "./UserSettingsForm.module.css";
 import clsx from "clsx";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
+import { patchUser } from "../../redux/auth/operations.js";
+import { INITIAL_STATE } from "../../redux/auth/slice.js";
 
-const INITIAL_VALUES = {
-  photo: "",
-  userGender: "woman",
-  userName: "",
-  userEmail: "",
-  userWeight: "",
-  userActiveTime: "",
-  dailyWaterIntake: "",
-};
+// const INITIAL_VALUES = {
+//   photo: "",
+//   userGender: "woman",
+//   userName: "",
+//   userEmail: "",
+//   userWeight: "",
+//   userActiveTime: "",
+//   dailyWaterIntake: "",
+// };
 
 const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
   photo: Yup.mixed(),
@@ -26,36 +28,53 @@ const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
   dailyWaterIntake: Yup.number().positive(),
 });
 
-const UserSettingsForm = ({ onUserChange }) => {
+const UserSettingsForm = () => {
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
   console.log(user);
 
-  const handleSubmit = (values, actions) => {
-    const userObject = {
-      photo: "",
-      gender: values.userGender,
-      name: values.userName,
-      email: values.userEmail,
-      weight: values.userWeight,
-      sportHours: values.userActiveTime,
-      waterNorma: values.dailyWaterIntake,
-    };
+  const newUser = user.data.user || user.data;
 
-    onUserChange(userObject);
+  const handleSubmit = (values, actions) => {
+    console.log(values);
+
+    // const userObject = {
+    //   photo: newUser.photo || "",
+    //   gender: newUser.gender || values.userGender,
+    //   name: newUser.name || values.userName,
+    //   email: newUser.email || values.userEmail,
+    //   weight: newUser.weight || values.userWeight,
+    //   sportHours: newUser.sportHours || values.userActiveTime,
+    //   waterNorma: newUser.waterNorma || values.dailyWaterIntake * 1000,
+    // };
+
+    const userObject = {
+      // eslint-disable-next-line no-constant-binary-expression
+      photo: null || newUser.photo,
+      gender: values.userGender || newUser.gender,
+      name: values.userName || newUser.name,
+      email: values.userEmail || newUser.email,
+      weight: values.userWeight || newUser.weight,
+      sportHours: values.userActiveTime || newUser.sportHours,
+      // waterNorma: values.dailyWaterIntake || newUser.waterNorma,
+    };
+    console.log(userObject);
+
+    dispatch(patchUser(userObject));
 
     actions.resetForm();
   };
   return (
     <>
       <Formik
-        initialValues={INITIAL_VALUES}
+        initialValues={INITIAL_STATE}
         validationSchema={UserSettingsUserSettingsValidationSchema}
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>
           <div className={css.boxAvatar}>
             <div className={css.avatar}>
-              {/* <img src={user.data.photo} alt={user.data.name} /> */}
+              <img src={newUser.photo} alt={newUser.name} />
             </div>
             <label htmlFor="avatar" className={css.labelAvatar}>
               <svg className={css.svg} width={20} height={20}>
@@ -92,11 +111,7 @@ const UserSettingsForm = ({ onUserChange }) => {
 
               <label className={css.label}>
                 <h3 className={css.title}>Your name</h3>
-                <Field
-                  type="text"
-                  name="userName"
-                  // placeholder={user.data.name}
-                />
+                <Field type="text" name="userName" placeholder={newUser.name} />
                 <ErrorMessage
                   className={css.errorText}
                   name="userName"
@@ -109,7 +124,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="userEmail"
-                  // placeholder={user.data.email}
+                  placeholder={newUser.email}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -153,9 +168,9 @@ const UserSettingsForm = ({ onUserChange }) => {
               <label className={css.label}>
                 <p>Your weight in kilograms:</p>
                 <Field
-                  type="tex3"
+                  type="text"
                   name="userWeight"
-                  // placeholder={user.data.weight}
+                  placeholder={newUser.weight}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -169,7 +184,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="userActiveTime"
-                  // placeholder={user.data.sportHours}
+                  placeholder={newUser.sportHours}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -190,7 +205,7 @@ const UserSettingsForm = ({ onUserChange }) => {
                 <Field
                   type="text"
                   name="dailyWaterIntake"
-                  // placeholder={user.data.waterNorma / 1000}
+                  placeholder={newUser.waterNorma / 1000}
                 />
                 <ErrorMessage
                   className={css.errorText}

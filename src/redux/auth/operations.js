@@ -16,10 +16,14 @@ export const apiLogin = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await INSTANCE.post("user/login", credentials);
+      console.log(data);
+
       const token = data?.data?.accessToken;
-      const user = data?.data?.user;
+      // const user = data?.data?.user;
+      // console.log(user);
+
       setAuthHeaders(token);
-      return { token, user };
+      return { token, data };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -35,6 +39,8 @@ export const registration = createAsyncThunk(
         credentials
       );
       const userData = registrationResponse.data;
+      console.log(userData);
+
       const loginResponse = await INSTANCE.post("/user/login", credentials);
       const token = loginResponse.data?.data?.accessToken;
       setAuthHeaders(token);
@@ -62,7 +68,7 @@ export const apiLogout = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
     try {
-      const response = await INSTANCE.post("user/logout");
+      const response = await INSTANCE.post("/user/logout");
       console.log("Logout response:", response);
       setAuthHeaders("");
       return;
@@ -96,3 +102,72 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
+
+export const patchUser = createAsyncThunk(
+  "auth/patchUser",
+  async (userObject, thunkAPI) => {
+    try {
+      console.log(userObject);
+      const { data } = await INSTANCE.patch("user", userObject);
+      console.log(data);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const updateUserSettings = createAsyncThunk(
+//   "user/updateSettings",
+//   async (data, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.patch(
+//         "http://your-backend-url.com/api/users",
+//         data,
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${yourToken}`,
+//           },
+//         }
+//       );
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+// export const patchUser = createAsyncThunk(
+//   "auth/patchUser",
+//   async (userObject, thunkAPI) => {
+//     console.log(userObject);
+
+//     try {
+//       const { data } = await INSTANCE.patch("user", userObject, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
+//       console.log(data);
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const patchUser = createAsyncThunk(
+//   "auth/patchUser",
+//   async (formData, thunkAPI) => {
+//     console.log(formData);
+
+//     try {
+//       const { data } = await INSTANCE.patch("user", formData);
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response?.data || error.message);
+//     }
+//   }
+// );

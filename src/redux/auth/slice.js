@@ -4,9 +4,10 @@ import {
   refreshUser,
   apiLogin,
   registration,
+  patchUser,
 } from "./operations.js";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   user: {
     name: null,
     // name: "Nadia",
@@ -14,7 +15,7 @@ const INITIAL_STATE = {
     gender: null,
     photo: null,
     // photo: "https://imgcdn.stablediffusionweb.com/2024/3/31/a07c234b-ab97-4ad4-96b1-e1e88ec45e45.jpg",
-    waterNorm: null,
+    waterNorma: null,
     sportHours: null,
     weight: null,
   },
@@ -45,7 +46,7 @@ const authSlice = createSlice({
       .addCase(apiLogin.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.token = action.payload.token;
-        state.user = action.payload.user;
+        state.user = action.payload.data;
       })
       .addCase(apiLogin.rejected, (state, action) => {
         state.error = action.payload;
@@ -83,11 +84,29 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
+      .addCase(patchUser.pending, (state) => {
+        state.error = null;
+        state.isLoading = true;
+      })
+      .addCase(patchUser.fulfilled, (state, action) => {
+        console.log(state);
+
+        state.isLoading = false;
+        state.error = null;
+        state.user = action.payload;
+      })
+      .addCase(patchUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
       // Logout user
       .addCase(apiLogout.pending, (state) => {
         state.error = null;
       })
-      .addCase(apiLogout.fulfilled, () => {
+      .addCase(apiLogout.fulfilled, (state) => {
+        console.log("state", state);
+
         return INITIAL_STATE;
       })
       .addCase(apiLogout.rejected, (state, { payload }) => {
