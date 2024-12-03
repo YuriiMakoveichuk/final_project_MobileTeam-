@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import sprite from "../../img/sprite.svg";
 import styles from "./DailyInfo.module.css";
 import {
-  addWater,
   setEditingRecord,
   setRecordToDelete,
 } from "../../redux/dailyInfoSlice";
@@ -25,23 +24,24 @@ const DailyInfo = () => {
 
   const handleAddWater = () => {
     const now = new Date();
-    const newRecord = {
-      id: Date.now(),
-      amount: 250,
-      time: formatTime(now),
-    };
-
-    function formatTime(date) {
-      const timeString = date.toLocaleTimeString([], {
+    const defaultTime = now
+      .toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
-      });
+      })
+      .replace(/^0/, "");
 
-      return timeString.replace(/^0/, "");
-    }
-    dispatch(addWater(newRecord));
-  };
+
+  dispatch(openModal("edit"));
+  dispatch(
+    setEditingRecord({
+      id: null, 
+      amount: 250, 
+      time: defaultTime, 
+    })
+  );
+};
 
   const openDeleteModal = (id) => {
     const recordToDelete = waterRecords.find((record) => record.id === id);
