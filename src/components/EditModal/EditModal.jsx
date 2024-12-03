@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateWater } from "../../redux/dailyInfoSlice";
+
+import { updateWater, addWater } from "../../redux/dailyInfoSlice";
 import styles from "./EditModal.module.css";
 import { Container } from "../Container/Container";
 import Modal from "../Modal/Modal";
@@ -36,16 +37,30 @@ const EditModal = () => {
     }
   };
 
-  const handleTimeChange = (e) => {
-    const value = e.target.value.replace(/[^0-9:]/g, "");
-    if (/^\d{0,2}:?\d{0,2}$/.test(value)) {
-      setTime(value);
-    }
-  };
+const handleTimeChange = (e) => {
+  let value = e.target.value.replace(/[^0-9]/g, ""); 
+  
+  if (value.length > 4) {
+    value = value.slice(0, 4); 
+  }
+  
+  if (value.length > 2) {
+    value = `${value.slice(0, 2)}:${value.slice(2)}`; 
+  }
+  
+  setTime(value); 
+};
 
-  const handleSave = () => {
+const handleSave = () => {
+  if (editingRecord?.id) {
+    
     dispatch(updateWater({ id: editingRecord.id, amount, time }));
-  };
+  } else {
+    
+    dispatch(addWater({ id: Date.now(), amount, time }));
+  }
+  dispatch(closeModal());
+};
 
   const onCloseModal = () => {
     dispatch(closeModal());
