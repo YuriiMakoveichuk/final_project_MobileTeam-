@@ -6,19 +6,8 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import { patchUser } from "../../redux/auth/operations.js";
-import { INITIAL_STATE } from "../../redux/auth/slice.js";
 
-// const INITIAL_VALUES = {
-//   photo: "",
-//   userGender: "woman",
-//   userName: "",
-//   userEmail: "",
-//   userWeight: "",
-//   userActiveTime: "",
-//   dailyWaterIntake: "",
-// };
-
-const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
+const UserSettingsValidationSchema = Yup.object().shape({
   photo: Yup.mixed(),
   userGender: Yup.string(),
   userName: Yup.string().min(2).max(50),
@@ -31,57 +20,65 @@ const UserSettingsUserSettingsValidationSchema = Yup.object().shape({
 const UserSettingsForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  console.log(user);
 
   const newUser = user.data.user || user.data;
 
+  const INITIAL_STATE = {
+    photo: newUser.photo || "",
+    userGender: newUser.gender || "woman",
+    userName: newUser.name || "",
+    userEmail: newUser.email || "",
+    userWeight: newUser.weight || "",
+    userActiveTime: newUser.sportHours || "",
+    dailyWaterIntake: newUser.waterNorm / 1000 || "",
+  };
+
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    const file = values.photo;
 
-    // const userObject = {
-    //   photo: newUser.photo || "",
-    //   gender: newUser.gender || values.userGender,
-    //   name: newUser.name || values.userName,
-    //   email: newUser.email || values.userEmail,
-    //   weight: newUser.weight || values.userWeight,
-    //   sportHours: newUser.sportHours || values.userActiveTime,
-    //   waterNorma: newUser.waterNorma || values.dailyWaterIntake * 1000,
-    // };
+    const formData = new FormData();
+    formData.append("photo", file);
+    formData.append("gender", values.userGender || newUser.gender);
+    formData.append("name", values.userName || newUser.name);
+    formData.append("email", values.userEmail || newUser.email);
+    formData.append("weight", values.userWeight || newUser.weight);
+    formData.append("sportHours", values.userActiveTime || newUser.sportHours);
+    formData.append(
+      "waterNorm",
+      values.dailyWaterIntake * 1000 || newUser.waterNorm
+    );
 
-    const userObject = {
-      // eslint-disable-next-line no-constant-binary-expression
-      photo: null || newUser.photo,
-      gender: values.userGender || newUser.gender,
-      name: values.userName || newUser.name,
-      email: values.userEmail || newUser.email,
-      weight: values.userWeight || newUser.weight,
-      sportHours: values.userActiveTime || newUser.sportHours,
-      // waterNorma: values.dailyWaterIntake || newUser.waterNorma,
-    };
-    console.log(userObject);
-
-    dispatch(patchUser(userObject));
-
+    dispatch(patchUser(formData));
     actions.resetForm();
   };
+
   return (
-    <>
-      <Formik
-        initialValues={INITIAL_STATE}
-        validationSchema={UserSettingsUserSettingsValidationSchema}
-        onSubmit={handleSubmit}
-      >
+    <Formik
+      initialValues={INITIAL_STATE}
+      validationSchema={UserSettingsValidationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ setFieldValue }) => (
         <Form className={css.form}>
           <div className={css.boxAvatar}>
             <div className={css.avatar}>
               <img src={newUser.photo} alt={newUser.name} />
             </div>
-            <label htmlFor="avatar" className={css.labelAvatar}>
+            <label htmlFor="photo" className={css.labelAvatar}>
               <svg className={css.svg} width={20} height={20}>
                 <use href={`${sprite}#icon-upload`}></use>
               </svg>
               <p className={css.textAvatar}>Upload a photo</p>
-              <input id="avatar" type="file" style={{ display: "none" }} />
+              <input
+                id="photo"
+                name="photo"
+                type="file"
+                style={{ display: "none" }}
+                onChange={(event) => {
+                  const file = event.currentTarget.files[0];
+                  setFieldValue("photo", file);
+                }}
+              />
             </label>
           </div>
 
@@ -205,7 +202,7 @@ const UserSettingsForm = () => {
                 <Field
                   type="text"
                   name="dailyWaterIntake"
-                  placeholder={newUser.waterNorma / 1000}
+                  placeholder={newUser.waterNorm / 1000}
                 />
                 <ErrorMessage
                   className={css.errorText}
@@ -219,8 +216,8 @@ const UserSettingsForm = () => {
             </button>
           </div>
         </Form>
-      </Formik>
-    </>
+      )}
+    </Formik>
   );
 };
 

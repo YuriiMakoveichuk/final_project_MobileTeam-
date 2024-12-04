@@ -67,11 +67,13 @@ export const registration = createAsyncThunk(
 export const apiLogout = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
+    console.log("hello");
+
     try {
       const response = await INSTANCE.post("/user/logout");
       console.log("Logout response:", response);
       setAuthHeaders("");
-      return;
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -105,10 +107,10 @@ export const refreshUser = createAsyncThunk(
 
 export const patchUser = createAsyncThunk(
   "auth/patchUser",
-  async (userObject, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      console.log(userObject);
-      const { data } = await INSTANCE.patch("user", userObject);
+      console.log(formData);
+      const { data } = await INSTANCE.patch("user", formData);
       console.log(data);
 
       return data;
@@ -117,57 +119,3 @@ export const patchUser = createAsyncThunk(
     }
   }
 );
-
-// export const updateUserSettings = createAsyncThunk(
-//   "user/updateSettings",
-//   async (data, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.patch(
-//         "http://your-backend-url.com/api/users",
-//         data,
-//         {
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${yourToken}`,
-//           },
-//         }
-//       );
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const patchUser = createAsyncThunk(
-//   "auth/patchUser",
-//   async (userObject, thunkAPI) => {
-//     console.log(userObject);
-
-//     try {
-//       const { data } = await INSTANCE.patch("user", userObject, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       });
-//       console.log(data);
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const patchUser = createAsyncThunk(
-//   "auth/patchUser",
-//   async (formData, thunkAPI) => {
-//     console.log(formData);
-
-//     try {
-//       const { data } = await INSTANCE.patch("user", formData);
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response?.data || error.message);
-//     }
-//   }
-// );

@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { dateReducer } from "./date.js";
 
 const authPersistConfig = {
   key: "auth",
@@ -25,6 +26,7 @@ export const store = configureStore({
     modal: modalReducer,
     water: waterReducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    date: dateReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

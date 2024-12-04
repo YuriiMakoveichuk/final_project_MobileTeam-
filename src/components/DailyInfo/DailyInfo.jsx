@@ -20,9 +20,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
+import { selectCurrentSelectedDate } from "../../redux/date.js";
 
 const DailyInfo = () => {
   const dispatch = useDispatch();
+  const date = useSelector(selectCurrentSelectedDate);
   const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
   const modalType = useSelector((state) => state.modal.modalType);
@@ -81,7 +83,7 @@ const DailyInfo = () => {
   return (
     <div className={`${styles.dailyInfo}`}>
       <div className={styles.dailyHeader}>
-        <h3 className={styles.DailyInfoTitle}>Today</h3>
+        <h3 className={styles.DailyInfoTitle}>{date}</h3>
         <div className={styles.addWaterWrap}>
           <button className={styles.addWaterBtn} onClick={handleAddWater}>
             <svg className={styles.iconAddWater} width={30} height={30}>

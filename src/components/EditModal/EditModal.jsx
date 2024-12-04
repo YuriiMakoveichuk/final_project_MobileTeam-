@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { updateWater, addWater } from "../../redux/water/dailyInfoSlice";
+
 import styles from "./EditModal.module.css";
 import { Container } from "../Container/Container";
 import Modal from "../Modal/Modal";
@@ -11,6 +12,8 @@ import sprite from "../../img/sprite.svg";
 const EditModal = () => {
   const dispatch = useDispatch();
   const editingRecord = useSelector((state) => state.water.editingRecord);
+
+  console.log(editingRecord);
 
   const [amount, setAmount] = useState(0);
   const [time, setTime] = useState("");

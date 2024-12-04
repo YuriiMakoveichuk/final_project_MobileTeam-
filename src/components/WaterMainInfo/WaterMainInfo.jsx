@@ -13,6 +13,7 @@ const WaterMainInfo = () => {
   const userData = user?.data?.user || user?.data;
   const dispatch = useDispatch();
   const isOpenModal = useSelector((state) => state.modal.isOpen);
+  const modalType = useSelector((state) => state.modal.modalType);
 
   const WATER = Number(userData.waterNorm) / 1000;
 
@@ -26,11 +27,11 @@ const WaterMainInfo = () => {
       <WaterProgressBar waterNorma={userData.waterNorm} />
       <AddWaterBtn openModal={handleOpen} />
 
-      {isOpenModal && (
+      {isOpenModal && modalType === "WaterForm" && (
         <WaterModal onCloseModal={handleClose}>
           <WaterForm />
         </WaterModal>
-        )}
+      )}
     </div>
   );
 };
