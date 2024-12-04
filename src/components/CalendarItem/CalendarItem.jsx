@@ -1,8 +1,27 @@
 import clsx from "clsx";
 import css from "./CalendarItem.module.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeDate } from "../../redux/date.js";
 
 const CalendarItem = ({ currentYear, currentMonth }) => {
+  const dispatch = useDispatch();
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   const today = new Date();
   const [selectedDays, setSelectedDays] = useState({});
   const getDaysInMonth = (year, month) => {
@@ -18,6 +37,18 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
       ...prev,
       [day]: !prev[day],
     }));
+
+    let newDate;
+    if (
+      day === today.getDate() &&
+      currentMonth === today.getMonth() &&
+      currentYear === today.getFullYear()
+    ) {
+      newDate = "Today";
+    } else {
+      newDate = `${day}, ${monthNames[currentMonth]}`;
+    }
+    dispatch(changeDate(newDate));
   };
   return (
     <>
