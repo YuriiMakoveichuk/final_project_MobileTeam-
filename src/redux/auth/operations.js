@@ -67,11 +67,13 @@ export const registration = createAsyncThunk(
 export const apiLogout = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
+    console.log("hello");
+
     try {
       const response = await INSTANCE.post("/user/logout");
       console.log("Logout response:", response);
       setAuthHeaders("");
-      return;
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
