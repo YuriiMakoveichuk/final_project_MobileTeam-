@@ -1,5 +1,5 @@
 import { modalReducer } from "./modal.js";
-import { waterReducer } from "./dailyInfoSlice";
+import  waterReducer  from "./water/dailyInfoSlice.js";
 import { authReducer } from "./auth/slice.js";
 import { configureStore } from "@reduxjs/toolkit";
 import {
