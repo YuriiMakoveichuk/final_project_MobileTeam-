@@ -1,24 +1,11 @@
 import styles from './WaterProgressBar.module.css';
-import { INSTANCE } from '../../redux/auth/operations';
-import { useEffect, useState } from 'react';
 
-const WaterProgressBar = () => {
-  const [value, setValue] = useState(0);
+const WaterProgressBar = ({ waterNorma }) => {
+  //consumedWater will be replaced with data of cnsumed water from backend
+  const consumedWater = 1200;
 
-  useEffect(() => {
-    const fetchWaterAmount = async () => {
-      try {
-        const result = await INSTANCE.get('/water');
-        if (result?.data?.percentage) {
-          setValue(result.data);
-        }
-      } catch (err) {
-        console.error('Error fetching water data:', err);
-      }
-    };
-
-    fetchWaterAmount();
-  }, []);
+  const percentage = 100 / (waterNorma / consumedWater); 
+  console.log('perc:', percentage);
 
   return (
     <div className={styles.wrapper}>
@@ -26,11 +13,11 @@ const WaterProgressBar = () => {
       <input 
         type='range'
         className={styles.slider}
-        value={value}
+        value={percentage}
         min='0'
         max='100'
         style={{
-          background: `linear-gradient(to right, #9BE1A0 ${value}%, #F0EFF4 ${value}%)`,
+          background: `linear-gradient(to right, #9BE1A0 ${percentage}%, #F0EFF4 ${percentage}%)`,
         }}
         readOnly
       />
