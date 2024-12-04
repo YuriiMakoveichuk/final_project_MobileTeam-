@@ -30,7 +30,7 @@ const WaterMainInfo = () => {
         <WaterModal onCloseModal={handleClose}>
           <WaterForm />
         </WaterModal>
-        )}
+      )}
     </div>
   );
 };

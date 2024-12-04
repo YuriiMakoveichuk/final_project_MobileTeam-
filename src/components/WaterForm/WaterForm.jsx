@@ -43,7 +43,7 @@ const WaterForm = ({ onCloseModal }) => {
       onCloseModal();
     } catch (error) {
       console.log("Failed to add water record:", error.message);
-      alert("Failed to add water record. Please try again.");
+      // alert("Failed to add water record. Please try again.");
     }
   };
 
