@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import {
   fetchWaterRecords,
   addWaterRecord,
   deleteWaterRecord,
   updateWaterRecord,
+  apiWaterMonth,
 } from "./dailyInfoThunk";
 
 const dailyInfoSlice = createSlice({
@@ -13,7 +14,10 @@ const dailyInfoSlice = createSlice({
     loading: false,
     error: null,
     editingRecord: null,
-    recordToDelete: null, 
+    recordToDelete: null,
+
+    waterInfoMonth: [],
+    waterInfoDay: {},
   },
   reducers: {
     addWater: (state, action) => {
@@ -68,7 +72,16 @@ const dailyInfoSlice = createSlice({
         if (index !== -1) {
           state.records[index] = action.payload;
         }
-      });
+      })
+
+      // waterInfo for the month
+      // .addCase(apiWaterMonth.pending, (state) => { })
+      .addCase(apiWaterMonth.fulfilled, (state, { payload }) => {
+        state.waterInfoMonth = payload;
+      })
+    // .addCase(apiWaterMonth.rejected, (state) => { })
+
+
   },
 });
 
@@ -80,5 +93,15 @@ export const {
   setEditingRecord,
   setRecordToDelete,
 } = dailyInfoSlice.actions;
+
+const selectWaterInfoMonth = state => state.water.waterInfoMonth;
+
+export const selectDailyWaterData = createSelector(
+  [selectWaterInfoMonth],
+  (waterInfoMonth) => waterInfoMonth.reduce((acc, item) => {
+    const date = new Date(item.date).getDate(); // Отримуємо день із дати
+    acc[date] = (acc[date] || 0) + item.amount; // Сумуємо кількість води
+    return acc;
+  }, {}));
 
 export default dailyInfoSlice.reducer;

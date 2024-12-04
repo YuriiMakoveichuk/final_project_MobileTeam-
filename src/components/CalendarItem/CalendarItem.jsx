@@ -1,11 +1,16 @@
 import clsx from "clsx";
 import css from "./CalendarItem.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { changeDate } from "../../redux/date.js";
+import { apiWaterMonth } from "../../redux/water/dailyInfoThunk.js";
+import { selectDailyWaterData } from "../../redux/water/dailyInfoSlice.js";
+import { selectUser } from "../../redux/auth/selectors.js";
 
 const CalendarItem = ({ currentYear, currentMonth }) => {
   const dispatch = useDispatch();
+  const dailyWaterData = useSelector(selectDailyWaterData); // обєкт типу {дата1: кількість випитої води, дата2: кількість випитої води}
+  const user = useSelector(selectUser);
 
   const monthNames = [
     "January",
@@ -47,6 +52,11 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
     }
     dispatch(changeDate(newDate));
   };
+
+  useEffect(() => {
+    dispatch(apiWaterMonth(`${currentYear}-${currentMonth + 1}`));
+  }, [currentMonth, currentYear, dispatch]);
+
   return (
     <>
       {daysInMonth.map((day) => {
@@ -56,19 +66,24 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
           currentYear === today.getFullYear();
 
         const isSelected = selectedDay === day;
+        const waterPercent =
+          Number(
+            ((dailyWaterData[day] / user.data.waterNorm) * 100).toFixed(0)
+          ) || 0;
 
         return (
           <div className={css.box} key={day}>
             <div
               className={clsx(
                 `${css.day} ${isToday ? css.today : ""}
-                ${isSelected ? css.selected : ""}`
+                ${isSelected ? css.selected : ""}
+                ${waterPercent !== 100 && !isToday ? css.bgGrey : ""}`
               )}
               onClick={() => handleDayClick(day)}
             >
               {day}
             </div>
-            <p className={css.text}>100%</p>
+            <p className={css.text}>{waterPercent}%</p>
           </div>
         );
       })}
