@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addWater } from "../../redux/dailyInfoSlice";
+import { addWater } from "../../redux/water/dailyInfoSlice";
 
 const waterSchema = yup.object().shape({
   amount: yup

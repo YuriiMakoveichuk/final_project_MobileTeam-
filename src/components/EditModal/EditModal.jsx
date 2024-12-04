@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateWater, addWater } from "../../redux/dailyInfoSlice";
+import { updateWater, addWater } from "../../redux/water/dailyInfoSlice";
+
 import styles from "./EditModal.module.css";
 import { Container } from "../Container/Container";
 import Modal from "../Modal/Modal";

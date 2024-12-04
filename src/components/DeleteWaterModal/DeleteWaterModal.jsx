@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { closeModal } from "../../redux/modal.js";
 import Modal from "../Modal/Modal.jsx";
 import { Container } from "../Container/Container.jsx";
-import { deleteWater } from "../../redux/dailyInfoSlice.js"; //added this
+import { deleteWater } from "../../redux/water/dailyInfoSlice.js"; //added this
 
 import css from "./DeleteWaterModal.module.css";
 

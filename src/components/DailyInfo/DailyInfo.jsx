@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import sprite from "../../img/sprite.svg";
 import styles from "./DailyInfo.module.css";
 import {
   setEditingRecord,
   setRecordToDelete,
-} from "../../redux/dailyInfoSlice";
+} from "../../redux/water/dailyInfoSlice";
 import { openModal } from "../../redux/modal";
+import {
+  fetchWaterRecords,
+  deleteWaterRecord,
+  updateWaterRecord,
+} from "../../redux/water/dailyInfoThunk"; 
 
 import EditModal from "../EditModal/EditModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
@@ -22,7 +27,12 @@ const DailyInfo = () => {
   const date = useSelector(selectCurrentSelectedDate);
   const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
-  const modalType = useSelector((state) => state.modal.modalType); // Для определения типа модалки
+  const modalType = useSelector((state) => state.modal.modalType);
+
+ 
+  useEffect(() => {
+    dispatch(fetchWaterRecords()); 
+  }, [dispatch]);
 
   const handleAddWater = () => {
     const now = new Date();
@@ -46,7 +56,7 @@ const DailyInfo = () => {
 
   const openDeleteModal = (id) => {
     const recordToDelete = waterRecords.find((record) => record.id === id);
-    dispatch(setRecordToDelete(recordToDelete)); // Передаем целый объект записи
+    dispatch(setRecordToDelete(recordToDelete));
     dispatch(openModal("delete"));
   };
 
@@ -58,6 +68,16 @@ const DailyInfo = () => {
 
   const handleDeleteWater = (id) => {
     openDeleteModal(id);
+  };
+
+
+  const confirmDeleteWater = (id) => {
+    dispatch(deleteWaterRecord(id)); 
+  };
+
+ 
+  const confirmUpdateWater = (id, amount, time) => {
+    dispatch(updateWaterRecord({ id, updatedRecord: { amount, time } })); 
   };
 
   return (
@@ -126,9 +146,13 @@ const DailyInfo = () => {
         )}
       </div>
 
-      {isModalOpen && modalType === "delete" && <DeleteWaterModal />}
+      {isModalOpen && modalType === "delete" && (
+        <DeleteWaterModal onConfirm={confirmDeleteWater} />
+      )}
 
-      {isModalOpen && modalType === "edit" && <EditModal />}
+      {isModalOpen && modalType === "edit" && (
+        <EditModal onConfirm={confirmUpdateWater} />
+      )}
     </div>
   );
 };
