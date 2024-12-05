@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { INSTANCE } from "../auth/operations.js";
 
 // Определение URL API
 const API_URL = "https://final-project-mobileteam-backend.onrender.com/water";
@@ -18,15 +19,15 @@ export const fetchWaterRecords = createAsyncThunk(
   "dailyInfo/fetchWaterRecords",
   async (_, thunkAPI) => {
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
       console.log("Token:", token);
 
-      setAuthHeaders(token); 
+      setAuthHeaders(token);
 
-      const response = await axios.get(API_URL); 
-      return response.data; 
+      const response = await axios.get(API_URL);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to fetch water records"
@@ -40,13 +41,13 @@ export const addWaterRecord = createAsyncThunk(
   "dailyInfo/addWaterRecord",
   async (newRecord, thunkAPI) => {
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      setAuthHeaders(token); 
+      setAuthHeaders(token);
 
-      const response = await axios.post(API_URL, newRecord); 
-      return response.data; 
+      const response = await axios.post(API_URL, newRecord);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to add water record"
@@ -60,13 +61,13 @@ export const deleteWaterRecord = createAsyncThunk(
   "dailyInfo/deleteWaterRecord",
   async (id, thunkAPI) => {
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      setAuthHeaders(token); 
+      setAuthHeaders(token);
 
-      await axios.delete(`${API_URL}/${id}`); 
-      return id; 
+      await axios.delete(`${API_URL}/${id}`);
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to delete water record"
@@ -80,13 +81,13 @@ export const updateWaterRecord = createAsyncThunk(
   "dailyInfo/updateWaterRecord",
   async ({ id, updatedRecord }, thunkAPI) => {
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      setAuthHeaders(token); 
+      setAuthHeaders(token);
 
-      const response = await axios.put(`${API_URL}/${id}`, updatedRecord); 
-      return response.data; 
+      const response = await axios.put(`${API_URL}/${id}`, updatedRecord);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to update water record"
@@ -95,3 +96,21 @@ export const updateWaterRecord = createAsyncThunk(
   }
 );
 
+// export const apiWaterMonth = async (date) => {
+//   const response = await INSTANCE.get(`water/month/${date}`);
+//   console.log(response)
+//   // https://final-project-mobileteam-backend.onrender.com/water/month/2024-12
+// }
+
+export const apiWaterMonth = createAsyncThunk(
+  "water/month",
+  async (date, thunkApi) => {
+
+    try {
+      const { data } = await INSTANCE.get(`water/month/${date}`);
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
