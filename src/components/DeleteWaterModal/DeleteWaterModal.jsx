@@ -8,6 +8,7 @@ import { Container } from "../Container/Container.jsx";
 import css from "./DeleteWaterModal.module.css";
 import {
   apiWaterDay,
+  apiWaterMonth,
   deleteWaterRecord,
 } from "../../redux/water/dailyInfoThunk.js";
 import { selectCurrentSelectedFullDate } from "../../redux/date.js";
@@ -25,6 +26,7 @@ const DeleteWaterModal = ({ id }) => {
   const deleteWater = () => {
     dispatch(deleteWaterRecord(id));
     dispatch(apiWaterDay(fullDate));
+    dispatch(apiWaterMonth(fullDate));
     onCloseModal();
   };
 

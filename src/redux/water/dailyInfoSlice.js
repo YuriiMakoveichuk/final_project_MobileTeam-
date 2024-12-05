@@ -68,13 +68,13 @@ const dailyInfoSlice = createSlice({
         //   (record) => record._id !== action.payload
         // );
       })
-      .addCase(updateWaterRecord.fulfilled, (state, action) => {
-        const index = state.records.findIndex(
-          (record) => record.id === action.payload.id
-        );
-        if (index !== -1) {
-          state.records[index] = action.payload;
-        }
+      .addCase(updateWaterRecord.fulfilled, () => {
+        // const index = state.records.findIndex(
+        //   (record) => record.id === action.payload.id
+        // );
+        // if (index !== -1) {
+        //   state.records[index] = action.payload;
+        // }
       })
 
       // waterInfo for the month
