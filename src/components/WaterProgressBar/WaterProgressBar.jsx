@@ -13,15 +13,13 @@ const formatDateToYYYYMMDD = (date) => {
 const WaterProgressBar = ({ waterNorma }) => {
   const dispatch = useDispatch();
   const RECORDS = useSelector((state) => state.water.records) || [];
-  const CONSUMEDWATER = RECORDS?.data?.amount || 1200;
-
-  console.log('consumed', CONSUMEDWATER)
+  const CONSUMEDWATER = RECORDS.reduce((sum, record) => {
+    return sum + (record.amount || 0);
+  }, 0);
 
   const PERCENTAGE = CONSUMEDWATER && waterNorma
     ? 100 / (waterNorma / CONSUMEDWATER)
     : 0;
-
-    console.log(PERCENTAGE);
 
     useEffect(() => {
       const today = new Date();
