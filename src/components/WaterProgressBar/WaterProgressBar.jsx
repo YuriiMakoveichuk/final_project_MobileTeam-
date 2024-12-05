@@ -1,11 +1,31 @@
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './WaterProgressBar.module.css';
+import { useEffect } from 'react';
+import { fetchWaterRecords } from '../../redux/water/dailyInfoThunk';
+
+const formatDateToYYYYMMDD = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
 
 const WaterProgressBar = ({ waterNorma }) => {
-  //consumedWater will be replaced with data of cnsumed water from backend
-  const consumedWater = 1200;
+  const dispatch = useDispatch();
+  const RECORDS = useSelector((state) => state.water.records) || [];
+  const CONSUMEDWATER = RECORDS.reduce((sum, record) => {
+    return sum + (record.amount || 0);
+  }, 0);
 
-  const percentage = 100 / (waterNorma / consumedWater); 
-  console.log('perc:', percentage);
+  const PERCENTAGE = CONSUMEDWATER && waterNorma
+    ? 100 / (waterNorma / CONSUMEDWATER)
+    : 0;
+
+    useEffect(() => {
+      const today = new Date();
+      const formattedDate = formatDateToYYYYMMDD(today);
+      dispatch(fetchWaterRecords(formattedDate));
+    }, [dispatch]);
 
   return (
     <div className={styles.wrapper}>
@@ -13,11 +33,11 @@ const WaterProgressBar = ({ waterNorma }) => {
       <input 
         type='range'
         className={styles.slider}
-        value={percentage}
+        value={PERCENTAGE}
         min='0'
         max='100'
         style={{
-          background: `linear-gradient(to right, #9BE1A0 ${percentage}%, #F0EFF4 ${percentage}%)`,
+          background: `linear-gradient(to right, #9BE1A0 ${PERCENTAGE}%, #F0EFF4 ${PERCENTAGE}%)`,
         }}
         readOnly
       />
