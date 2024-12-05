@@ -2,9 +2,16 @@ import styles from "./WaterForm.module.css";
 import sprite from "../../img/sprite.svg";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, useForm, useWatch } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { addWater } from "../../redux/water/dailyInfoSlice";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+// import { addWater } from "../../redux/water/dailyInfoSlice";
+import {
+  apiWaterDay,
+  apiWaterMonth,
+  updateWaterRecord,
+} from "../../redux/water/dailyInfoThunk.js";
+import { selectCurrentSelectedFullDate } from "../../redux/date.js";
+import { closeModal } from "../../redux/modal.js";
 
 const waterSchema = yup.object().shape({
   amount: yup
@@ -17,8 +24,11 @@ const waterSchema = yup.object().shape({
     .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:MM)")
     .required("Time is required"),
 });
-const WaterForm = ({ onCloseModal }) => {
+const WaterForm = ({ infoEdit }) => {
   const dispatch = useDispatch();
+  const fullDate = useSelector(selectCurrentSelectedFullDate);
+
+  const { id, amount, date } = infoEdit;
 
   const {
     control,
@@ -27,26 +37,35 @@ const WaterForm = ({ onCloseModal }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      amount: 250,
-      time: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      }),
+      amount: amount,
+      time: `${new Date(date).getHours()}:${new Date(date).getMinutes()}`,
+      // time: new Date().toLocaleTimeString([], {
+      //   hour: "2-digit",
+      //   minute: "2-digit",
+      //   hour12: false,
+      // }),
     },
     resolver: yupResolver(waterSchema),
   });
 
+  const onCloseModal = () => {
+    dispatch(closeModal());
+  };
+
   const onSubmit = async (data) => {
     try {
-      dispatch(addWater(data));
+      console.log(data);
+      dispatch(updateWaterRecord({ id, ...data }));
+      dispatch(apiWaterDay(fullDate));
+      dispatch(apiWaterMonth(fullDate));
+      // dispatch(addWater(data));
       onCloseModal();
     } catch (error) {
       console.log("Failed to add water record:", error.message);
       // alert("Failed to add water record. Please try again.");
     }
   };
-  const amount = useWatch({ control, name: "amount", defaultValue: 250 });
+  // const amount = useWatch({ control, name: "amount", defaultValue: 250 });
   return (
     <form className={styles.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div>

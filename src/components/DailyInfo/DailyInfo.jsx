@@ -33,6 +33,11 @@ const DailyInfo = () => {
   const fullDate = useSelector(selectCurrentSelectedFullDate);
   const waterInfoDay = useSelector(selectWaterInfoDay);
   const [idForDelete, setIdForDelete] = useState("");
+  const [infoEdit, setInfoEdit] = useState({
+    id: null,
+    amount: null,
+    date: null,
+  });
 
   // const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
@@ -71,9 +76,8 @@ const DailyInfo = () => {
     setIdForDelete(id);
   };
 
-  const openEditModal = (id) => {
-    const recordToEdit = waterInfoDay.find((record) => record._id === id);
-    dispatch(setEditingRecord(recordToEdit));
+  const openEditModal = (id, amount, date) => {
+    setInfoEdit({ id, amount, date });
     dispatch(openModal("WaterForm"));
   };
 
@@ -137,7 +141,9 @@ const DailyInfo = () => {
                   <div className={styles.btnWrap}>
                     <button
                       className={styles.editBtn}
-                      onClick={() => openEditModal(record._id)}
+                      onClick={() =>
+                        openEditModal(record._id, record.amount, record.date)
+                      }
                     >
                       <svg className={styles.iconEdit} width={14} height={14}>
                         <use href={`${sprite}#icon-edit`} />
@@ -169,7 +175,7 @@ const DailyInfo = () => {
 
       {isModalOpen && modalType === "WaterForm" && (
         <WaterModal onCloseModal={handleClose}>
-          <WaterForm />
+          <WaterForm infoEdit={infoEdit} />
         </WaterModal>
       )}
     </div>
