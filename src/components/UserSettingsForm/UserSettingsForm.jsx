@@ -64,7 +64,12 @@ const UserSettingsForm = () => {
         <Form className={css.form}>
           <div className={css.boxAvatar}>
             <div className={css.avatar}>
-              <img src={newUser.photo} alt={newUser.name} />
+              <img
+                src={newUser.photo}
+                alt={newUser.name}
+                width={100}
+                height={100}
+              />
             </div>
             <label htmlFor="photo" className={css.labelAvatar}>
               <svg className={css.svg} width={20} height={20}>

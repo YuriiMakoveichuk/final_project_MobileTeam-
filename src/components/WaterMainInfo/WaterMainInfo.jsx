@@ -6,9 +6,10 @@ import styles from "./WaterMainInfo.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors";
 // import WaterForm from "../WaterForm/WaterForm";
-import { openModal } from "../../redux/modal";
+// import { openModal } from "../../redux/modal";
 import EditModal from "../EditModal/EditModal.jsx";
 import { updateWaterRecord } from "../../redux/water/dailyInfoThunk.js";
+import { openModal } from "../../redux/modal.js";
 
 const WaterMainInfo = () => {
   const user = useSelector(selectUser);
@@ -22,7 +23,6 @@ const WaterMainInfo = () => {
   // const handleOpen = () => dispatch(openModal("WaterForm"));
   // const handleClose = () => dispatch(closeModal());
 
-  const handleOpen = () => dispatch(openModal("edit"));
   const isModalOpen = useSelector((state) => state.modal.isOpen);
   const modalType = useSelector((state) => state.modal.modalType);
 
@@ -30,13 +30,16 @@ const WaterMainInfo = () => {
     dispatch(updateWaterRecord({ id, updatedRecord: { amount, time } }));
   };
 
+  const handleOpen = () => {
+    dispatch(openModal("edit"));
+  };
   return (
     <>
       <div className={styles.box}>
         <h2 className={styles.title}>Aquatrack</h2>
         <WaterDailyNorma waterNorma={WATER} />
         <WaterProgressBar waterNorma={userData.waterNorm} />
-        <AddWaterBtn openModal={handleOpen} />
+        <AddWaterBtn handleOpen={handleOpen} />
 
         {isModalOpen && modalType === "edit" && (
           <EditModal onConfirm={confirmUpdateWater} />

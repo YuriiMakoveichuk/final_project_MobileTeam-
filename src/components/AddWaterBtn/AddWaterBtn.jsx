@@ -1,12 +1,15 @@
 import styles from "./AddWaterBtn.module.css";
 import sprite from "../../img/sprite.svg";
+import { openModal } from "../../redux/modal.js";
+import { useDispatch } from "react-redux";
 
-const AddWaterBtn = ({ openModal }) => {
+const AddWaterBtn = () => {
+  const dispatch = useDispatch();
+  const openUpdateModal = () => {
+    dispatch(openModal("edit"));
+  };
   return (
-    <button 
-      className={styles.btn}
-      onClick={openModal}
-      >
+    <button className={styles.btn} onClick={openUpdateModal}>
       <svg className={styles.icon}>
         <use href={`${sprite}#icon-plus-white`} />
       </svg>
