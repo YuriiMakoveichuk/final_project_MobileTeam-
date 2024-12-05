@@ -43,8 +43,8 @@ export const fetchWaterRecords = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to fetch water records by day"
+        error.message ||
+        "Failed to fetch water records by day"
       );
     }
   }
@@ -87,8 +87,8 @@ export const addWaterRecord = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to add water record"
+        error.message ||
+        "Failed to add water record"
       );
     }
   }
@@ -117,8 +117,8 @@ export const deleteWaterRecord = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to delete water record"
+        error.message ||
+        "Failed to delete water record"
       );
     }
   }
@@ -158,8 +158,8 @@ export const updateWaterRecord = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to update water record"
+        error.message ||
+        "Failed to update water record"
       );
     }
   }
@@ -186,4 +186,16 @@ export const apiWaterMonth = createAsyncThunk(
   }
 );
 
+export const apiWaterDay = createAsyncThunk(
+  "water/day",
+  async (date, thunkApi) => {
+
+    try {
+      const { data } = await INSTANCE.get(`water/day/${date}`);
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
