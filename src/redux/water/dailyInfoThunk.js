@@ -4,7 +4,7 @@ import axios from "axios";
 // Определение URL API
 const API_URL = "https://final-project-mobileteam-backend.onrender.com/water";
 
-
+// Функция для установки заголовков авторизации
 const setAuthHeaders = (token) => {
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -13,85 +13,127 @@ const setAuthHeaders = (token) => {
   }
 };
 
-
+// Получение записей воды
 export const fetchWaterRecords = createAsyncThunk(
   "dailyInfo/fetchWaterRecords",
-  async (_, thunkAPI) => {
+  async (date, thunkAPI) => {
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      console.log("Token:", token);
+      if (!token) throw new Error("Authorization token is missing");
 
-      setAuthHeaders(token); 
+      setAuthHeaders(token);
 
-      const response = await axios.get(API_URL); 
-      return response.data; 
+      if (!date) throw new Error("Date parameter is required");
+
+      // Отправляем запрос с датой в пути
+      const response = await axios.get(`${API_URL}/day/${date}`);
+      return response.data.data; // Возвращаем только данные записей
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || "Failed to fetch water records"
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to fetch water records by day"
       );
     }
   }
 );
 
-
+// Добавление новой записи воды
 export const addWaterRecord = createAsyncThunk(
   "dailyInfo/addWaterRecord",
   async (newRecord, thunkAPI) => {
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      setAuthHeaders(token); 
+      if (!token) throw new Error("Authorization token is missing");
 
-      const response = await axios.post(API_URL, newRecord); 
-      return response.data; 
+      setAuthHeaders(token);
+
+      // Проверка параметров
+      if (!newRecord.amount || !newRecord.date) {
+        throw new Error("Amount and date are required");
+      }
+
+      // Преобразование даты в формат ISO 8601
+      const formattedDate = new Date(newRecord.date).toISOString();
+
+      const response = await axios.post(API_URL, {
+        amount: newRecord.amount,
+        date: formattedDate,
+      });
+
+      return response.data.data; // Возвращаем только данные записи
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || "Failed to add water record"
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to add water record"
       );
     }
   }
 );
 
-
+// Удаление записи воды
 export const deleteWaterRecord = createAsyncThunk(
   "dailyInfo/deleteWaterRecord",
-  async (id, thunkAPI) => {
+  async (_id, thunkAPI) => {
+    // Используем _id вместо id
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      setAuthHeaders(token); 
+      if (!token) throw new Error("Authorization token is missing");
 
-      await axios.delete(`${API_URL}/${id}`); 
-      return id; 
+      setAuthHeaders(token);
+
+      await axios.delete(`${API_URL}/${_id}`); // Используем _id
+      return _id; // Возвращаем _id удалённой записи
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || "Failed to delete water record"
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to delete water record"
       );
     }
   }
 );
 
-
+// Обновление записи воды
 export const updateWaterRecord = createAsyncThunk(
   "dailyInfo/updateWaterRecord",
-  async ({ id, updatedRecord }, thunkAPI) => {
+  async ({ _id, updatedRecord }, thunkAPI) => {
+    // Используем _id вместо id
     try {
-      const state = thunkAPI.getState(); 
-      const token = state.auth.token; 
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
 
-      setAuthHeaders(token); 
+      if (!token) throw new Error("Authorization token is missing");
 
-      const response = await axios.put(`${API_URL}/${id}`, updatedRecord); 
-      return response.data; 
+      // Проверка параметров
+      if (!updatedRecord.amount || !updatedRecord.date) {
+        throw new Error("Amount and date are required");
+      }
+
+      setAuthHeaders(token);
+
+      // Преобразование даты в формат ISO 8601
+      const formattedDate = new Date(updatedRecord.date).toISOString();
+
+      const response = await axios.put(`${API_URL}/${_id}`, {
+        amount: updatedRecord.amount,
+        date: formattedDate,
+      });
+
+      return response.data.data; // Возвращаем обновлённые данные записи
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || "Failed to update water record"
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to update water record"
       );
     }
   }
 );
-
