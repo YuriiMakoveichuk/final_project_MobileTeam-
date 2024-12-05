@@ -36,13 +36,14 @@ const DailyInfo = () => {
 
   const handleAddWater = () => {
     const now = new Date();
-    const defaultTime = now
-      .toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
-      .replace(/^0/, "");
+    // const defaultTime = now
+    //   .toLocaleTimeString([], {
+    //     hour: "2-digit",
+    //     minute: "2-digit",
+    //     hour12: false,
+    //   })
+    //   .replace(/^0/, "");
+    const defaultTime = now.toISOString().split(".")[0];
 
     dispatch(openModal("edit"));
     dispatch(
