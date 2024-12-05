@@ -1,16 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import sprite from "../../img/sprite.svg";
 import styles from "./DailyInfo.module.css";
 import {
   selectWaterInfoDay,
   setEditingRecord,
-  setRecordToDelete,
 } from "../../redux/water/dailyInfoSlice";
 import { openModal } from "../../redux/modal";
 import {
   fetchWaterRecords,
-  deleteWaterRecord,
   updateWaterRecord,
   apiWaterDay,
 } from "../../redux/water/dailyInfoThunk";
@@ -32,6 +30,7 @@ const DailyInfo = () => {
   const date = useSelector(selectCurrentSelectedDate);
   const fullDate = useSelector(selectCurrentSelectedFullDate);
   const waterInfoDay = useSelector(selectWaterInfoDay);
+  const [idForDelete, setIdForDelete] = useState("");
 
   // const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
@@ -63,23 +62,14 @@ const DailyInfo = () => {
   };
 
   const openDeleteModal = (id) => {
-    const recordToDelete = waterInfoDay.find((record) => record._id === id);
-    dispatch(setRecordToDelete(recordToDelete));
     dispatch(openModal("delete"));
+    setIdForDelete(id);
   };
 
   const openEditModal = (id) => {
     const recordToEdit = waterInfoDay.find((record) => record._id === id);
     dispatch(setEditingRecord(recordToEdit));
     dispatch(openModal("edit"));
-  };
-
-  const handleDeleteWater = (id) => {
-    openDeleteModal(id);
-  };
-
-  const confirmDeleteWater = (id) => {
-    dispatch(deleteWaterRecord(id));
   };
 
   const confirmUpdateWater = (id, amount, time) => {
@@ -150,7 +140,7 @@ const DailyInfo = () => {
                     </button>
                     <button
                       className={styles.deleteBtn}
-                      onClick={() => handleDeleteWater(record._id)}
+                      onClick={() => openDeleteModal(record._id)}
                     >
                       <svg className={styles.iconTrash} width={14} height={14}>
                         <use href={`${sprite}#icon-trash`} />
@@ -165,7 +155,7 @@ const DailyInfo = () => {
       </div>
 
       {isModalOpen && modalType === "delete" && (
-        <DeleteWaterModal onConfirm={confirmDeleteWater} />
+        <DeleteWaterModal id={idForDelete} />
       )}
 
       {isModalOpen && modalType === "edit" && (
