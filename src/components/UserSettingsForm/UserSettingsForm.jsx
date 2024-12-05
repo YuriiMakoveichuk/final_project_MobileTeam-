@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import { patchUser } from "../../redux/auth/operations.js";
+import toast from "react-hot-toast";
 
 const UserSettingsValidationSchema = Yup.object().shape({
   photo: Yup.mixed(),
@@ -49,6 +50,7 @@ const UserSettingsForm = () => {
     );
 
     dispatch(patchUser(formData));
+    toast.success("Update successful!");
     actions.resetForm();
   };
 
