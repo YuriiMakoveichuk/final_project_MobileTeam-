@@ -58,9 +58,11 @@ const dailyInfoSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
       .addCase(addWaterRecord.fulfilled, (state, action) => {
         state.records.push(action.payload);
       })
+
       .addCase(deleteWaterRecord.fulfilled, () => {
         // state.waterInfoDay = state.waterInfoDay.filter(
         //   (record) => record._id !== action.payload
@@ -86,13 +88,10 @@ const dailyInfoSlice = createSlice({
       // .addCase(apiWaterMonth.pending, (state) => { })
       .addCase(apiWaterDay.fulfilled, (state, { payload }) => {
         state.waterInfoDay = payload;
-      })
+      });
     // .addCase(apiWaterMonth.rejected, (state) => { })
-
-
   },
 });
-
 
 export const {
   addWater,
@@ -102,16 +101,17 @@ export const {
   setRecordToDelete,
 } = dailyInfoSlice.actions;
 
-const selectWaterInfoMonth = state => state.water.waterInfoMonth;
-export const selectWaterInfoDay = state => state.water.waterInfoDay;
-
+const selectWaterInfoMonth = (state) => state.water.waterInfoMonth;
+export const selectWaterInfoDay = (state) => state.water.waterInfoDay;
 
 export const selectDailyWaterData = createSelector(
   [selectWaterInfoMonth],
-  (waterInfoMonth) => waterInfoMonth.reduce((acc, item) => {
-    const date = new Date(item.date).getDate(); // Отримуємо день із дати
-    acc[date] = (acc[date] || 0) + item.amount; // Сумуємо кількість води
-    return acc;
-  }, {}));
+  (waterInfoMonth) =>
+    waterInfoMonth.reduce((acc, item) => {
+      const date = new Date(item.date).getDate(); // Отримуємо день із дати
+      acc[date] = (acc[date] || 0) + item.amount; // Сумуємо кількість води
+      return acc;
+    }, {})
+);
 
 export default dailyInfoSlice.reducer;

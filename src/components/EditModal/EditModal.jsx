@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateWater, addWater } from "../../redux/water/dailyInfoSlice";
+// import { updateWater, addWater } from "../../redux/water/dailyInfoSlice";
 
 import styles from "./EditModal.module.css";
 import { Container } from "../Container/Container";
 import Modal from "../Modal/Modal";
 import { closeModal } from "../../redux/modal";
 import sprite from "../../img/sprite.svg";
+import {
+  addWaterRecord,
+  apiWaterDay,
+} from "../../redux/water/dailyInfoThunk.js";
+import { selectCurrentSelectedFullDate } from "../../redux/date.js";
 
 const EditModal = () => {
   const dispatch = useDispatch();
   const editingRecord = useSelector((state) => state.water.editingRecord);
-
+  const fullDate = useSelector(selectCurrentSelectedFullDate);
   console.log(editingRecord);
 
   const [amount, setAmount] = useState(0);
@@ -54,13 +59,24 @@ const EditModal = () => {
   };
 
   const handleSave = () => {
-    if (editingRecord?.id) {
-      dispatch(updateWater({ id: editingRecord.id, amount, time }));
-    } else {
-      dispatch(addWater({ id: Date.now(), amount, time }));
-    }
+    const payload = {
+      date: new Date().toISOString().slice(0, 19),
+      amount,
+    };
+
+    dispatch(addWaterRecord(payload));
+    dispatch(apiWaterDay(fullDate));
     dispatch(closeModal());
   };
+
+  // const handleSave = () => {
+  //   if (editingRecord?.id) {
+  //     dispatch(updateWater({ amount, time }));
+  //   } else {
+  //     dispatch(addWaterRecord({ amount }));
+  //   }
+  //   dispatch(closeModal());
+  // };
 
   const onCloseModal = () => {
     dispatch(closeModal());
@@ -73,10 +89,8 @@ const EditModal = () => {
       <Modal className={styles.modalka} onCloseModal={onCloseModal}>
         <div className={styles.modalContent}>
           <div>
-            <h4 className={styles.editTitle}>
-              Edit the entered amount of water
-            </h4>
-            <p className={styles.boldParagraph}>Correct entered data:</p>
+            <h4 className={styles.editTitle}>Add water</h4>
+            <p className={styles.boldParagraph}>Choose a value:</p>
             <p className={styles.paragraph}>Amount of water:</p>
             <div className={styles.amountBtbWrap}>
               <button
