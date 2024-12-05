@@ -46,11 +46,12 @@
   border-radius: 30px;
   background-color: #323f47;
   color: #fff;
-
   font-size: 14px;
   font-weight: 700;
   line-height: 18px;
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .plusBtn,
