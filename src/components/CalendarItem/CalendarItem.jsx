@@ -51,7 +51,13 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
       newDate = `${day}, ${monthNames[currentMonth]}`;
     }
 
-    dispatch(changeFullDate(`${currentYear}-${currentMonth + 1}-${day}`));
+    dispatch(
+      changeFullDate(
+        `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${day
+          .toString()
+          .padStart(2, "0")}`
+      )
+    );
 
     dispatch(changeDate(newDate));
   };

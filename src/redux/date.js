@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
     currentSelectedDate: 'Today',
-    currentSelectedFullDate: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+    currentSelectedFullDate:
+        `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")
+        }-${new Date().getDate().toString().padStart(2, "0")}`,
 };
 
 const dateSlice = createSlice({
