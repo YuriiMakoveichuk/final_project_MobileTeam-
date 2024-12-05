@@ -2,7 +2,7 @@ import styles from "./WaterForm.module.css";
 import sprite from "../../img/sprite.svg";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addWater } from "../../redux/water/dailyInfoSlice";
 
@@ -27,7 +27,7 @@ const WaterForm = ({ onCloseModal }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      amount: 50,
+      amount: 250,
       time: new Date().toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
@@ -46,7 +46,7 @@ const WaterForm = ({ onCloseModal }) => {
       // alert("Failed to add water record. Please try again.");
     }
   };
-
+  const amount = useWatch({ control, name: "amount", defaultValue: 250 });
   return (
     <form className={styles.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -65,7 +65,7 @@ const WaterForm = ({ onCloseModal }) => {
               <use href={`${sprite}#icon-minus`}></use>
             </svg>
           </button>
-          <span className={styles.amountSpanWater}>{control.amount} ml</span>
+          <span className={styles.amountSpanWater}>{amount} ml</span>
           <button
             type="button"
             className={styles.waterCounterBtn}
