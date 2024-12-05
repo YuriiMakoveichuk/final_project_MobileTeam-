@@ -17,7 +17,7 @@ const dailyInfoSlice = createSlice({
     recordToDelete: null,
 
     waterInfoMonth: [],
-    waterInfoDay: {},
+    waterInfoDay: [],
   },
   reducers: {
     addWater: (state, action) => {

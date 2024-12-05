@@ -11,7 +11,8 @@ import {
   fetchWaterRecords,
   deleteWaterRecord,
   updateWaterRecord,
-} from "../../redux/water/dailyInfoThunk"; 
+  apiWaterDay,
+} from "../../redux/water/dailyInfoThunk";
 
 import EditModal from "../EditModal/EditModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
@@ -20,18 +21,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
-import { selectCurrentSelectedDate } from "../../redux/date.js";
+import {
+  selectCurrentSelectedDate,
+  selectCurrentSelectedFullDate,
+} from "../../redux/date.js";
 
 const DailyInfo = () => {
   const dispatch = useDispatch();
   const date = useSelector(selectCurrentSelectedDate);
+  const fullDate = useSelector(selectCurrentSelectedFullDate);
+
   const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
   const modalType = useSelector((state) => state.modal.modalType);
 
- 
   useEffect(() => {
-    dispatch(fetchWaterRecords()); 
+    dispatch(fetchWaterRecords());
   }, [dispatch]);
 
   const handleAddWater = () => {
@@ -71,15 +76,17 @@ const DailyInfo = () => {
     openDeleteModal(id);
   };
 
-
   const confirmDeleteWater = (id) => {
-    dispatch(deleteWaterRecord(id)); 
+    dispatch(deleteWaterRecord(id));
   };
 
- 
   const confirmUpdateWater = (id, amount, time) => {
-    dispatch(updateWaterRecord({ id, updatedRecord: { amount, time } })); 
+    dispatch(updateWaterRecord({ id, updatedRecord: { amount, time } }));
   };
+
+  useEffect(() => {
+    dispatch(apiWaterDay(fullDate));
+  }, [dispatch, fullDate]);
 
   return (
     <div className={`${styles.dailyInfo}`}>

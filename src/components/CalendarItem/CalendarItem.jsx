@@ -2,7 +2,7 @@ import clsx from "clsx";
 import css from "./CalendarItem.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDate } from "../../redux/date.js";
+import { changeDate, changeFullDate } from "../../redux/date.js";
 import { apiWaterMonth } from "../../redux/water/dailyInfoThunk.js";
 import { selectDailyWaterData } from "../../redux/water/dailyInfoSlice.js";
 import { selectUser } from "../../redux/auth/selectors.js";
@@ -50,12 +50,15 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
     } else {
       newDate = `${day}, ${monthNames[currentMonth]}`;
     }
+
+    dispatch(changeFullDate(`${currentYear}-${currentMonth + 1}-${day}`));
+
     dispatch(changeDate(newDate));
   };
 
   useEffect(() => {
     dispatch(apiWaterMonth(`${currentYear}-${currentMonth + 1}`));
-  }, [currentMonth, currentYear, dispatch]);
+  }, [currentMonth, currentYear, user, dispatch]);
 
   return (
     <>
