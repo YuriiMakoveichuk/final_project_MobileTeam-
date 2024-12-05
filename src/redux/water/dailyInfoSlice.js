@@ -32,11 +32,11 @@ const dailyInfoSlice = createSlice({
         state.records[index] = action.payload;
       }
     },
-    deleteWater: (state, action) => {
-      state.records = state.records.filter(
-        (record) => record.id !== action.payload
-      );
-    },
+    // deleteWater: (state, action) => {
+    //   state.records = state.records.filter(
+    //     (record) => record.id !== action.payload
+    //   );
+    // },
     setEditingRecord: (state, action) => {
       state.editingRecord = action.payload;
     },
@@ -61,10 +61,10 @@ const dailyInfoSlice = createSlice({
       .addCase(addWaterRecord.fulfilled, (state, action) => {
         state.records.push(action.payload);
       })
-      .addCase(deleteWaterRecord.fulfilled, (state, action) => {
-        state.records = state.records.filter(
-          (record) => record.id !== action.payload
-        );
+      .addCase(deleteWaterRecord.fulfilled, () => {
+        // state.waterInfoDay = state.waterInfoDay.filter(
+        //   (record) => record._id !== action.payload
+        // );
       })
       .addCase(updateWaterRecord.fulfilled, (state, action) => {
         const index = state.records.findIndex(

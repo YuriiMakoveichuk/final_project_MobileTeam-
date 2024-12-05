@@ -3,27 +3,30 @@ import clsx from "clsx";
 import { closeModal } from "../../redux/modal.js";
 import Modal from "../Modal/Modal.jsx";
 import { Container } from "../Container/Container.jsx";
-import { deleteWater } from "../../redux/water/dailyInfoSlice.js"; //added this
+// import { deleteWater } from "../../redux/water/dailyInfoSlice.js"; //added this
 
 import css from "./DeleteWaterModal.module.css";
+import {
+  apiWaterDay,
+  deleteWaterRecord,
+} from "../../redux/water/dailyInfoThunk.js";
+import { selectCurrentSelectedFullDate } from "../../redux/date.js";
 
-const DeleteWaterModal = () => {
+const DeleteWaterModal = ({ id }) => {
   const dispatch = useDispatch();
   const isOpenModal = useSelector((state) => state.modal.isOpen);
-  const recordToDelete = useSelector((state) => state.water.recordToDelete); //added this
+  const fullDate = useSelector(selectCurrentSelectedFullDate);
+  // const recordToDelete = useSelector((state) => state.water.recordToDelete); //added this
 
   const onCloseModal = () => {
     dispatch(closeModal());
   };
 
-  // added this
-  const confirmDelete = () => {
-    if (recordToDelete) {
-      dispatch(deleteWater(recordToDelete.id));
-    }
+  const deleteWater = () => {
+    dispatch(deleteWaterRecord(id));
+    dispatch(apiWaterDay(fullDate));
     onCloseModal();
   };
-  // ends here
 
   return (
     <>
@@ -39,7 +42,7 @@ const DeleteWaterModal = () => {
                 <button
                   className={clsx(css.btn, css.btnLogout)}
                   type="button"
-                  onClick={confirmDelete}
+                  onClick={deleteWater}
                 >
                   Delete
                 </button>

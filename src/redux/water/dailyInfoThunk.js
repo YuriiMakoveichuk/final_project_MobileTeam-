@@ -99,22 +99,14 @@ export const addWaterRecord = createAsyncThunk(
 
 export const deleteWaterRecord = createAsyncThunk(
   "dailyInfo/deleteWaterRecord",
-  async (_id, thunkAPI) => {
-    // Используем _id вместо id
+  async (id, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const token = state.auth.token;
 
-
-      if (!token) throw new Error("Authorization token is missing");
-
-      setAuthHeaders(token);
-
-      await axios.delete(`${API_URL}/${_id}`); // Используем _id
-      return _id; // Возвращаем _id удалённой записи
-
+      await INSTANCE.delete(`water/${id}`);
+      return;
 
     } catch (error) {
+
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
         error.message ||
