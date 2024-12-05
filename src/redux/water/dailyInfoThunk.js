@@ -172,8 +172,7 @@ export const apiWaterDay = createAsyncThunk(
 
     try {
       const { data } = await INSTANCE.get(`water/day/${date}`);
-      console.log(data);
-      // return data.data;
+      return data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

@@ -5,6 +5,7 @@ import {
   deleteWaterRecord,
   updateWaterRecord,
   apiWaterMonth,
+  apiWaterDay,
 } from "./dailyInfoThunk";
 
 const dailyInfoSlice = createSlice({
@@ -79,6 +80,13 @@ const dailyInfoSlice = createSlice({
       .addCase(apiWaterMonth.fulfilled, (state, { payload }) => {
         state.waterInfoMonth = payload;
       })
+      // .addCase(apiWaterMonth.rejected, (state) => { })
+
+      // waterInfo for the day
+      // .addCase(apiWaterMonth.pending, (state) => { })
+      .addCase(apiWaterDay.fulfilled, (state, { payload }) => {
+        state.waterInfoDay = payload;
+      })
     // .addCase(apiWaterMonth.rejected, (state) => { })
 
 
@@ -95,6 +103,8 @@ export const {
 } = dailyInfoSlice.actions;
 
 const selectWaterInfoMonth = state => state.water.waterInfoMonth;
+export const selectWaterInfoDay = state => state.water.waterInfoDay;
+
 
 export const selectDailyWaterData = createSelector(
   [selectWaterInfoMonth],

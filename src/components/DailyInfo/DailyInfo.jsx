@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import sprite from "../../img/sprite.svg";
 import styles from "./DailyInfo.module.css";
 import {
+  selectWaterInfoDay,
   setEditingRecord,
   setRecordToDelete,
 } from "../../redux/water/dailyInfoSlice";
@@ -30,8 +31,9 @@ const DailyInfo = () => {
   const dispatch = useDispatch();
   const date = useSelector(selectCurrentSelectedDate);
   const fullDate = useSelector(selectCurrentSelectedFullDate);
+  const waterInfoDay = useSelector(selectWaterInfoDay);
 
-  const waterRecords = useSelector((state) => state.water.records);
+  // const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
   const modalType = useSelector((state) => state.modal.modalType);
 
@@ -61,13 +63,13 @@ const DailyInfo = () => {
   };
 
   const openDeleteModal = (id) => {
-    const recordToDelete = waterRecords.find((record) => record.id === id);
+    const recordToDelete = waterInfoDay.find((record) => record._id === id);
     dispatch(setRecordToDelete(recordToDelete));
     dispatch(openModal("delete"));
   };
 
   const openEditModal = (id) => {
-    const recordToEdit = waterRecords.find((record) => record.id === id);
+    const recordToEdit = waterInfoDay.find((record) => record._id === id);
     dispatch(setEditingRecord(recordToEdit));
     dispatch(openModal("edit"));
   };
@@ -102,7 +104,7 @@ const DailyInfo = () => {
         </div>
       </div>
       <div className={styles.cardsContainer}>
-        {waterRecords.length > 0 && (
+        {waterInfoDay.length > 0 && (
           <Swiper
             modules={[Mousewheel, Scrollbar]}
             slidesPerView={2.1}
@@ -117,8 +119,8 @@ const DailyInfo = () => {
             }}
             mousewheel={true}
           >
-            {waterRecords.map((record) => (
-              <SwiperSlide key={record.id} className={styles.card}>
+            {waterInfoDay.map((record) => (
+              <SwiperSlide key={record._id} className={styles.card}>
                 <div className={styles.cardContent}>
                   <svg className={styles.glassIcon} width={38} height={38}>
                     <use href={`${sprite}#icon-glass`} />
@@ -127,12 +129,16 @@ const DailyInfo = () => {
                     <span className={styles.waterAmount}>
                       {record.amount} ml
                     </span>
-                    <span className={styles.time}>{record.time}</span>
+                    <span className={styles.time}>
+                      {`${new Date(record.date).getHours()}:${new Date(
+                        record.date
+                      ).getMinutes()}`}
+                    </span>
                   </div>
                   <div className={styles.btnWrap}>
                     <button
                       className={styles.editBtn}
-                      onClick={() => openEditModal(record.id)}
+                      onClick={() => openEditModal(record._id)}
                     >
                       <svg className={styles.iconEdit} width={14} height={14}>
                         <use href={`${sprite}#icon-edit`} />
@@ -140,7 +146,7 @@ const DailyInfo = () => {
                     </button>
                     <button
                       className={styles.deleteBtn}
-                      onClick={() => handleDeleteWater(record.id)}
+                      onClick={() => handleDeleteWater(record._id)}
                     >
                       <svg className={styles.iconTrash} width={14} height={14}>
                         <use href={`${sprite}#icon-trash`} />
