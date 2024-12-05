@@ -50,8 +50,10 @@ const WaterForm = ({ onCloseModal }) => {
   return (
     <form className={styles.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <h4 className={styles.addWaterTitle}>Add water</h4>
-        <p className={styles.subTitle}>Choose a value:</p>
+        <h4 className={styles.addWaterTitle}>
+          Edit the entered amount of water
+        </h4>
+        <p className={styles.subTitle}>Correct entered data:</p>
         <p className={styles.waterText}>Amount of water:</p>
         <div className={styles.waterCounterWrapper}>
           <button
