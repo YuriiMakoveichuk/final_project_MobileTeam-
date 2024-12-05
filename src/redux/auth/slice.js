@@ -87,8 +87,6 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(patchUser.fulfilled, (state, action) => {
-        console.log(state);
-
         state.isLoading = false;
         state.error = null;
         state.user = action.payload;

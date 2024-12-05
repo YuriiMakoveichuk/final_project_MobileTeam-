@@ -22,7 +22,7 @@ export const fetchWaterRecords = createAsyncThunk(
       console.log("Token:", token);
 
       setAuthHeaders(token);
-
+      // const response = await axios.get(`${API_URL}/day}`);
       const response = await axios.get(API_URL);
       return response.data;
     } catch (error) {
@@ -36,6 +36,8 @@ export const fetchWaterRecords = createAsyncThunk(
 export const addWaterRecord = createAsyncThunk(
   "dailyInfo/addWaterRecord",
   async (newRecord, thunkAPI) => {
+    console.log("test", newRecord);
+
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
