@@ -1,6 +1,7 @@
 .box {
   text-align: center;
   width: calc((100% - 18px * 6) / 7);
+  cursor: default;
 }
 
 .day {
@@ -28,13 +29,17 @@
 }
 
 .day.selected {
-  background: #d6d6d6;
+  border: 3px solid #9be1a0;
 }
 
 .text {
   font-size: 10px;
   line-height: 1;
   color: rgba(47, 47, 47, 0.6);
+}
+
+.bgGrey {
+  background: #d6d6d6;
 }
 
 @media only screen and (min-width: 768px) {

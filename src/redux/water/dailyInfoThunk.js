@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { INSTANCE } from "../auth/operations.js";
 
 // Определение URL API
 const API_URL = "https://final-project-mobileteam-backend.onrender.com/water";
@@ -30,6 +31,7 @@ export const fetchWaterRecords = createAsyncThunk(
       // Отправляем запрос с датой в пути
       const response = await axios.get(`${API_URL}/day/${date}`);
       return response.data.data; // Возвращаем только данные записей
+
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
@@ -47,6 +49,7 @@ export const addWaterRecord = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
+
 
       if (!token) throw new Error("Authorization token is missing");
 
@@ -66,6 +69,7 @@ export const addWaterRecord = createAsyncThunk(
       });
 
       return response.data.data; // Возвращаем только данные записи
+
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
@@ -85,12 +89,14 @@ export const deleteWaterRecord = createAsyncThunk(
       const state = thunkAPI.getState();
       const token = state.auth.token;
 
+
       if (!token) throw new Error("Authorization token is missing");
 
       setAuthHeaders(token);
 
       await axios.delete(`${API_URL}/${_id}`); // Используем _id
       return _id; // Возвращаем _id удалённой записи
+
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
@@ -110,6 +116,7 @@ export const updateWaterRecord = createAsyncThunk(
       const state = thunkAPI.getState();
       const token = state.auth.token;
 
+
       if (!token) throw new Error("Authorization token is missing");
 
       // Проверка параметров
@@ -128,6 +135,7 @@ export const updateWaterRecord = createAsyncThunk(
       });
 
       return response.data.data; // Возвращаем обновлённые данные записи
+
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
@@ -137,3 +145,24 @@ export const updateWaterRecord = createAsyncThunk(
     }
   }
 );
+
+
+// export const apiWaterMonth = async (date) => {
+//   const response = await INSTANCE.get(`water/month/${date}`);
+//   console.log(response)
+//   // https://final-project-mobileteam-backend.onrender.com/water/month/2024-12
+// }
+
+export const apiWaterMonth = createAsyncThunk(
+  "water/month",
+  async (date, thunkApi) => {
+
+    try {
+      const { data } = await INSTANCE.get(`water/month/${date}`);
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
