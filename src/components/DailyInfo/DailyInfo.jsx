@@ -127,7 +127,11 @@ const DailyInfo = () => {
                   </svg>
                   <div className={styles.contentTextWrap}>
                     <span className={styles.waterAmount}>
-                      {record.amount} ml
+                      {record.amount >= 1000
+                        ? `${(record.amount / 1000)
+                            .toFixed(1)
+                            .replace(".", ",")} L`
+                        : `${record.amount} ml`}
                     </span>
                     <span className={styles.time}>
                       {`${new Date(record.date).getHours()}:${new Date(
