@@ -11,6 +11,7 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
   const dispatch = useDispatch();
   const dailyWaterData = useSelector(selectDailyWaterData); // обєкт типу {дата1: кількість випитої води, дата2: кількість випитої води}
   const user = useSelector(selectUser);
+  const newUser = user.data.user || user.data;
 
   const monthNames = [
     "January",
@@ -77,7 +78,7 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
         const isSelected = selectedDay === day;
         const waterPercent =
           Number(
-            ((dailyWaterData[day] / user.data.waterNorm) * 100).toFixed(0)
+            ((dailyWaterData[day] / newUser.waterNorm) * 100).toFixed(0)
           ) || 0;
 
         return (
