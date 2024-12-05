@@ -89,10 +89,8 @@ const EditModal = () => {
       <Modal className={styles.modalka} onCloseModal={onCloseModal}>
         <div className={styles.modalContent}>
           <div>
-            <h4 className={styles.editTitle}>
-              Edit the entered amount of water
-            </h4>
-            <p className={styles.boldParagraph}>Correct entered data:</p>
+            <h4 className={styles.editTitle}>Add water</h4>
+            <p className={styles.boldParagraph}>Choose a value:</p>
             <p className={styles.paragraph}>Amount of water:</p>
             <div className={styles.amountBtbWrap}>
               <button

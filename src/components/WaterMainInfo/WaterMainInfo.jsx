@@ -38,15 +38,10 @@ const WaterMainInfo = () => {
         <WaterProgressBar waterNorma={userData.waterNorm} />
         <AddWaterBtn openModal={handleOpen} />
 
-        {/* {isOpenModal && modalType === "WaterForm" && (
-          <WaterModal onCloseModal={handleClose}>
-            <WaterForm />
-          </WaterModal>
-        )} */}
+        {isModalOpen && modalType === "edit" && (
+          <EditModal onConfirm={confirmUpdateWater} />
+        )}
       </div>
-      {isModalOpen && modalType === "edit" && (
-        <EditModal onConfirm={confirmUpdateWater} />
-      )}
     </>
   );
 };

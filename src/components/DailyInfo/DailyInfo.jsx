@@ -6,7 +6,7 @@ import {
   selectWaterInfoDay,
   setEditingRecord,
 } from "../../redux/water/dailyInfoSlice";
-import { openModal } from "../../redux/modal";
+import { closeModal, openModal } from "../../redux/modal";
 import {
   fetchWaterRecords,
   updateWaterRecord,
@@ -24,6 +24,8 @@ import {
   selectCurrentSelectedDate,
   selectCurrentSelectedFullDate,
 } from "../../redux/date.js";
+import WaterForm from "../WaterForm/WaterForm.jsx";
+import WaterModal from "../WaterModal/WaterModal.jsx";
 
 const DailyInfo = () => {
   const dispatch = useDispatch();
@@ -35,6 +37,9 @@ const DailyInfo = () => {
   // const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
   const modalType = useSelector((state) => state.modal.modalType);
+
+  // const handleOpen = () => dispatch(openModal("WaterForm"));
+  const handleClose = () => dispatch(closeModal());
 
   useEffect(() => {
     dispatch(fetchWaterRecords());
@@ -69,7 +74,7 @@ const DailyInfo = () => {
   const openEditModal = (id) => {
     const recordToEdit = waterInfoDay.find((record) => record._id === id);
     dispatch(setEditingRecord(recordToEdit));
-    dispatch(openModal("edit"));
+    dispatch(openModal("WaterForm"));
   };
 
   const confirmUpdateWater = (id, amount, time) => {
@@ -160,6 +165,12 @@ const DailyInfo = () => {
 
       {isModalOpen && modalType === "edit" && (
         <EditModal onConfirm={confirmUpdateWater} />
+      )}
+
+      {isModalOpen && modalType === "WaterForm" && (
+        <WaterModal onCloseModal={handleClose}>
+          <WaterForm />
+        </WaterModal>
       )}
     </div>
   );
