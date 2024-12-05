@@ -2,9 +2,8 @@ import styles from "./WaterForm.module.css";
 import sprite from "../../img/sprite.svg";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-// import { addWater } from "../../redux/water/dailyInfoSlice";
 import {
   apiWaterDay,
   apiWaterMonth,
@@ -14,16 +13,13 @@ import { selectCurrentSelectedFullDate } from "../../redux/date.js";
 import { closeModal } from "../../redux/modal.js";
 
 const waterSchema = yup.object().shape({
-  amount: yup
-    .number()
-    .min(50, "Minimum 50 ml")
-    .max(5000, "Maximum 5000 ml")
-    .required("Amount is required"),
+  amount: yup.string().required("Amount is required"),
   time: yup
     .string()
     .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:MM)")
     .required("Time is required"),
 });
+
 const WaterForm = ({ infoEdit }) => {
   const dispatch = useDispatch();
   const fullDate = useSelector(selectCurrentSelectedFullDate);
@@ -37,16 +33,13 @@ const WaterForm = ({ infoEdit }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      amount: amount,
+      amount: amount.toString(),
       time: `${new Date(date).getHours()}:${new Date(date).getMinutes()}`,
-      // time: new Date().toLocaleTimeString([], {
-      //   hour: "2-digit",
-      //   minute: "2-digit",
-      //   hour12: false,
-      // }),
     },
     resolver: yupResolver(waterSchema),
   });
+
+  const watchedAmount = useWatch({ control, name: "amount" });
 
   const onCloseModal = () => {
     dispatch(closeModal());
@@ -58,14 +51,12 @@ const WaterForm = ({ infoEdit }) => {
       dispatch(updateWaterRecord({ id, ...data }));
       dispatch(apiWaterDay(fullDate));
       dispatch(apiWaterMonth(fullDate));
-      // dispatch(addWater(data));
       onCloseModal();
     } catch (error) {
       console.log("Failed to add water record:", error.message);
-      // alert("Failed to add water record. Please try again.");
     }
   };
-  // const amount = useWatch({ control, name: "amount", defaultValue: 250 });
+
   return (
     <form className={styles.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -78,21 +69,23 @@ const WaterForm = ({ infoEdit }) => {
           <button
             type="button"
             className={styles.waterCounterBtn}
-            onClick={() =>
-              setValue("amount", (prev) => Math.max(prev - 50, 50))
-            }
+            onClick={() => {
+              const newValue = Math.max(parseInt(watchedAmount) - 50, 50);
+              setValue("amount", newValue.toString(), { shouldValidate: true });
+            }}
           >
             <svg className={styles.waterIcon} width={40} height={40}>
               <use href={`${sprite}#icon-minus`}></use>
             </svg>
           </button>
-          <span className={styles.amountSpanWater}>{amount} ml</span>
+          <span className={styles.amountSpanWater}>{watchedAmount} ml</span>
           <button
             type="button"
             className={styles.waterCounterBtn}
-            onClick={() =>
-              setValue("amount", (prev) => Math.min(prev + 50, 5000))
-            }
+            onClick={() => {
+              const newValue = Math.min(parseInt(watchedAmount) + 50, 5000);
+              setValue("amount", newValue.toString(), { shouldValidate: true });
+            }}
           >
             <svg className={styles.waterIcon} width={40} height={40}>
               <use href={`${sprite}#icon-plus`}></use>
@@ -132,7 +125,7 @@ const WaterForm = ({ infoEdit }) => {
               {...field}
               id="amount"
               className={styles.waterInput}
-              type="number"
+              type="string"
               placeholder="50"
             />
           )}
