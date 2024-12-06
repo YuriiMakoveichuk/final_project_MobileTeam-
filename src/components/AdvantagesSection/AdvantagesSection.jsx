@@ -19,11 +19,6 @@ function AdvantagesSection() {
     <div className={css.background}>
       <div className={css.imageContainer}>
         <div className={css.imageWoman}></div>
-        {/* <img
-          srcSet={`${rectangleMobile} 1x, ${rectangleMobile2x} 2x`}
-          src={rectangleMobile}
-          alt="Women drinking water"
-        /> */}
 
         <picture>
           <source

@@ -1,9 +1,9 @@
-import styles from "./WaterForm.module.css";
-import sprite from "../../img/sprite.svg";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { Controller, useForm, useWatch } from "react-hook-form";
+import * as yup from "yup";
+
+import sprite from "../../img/sprite.svg";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   apiWaterDay,
   apiWaterMonth,
@@ -11,6 +11,8 @@ import {
 } from "../../redux/water/dailyInfoThunk.js";
 import { selectCurrentSelectedFullDate } from "../../redux/date.js";
 import { closeModal } from "../../redux/modal.js";
+
+import styles from "./WaterForm.module.css";
 
 const waterSchema = yup.object().shape({
   amount: yup.string().required("Amount is required"),
@@ -47,7 +49,6 @@ const WaterForm = ({ infoEdit }) => {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       dispatch(updateWaterRecord({ id, ...data }));
       dispatch(apiWaterDay(fullDate));
       dispatch(apiWaterMonth(fullDate));

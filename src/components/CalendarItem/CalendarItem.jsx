@@ -1,15 +1,17 @@
 import clsx from "clsx";
-import css from "./CalendarItem.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { changeDate, changeFullDate } from "../../redux/date.js";
 import { apiWaterMonth } from "../../redux/water/dailyInfoThunk.js";
 import { selectDailyWaterData } from "../../redux/water/dailyInfoSlice.js";
 import { selectUser } from "../../redux/auth/selectors.js";
 
+import css from "./CalendarItem.module.css";
+
 const CalendarItem = ({ currentYear, currentMonth }) => {
   const dispatch = useDispatch();
-  const dailyWaterData = useSelector(selectDailyWaterData); // обєкт типу {дата1: кількість випитої води, дата2: кількість випитої води}
+  const dailyWaterData = useSelector(selectDailyWaterData);
   const user = useSelector(selectUser);
   const newUser = user.data.user || user.data;
 

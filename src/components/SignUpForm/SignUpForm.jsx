@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+
 import { registrationSchema } from "../AuthValidation/AuthValidation";
 import { EmailInputFormItem } from "../AuthFormItems/EmailInputFormItem/EmailInputFormItem";
 import { PasswordInputFormItem } from "../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem";
 import { SubmitBtnFormItem } from "../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem";
-import { useDispatch } from "react-redux";
 import { registration } from "../../redux/auth/operations";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
   const {
@@ -30,7 +31,7 @@ export const SignUpForm = () => {
       reset();
     } else if (
       response.payload === "User already exists. Redirecting to login..."
-    ) { 
+    ) {
       navigate("/signin");
     }
   };

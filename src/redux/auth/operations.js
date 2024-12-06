@@ -9,18 +9,13 @@ const setAuthHeaders = (token) => {
   INSTANCE.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// Login user
-
 export const apiLogin = createAsyncThunk(
   "auth/login",
   async (credentials, thunkApi) => {
     try {
       const { data } = await INSTANCE.post("user/login", credentials);
-      console.log(data);
 
       const token = data?.data?.accessToken;
-      // const user = data?.data?.user;
-      // console.log(user);
 
       setAuthHeaders(token);
       return { token, data };
@@ -39,7 +34,6 @@ export const registration = createAsyncThunk(
         credentials
       );
       const userData = registrationResponse.data;
-      console.log(userData);
 
       const loginResponse = await INSTANCE.post("/user/login", credentials);
       const token = loginResponse.data?.data?.accessToken;
@@ -63,12 +57,9 @@ export const registration = createAsyncThunk(
   }
 );
 
-// Logout user
 export const apiLogout = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
-    console.log("hello");
-
     try {
       const response = await INSTANCE.post("/user/logout");
       console.log("Logout response:", response);
@@ -109,9 +100,7 @@ export const patchUser = createAsyncThunk(
   "auth/patchUser",
   async (formData, thunkAPI) => {
     try {
-      console.log(formData);
       const { data } = await INSTANCE.patch("user", formData);
-      console.log(data);
 
       return data;
     } catch (error) {

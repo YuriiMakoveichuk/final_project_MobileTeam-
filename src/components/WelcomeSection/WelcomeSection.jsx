@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import clsx from "clsx";
+
 import Logo from "../Logo/Logo";
 
 import css from "./WelcomeSection.module.css";
-import clsx from "clsx";
 
 function WelcomeSection() {
   return (
