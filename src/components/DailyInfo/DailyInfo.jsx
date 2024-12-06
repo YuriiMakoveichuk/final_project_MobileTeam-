@@ -51,7 +51,9 @@ const DailyInfo = () => {
   const handleAddWater = () => {
     const now = new Date();
 
-    const defaultTime = now.toISOString().split(".")[0];
+    const defaultTime = `${new Date(now).getHours()}:${new Date(
+      now
+    ).getMinutes()}`;
 
     dispatch(openModal("edit"));
     dispatch(
@@ -125,9 +127,13 @@ const DailyInfo = () => {
                         : `${record.amount} ml`}
                     </span>
                     <span className={styles.time}>
-                      {`${new Date(record.date).getHours()}:${new Date(
-                        record.date
-                      ).getMinutes()}`}
+                      {`${new Date(record.date)
+                        .getHours()
+                        .toString()
+                        .padStart(2, "0")}:${new Date(record.date)
+                        .getMinutes()
+                        .toString()
+                        .padStart(2, "0")}`}
                     </span>
                   </div>
                   <div className={styles.btnWrap}>

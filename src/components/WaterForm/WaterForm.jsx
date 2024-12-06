@@ -36,7 +36,13 @@ const WaterForm = ({ infoEdit }) => {
   } = useForm({
     defaultValues: {
       amount: amount.toString(),
-      time: `${new Date(date).getHours()}:${new Date(date).getMinutes()}`,
+      time: `${new Date(date)
+        .getHours()
+        .toString()
+        .padStart(2, "0")}:${new Date(date)
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}`,
     },
     resolver: yupResolver(waterSchema),
   });
@@ -49,7 +55,7 @@ const WaterForm = ({ infoEdit }) => {
 
   const onSubmit = async (data) => {
     try {
-      dispatch(updateWaterRecord({ id, ...data }));
+      dispatch(updateWaterRecord({ id, fullDate, ...data }));
       dispatch(apiWaterDay(fullDate));
       dispatch(apiWaterMonth(fullDate));
       onCloseModal();

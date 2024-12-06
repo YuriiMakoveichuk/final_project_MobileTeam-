@@ -89,7 +89,7 @@ const CalendarItem = ({ currentYear, currentMonth }) => {
               className={clsx(
                 `${css.day} ${isToday ? css.today : ""}
                 ${isSelected ? css.selected : ""}
-                ${waterPercent !== 100 && !isToday ? css.bgGrey : ""}`
+                ${waterPercent < 100 && !isToday ? css.bgGrey : ""}`
               )}
               onClick={() => handleDayClick(day)}
             >
