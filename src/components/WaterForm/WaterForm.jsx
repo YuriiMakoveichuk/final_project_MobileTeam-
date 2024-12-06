@@ -55,7 +55,7 @@ const WaterForm = ({ infoEdit }) => {
 
   const onSubmit = async (data) => {
     try {
-      dispatch(updateWaterRecord({ id, ...data }));
+      dispatch(updateWaterRecord({ id, fullDate, ...data }));
       dispatch(apiWaterDay(fullDate));
       dispatch(apiWaterMonth(fullDate));
       onCloseModal();
