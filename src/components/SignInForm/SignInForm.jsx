@@ -1,15 +1,15 @@
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import { loginSchema } from "../AuthValidation/AuthValidation";
 import { EmailInputFormItem } from "../AuthFormItems/EmailInputFormItem/EmailInputFormItem";
 import { PasswordInputFormItem } from "../AuthFormItems/PasswordInputFormItem/PasswordInputFormItem";
 import { SubmitBtnFormItem } from "../AuthFormItems/SubmitBtnFormItem/SubmitBtnFormItem";
 import { apiLogin } from "../../redux/auth/operations.js";
-import { selectAuthError } from "../../redux/auth/selectors.js";
+// import { selectAuthError } from "../../redux/auth/selectors.js";
 
 export const SignInForm = () => {
   const {
@@ -22,13 +22,13 @@ export const SignInForm = () => {
   });
 
   const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
+  // const error = useSelector(selectAuthError);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(`Error: ${error}`);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(`Error: ${error}`);
+  //   }
+  // }, [error]);
 
   const onSubmit = async (values) => {
     try {
