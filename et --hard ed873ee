@@ -1,0 +1,269 @@
+[33mcommit 13c7cf09b9aad3cffb177d3c8267e81f6fe228a7[m[33m ([m[1;36mHEAD -> [m[1;32mfix_modal[m[33m)[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Fri Dec 6 17:09:40 2024 +0200
+
+    fix settings
+
+[33mcommit ed873ee47689ff00a85ea35fafd4b2721b63c00e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/add-change-water-modal[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: fd575db 105dde5
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Fri Dec 6 11:57:47 2024 +0200
+
+    Merge pull request #58 from YuriiMakoveichuk/clear_project
+    
+    fix comments and console.log
+
+[33mcommit 105dde54a5e3e2640f5eed273789eda36a003a3e[m[33m ([m[1;31morigin/clear_project[m[33m, [m[1;32mclear_project[m[33m)[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Fri Dec 6 11:57:09 2024 +0200
+
+    fix comments and console.log
+
+[33mcommit fd575db9a8883472285383c78681329439a9d86e[m
+Merge: 714a5d4 0a32509
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 23:53:12 2024 +0200
+
+    Merge pull request #57 from YuriiMakoveichuk/update_fix
+    
+    fix update
+
+[33mcommit 0a32509aaf13683e0378cb864f5df5763a1c06c6[m[33m ([m[1;31morigin/update_fix[m[33m, [m[1;32mupdate_fix[m[33m)[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 23:52:31 2024 +0200
+
+    fix update
+
+[33mcommit 714a5d4eb290b4385b7e645ac56034d667bc4431[m
+Merge: 53af447 dddf2d0
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 23:35:34 2024 +0200
+
+    Merge pull request #56 from YuriiMakoveichuk/kalinin-update-water
+    
+    update water
+
+[33mcommit dddf2d0645520115422b62431941d620a266b06a[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 23:05:36 2024 +0200
+
+    update water
+
+[33mcommit 53af44751262f9e767eb78258df7d2ac627416c2[m
+Merge: e656a28 2abdd3d
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 20:30:46 2024 +0200
+
+    Merge pull request #55 from YuriiMakoveichuk/fix_css
+    
+    fix
+
+[33mcommit 2abdd3d801517ca25356d4709a75421ce177a87a[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 20:29:07 2024 +0200
+
+    fix
+
+[33mcommit e656a282542d91717aab5f348abe75cec526272d[m
+Merge: 0b927a2 3ac6f3d
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 19:56:33 2024 +0200
+
+    Merge pull request #54 from YuriiMakoveichuk/kalinin-first-render-percent
+    
+    Kalinin first render percent
+
+[33mcommit 3ac6f3dc239b568f89bfcd1c002912674cadf769[m
+Merge: 4045a9d 0b927a2
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 18:59:57 2024 +0200
+
+    Merge branch 'main' into kalinin-first-render-percent
+
+[33mcommit 4045a9d69c46b70e46a74b0689dbba7ff029c522[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 18:56:18 2024 +0200
+
+    first render percent
+
+[33mcommit 0b927a2d40d449a5a692c7b5ac6774c5735b22e3[m
+Merge: e787956 a2ea898
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 18:32:34 2024 +0200
+
+    Merge pull request #53 from YuriiMakoveichuk/update_project
+    
+    fix modal
+
+[33mcommit a2ea89856e409b1df05339a71b4bc2d690730557[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 18:31:46 2024 +0200
+
+    fix modal
+
+[33mcommit e7879563ad8bac05954fdfec03aae359593477f5[m
+Merge: 5de7799 c44ec79
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 17:53:22 2024 +0200
+
+    Merge pull request #52 from YuriiMakoveichuk/added_slaid
+    
+    added slide with water
+
+[33mcommit c44ec792e2b739c980d92424acf0e3959989e245[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 17:52:09 2024 +0200
+
+    added slide with water
+
+[33mcommit 5de779908d1cbee2e830c56ecaaa43a7f6534087[m
+Merge: 43c6cb2 3610b42
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 16:07:03 2024 +0200
+
+    Merge pull request #51 from YuriiMakoveichuk/kalinin-delete-water
+    
+    delete water
+
+[33mcommit 43c6cb2cb15ba866b05e93b4743095e95fa2bdc8[m
+Merge: 41e8c86 5fc5f13
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 16:05:12 2024 +0200
+
+    Merge pull request #50 from YuriiMakoveichuk/water_main_info
+    
+    Water main info
+
+[33mcommit 3610b42f9c33b5ee965098ad939e7f753833fb37[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 15:54:37 2024 +0200
+
+    delete water
+
+[33mcommit 5fc5f136f702f38f89fe5c952d2afc216af733e3[m
+Author: Yulia Berezniak <kotyuliya24@gmail.com>
+Date:   Thu Dec 5 07:39:01 2024 -0500
+
+    water done
+
+[33mcommit 6613a205f2ca5fef4939ba78ad68adc4c5b7e062[m
+Author: Yulia Berezniak <kotyuliya24@gmail.com>
+Date:   Thu Dec 5 07:34:59 2024 -0500
+
+    water progress bar
+
+[33mcommit 41e8c86494028a8b4f8c0b940365f3a64ad495a2[m
+Merge: f1646c7 3cfcb44
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 13:17:44 2024 +0200
+
+    Merge pull request #49 from YuriiMakoveichuk/kalinin-apiWaterInfoDay
+    
+    Kalinin api water info day
+
+[33mcommit 3cfcb442cff6ae3633113144af801442e5db7b9d[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 12:55:41 2024 +0200
+
+    styles card
+
+[33mcommit 38daeef2544fd827fc690a49485cd7dedaff6288[m
+Merge: 72aa2f2 f1646c7
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 12:42:56 2024 +0200
+
+    Merge branch 'main' into kalinin-apiWaterInfoDay
+
+[33mcommit 72aa2f28f2c0a26f422ee6eed970b82d0c4fda88[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 12:40:27 2024 +0200
+
+    render waterListDay
+
+[33mcommit 1af517677c3d234f1304dfb3c1abbf4553b7ce3c[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 12:15:41 2024 +0200
+
+    apiWaterDay
+
+[33mcommit c6f0afa1477a7ebff96c7945cae4d441f7913506[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 11:59:22 2024 +0200
+
+    test apiWaterDay
+
+[33mcommit f1646c7b9ef87b5b8f899b41f26058612435c3c7[m
+Merge: eace6ba 6c7c751
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 11:23:40 2024 +0200
+
+    Merge pull request #48 from YuriiMakoveichuk/logout_js
+    
+    Logout js
+
+[33mcommit 6c7c751da8f2a690deb556c243d2378f8f348d7b[m
+Merge: d8f3daf eace6ba
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 11:23:13 2024 +0200
+
+    Merge branch 'main' into logout_js
+
+[33mcommit d8f3daf99d1431b7db4c66071ab445169169506c[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 11:14:34 2024 +0200
+
+    fix logout
+
+[33mcommit b68b2da3ebf5ec3643a5a6393a77d52082cc1141[m
+Author: Yurii Makoveichuk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 09:30:53 2024 +0200
+
+    merge
+
+[33mcommit eace6baf43bb4ba28b9237982cc932b5cebfb3f1[m
+Merge: 9f01e8a 6880e45
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 08:52:23 2024 +0200
+
+    Merge pull request #47 from YuriiMakoveichuk/daily-info
+    
+    testing
+
+[33mcommit 6880e452a244ca8fe48d36f5967be7e09409ce87[m
+Merge: 45d2ae8 9f01e8a
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 08:51:54 2024 +0200
+
+    Merge branch 'main' into daily-info
+
+[33mcommit 9f01e8a9508f04dfe7baa3ec18f101c22dd36783[m
+Merge: fc4d0a9 3609a06
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date:   Thu Dec 5 08:48:12 2024 +0200
+
+    Merge pull request #46 from YuriiMakoveichuk/kalinin-calehdar2
+    
+    Kalinin calehdar2
+
+[33mcommit 45d2ae8a16d2f821accf015d4d5a2bcc74e38227[m
+Author: Kyrylko <kkuzmenko1992@gmail.com>
+Date:   Thu Dec 5 01:24:19 2024 -0330
+
+    testing
+
+[33mcommit 3609a064f2098aaa1c5dc546dd09f966138e2b3c[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Thu Dec 5 00:05:03 2024 +0200
+
+    add percent by calendar
+
+[33mcommit af0cbd72f41e478c67ed440b16e1cbf98d30c4e1[m
+Author: Oleksandr-Kalinin <work.kalinin.o.v@gmail.com>
+Date:   Wed Dec 4 22:10:55 2024 +0200
+
+    modify styles calendar
+
+[33mcommit fc4d0a92b4aad023a587a266d074d8acba402c3f[m
+Merge: 57ef56e 819b87b
+Author: Yurii Makoveichyk <yuriimakoveichuk@gmail.com>
+Date
