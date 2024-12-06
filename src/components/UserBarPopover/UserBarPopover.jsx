@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import sprite from "../../img/sprite.svg";
+
 import css from "./UserBarPopover.module.css";
 
 const UserBarPopover = ({ closeUserBarPopover, openModal, userBarRef }) => {

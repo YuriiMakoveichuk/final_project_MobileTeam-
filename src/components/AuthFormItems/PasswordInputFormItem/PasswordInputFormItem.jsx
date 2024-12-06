@@ -1,7 +1,9 @@
 import { useState } from "react";
-import css from "./PasswordInputFormItem.module.css";
-import sprite from "../../../img/sprite.svg";
 import clsx from "clsx";
+
+import sprite from "../../../img/sprite.svg";
+
+import css from "./PasswordInputFormItem.module.css";
 
 export const PasswordInputFormItem = ({
   label,

@@ -1,7 +1,9 @@
 import { useState } from "react";
-import css from "./MonthInfo.module.css";
+
 import Calendar from "../Calendar/Calendar.jsx";
 import CalendarPagination from "../CalendarPagination/CalendarPagination.jsx";
+
+import css from "./MonthInfo.module.css";
 
 const MonthInfo = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());

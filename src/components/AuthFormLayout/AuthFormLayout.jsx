@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import css from "./AuthFormLayout.module.css";
+
 import AdvantagesSection from "../AdvantagesSection/AdvantagesSection";
 import Logo from "../Logo/Logo";
+
+import css from "./AuthFormLayout.module.css";
 
 export const AuthFormLayout = ({
   title,

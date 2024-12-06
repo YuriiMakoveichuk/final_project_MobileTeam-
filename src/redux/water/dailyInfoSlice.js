@@ -32,11 +32,7 @@ const dailyInfoSlice = createSlice({
         state.records[index] = action.payload;
       }
     },
-    // deleteWater: (state, action) => {
-    //   state.records = state.records.filter(
-    //     (record) => record.id !== action.payload
-    //   );
-    // },
+
     setEditingRecord: (state, action) => {
       state.editingRecord = action.payload;
     },

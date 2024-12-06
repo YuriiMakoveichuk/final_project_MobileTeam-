@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 
 import sprite from "../../img/sprite.svg";
+
 import css from "./UserBar.module.css";
 
 const UserBar = ({ showIconArrow, toggleUserBarPopover }) => {

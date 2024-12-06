@@ -1,12 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import sprite from "../../img/sprite.svg";
-import css from "./UserSettingsForm.module.css";
+import toast from "react-hot-toast";
 import clsx from "clsx";
 import * as Yup from "yup";
+
+import sprite from "../../img/sprite.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import { patchUser } from "../../redux/auth/operations.js";
-import toast from "react-hot-toast";
+
+import css from "./UserSettingsForm.module.css";
 
 const UserSettingsValidationSchema = Yup.object().shape({
   photo: Yup.mixed(),

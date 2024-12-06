@@ -4,6 +4,7 @@ import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedI
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo.jsx";
 
 import css from "./TrackerPage.module.css";
+
 const TrackerPage = () => {
   return (
     <>

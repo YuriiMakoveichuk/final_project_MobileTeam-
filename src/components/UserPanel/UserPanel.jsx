@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectors.js";
+import { useRef, useState } from "react";
 
+import { selectUser } from "../../redux/auth/selectors.js";
 import LogOutModal from "../LogOutModal/LogOutModal.jsx";
 import UserSettingsModal from "../UserSettingsModal/UserSettingsModal.jsx";
 import UserBar from "../UserBar/UserBar.jsx";
+import { openModal, selectIsOpenModal } from "../../redux/modal.js";
+import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 import css from "./UserPanel.module.css";
-import { openModal, selectIsOpenModal } from "../../redux/modal.js";
-import { useRef, useState } from "react";
-import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
 const UserPanel = () => {
   const dispatch = useDispatch();

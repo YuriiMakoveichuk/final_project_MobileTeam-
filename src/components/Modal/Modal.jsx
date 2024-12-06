@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
+
 import sprite from "../../img/sprite.svg";
+
+import css from "./Modal.module.css";
 
 export const Modal = ({ children, onCloseModal, top, transform }) => {
   useEffect(() => {

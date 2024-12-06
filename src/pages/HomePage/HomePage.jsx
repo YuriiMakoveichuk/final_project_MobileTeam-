@@ -2,6 +2,7 @@ import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSect
 import { Container } from "../../components/Container/Container";
 import { Section } from "../../components/Section/Section";
 import WelcomeSection from "../../components/WelcomeSection/WelcomeSection";
+
 import css from "./HomePage.module.css";
 
 function HomePage() {

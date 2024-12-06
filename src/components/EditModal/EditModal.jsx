@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { updateWater, addWater } from "../../redux/water/dailyInfoSlice";
-
-import styles from "./EditModal.module.css";
 import { Container } from "../Container/Container";
 import Modal from "../Modal/Modal";
 import { closeModal } from "../../redux/modal";
@@ -14,11 +11,12 @@ import {
 } from "../../redux/water/dailyInfoThunk.js";
 import { selectCurrentSelectedFullDate } from "../../redux/date.js";
 
+import styles from "./EditModal.module.css";
+
 const EditModal = () => {
   const dispatch = useDispatch();
   const editingRecord = useSelector((state) => state.water.editingRecord);
   const fullDate = useSelector(selectCurrentSelectedFullDate);
-  console.log(editingRecord);
 
   const [amount, setAmount] = useState(0);
   const [time, setTime] = useState("");
@@ -68,15 +66,6 @@ const EditModal = () => {
     dispatch(apiWaterDay(fullDate));
     dispatch(closeModal());
   };
-
-  // const handleSave = () => {
-  //   if (editingRecord?.id) {
-  //     dispatch(updateWater({ amount, time }));
-  //   } else {
-  //     dispatch(addWaterRecord({ amount }));
-  //   }
-  //   dispatch(closeModal());
-  // };
 
   const onCloseModal = () => {
     dispatch(closeModal());

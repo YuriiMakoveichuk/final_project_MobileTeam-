@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
+
 import { closeModal } from "../../redux/modal.js";
 import Modal from "../Modal/Modal.jsx";
 import { Container } from "../Container/Container.jsx";
+import { apiLogout } from "../../redux/auth/operations.js";
 
 import css from "./LogOutModal.module.css";
-import { apiLogout } from "../../redux/auth/operations.js";
 
 const LogOutModal = () => {
   const dispatch = useDispatch();

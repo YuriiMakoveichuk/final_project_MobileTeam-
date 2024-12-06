@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import sprite from "../../img/sprite.svg";
-import styles from "./DailyInfo.module.css";
 import {
   selectWaterInfoDay,
   setEditingRecord,
@@ -12,20 +13,19 @@ import {
   updateWaterRecord,
   apiWaterDay,
 } from "../../redux/water/dailyInfoThunk";
-
 import EditModal from "../EditModal/EditModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
-
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Mousewheel } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/scrollbar";
 import {
   selectCurrentSelectedDate,
   selectCurrentSelectedFullDate,
 } from "../../redux/date.js";
 import WaterForm from "../WaterForm/WaterForm.jsx";
 import WaterModal from "../WaterModal/WaterModal.jsx";
+
+import "swiper/css/scrollbar";
+import "swiper/css";
+import styles from "./DailyInfo.module.css";
 
 const DailyInfo = () => {
   const dispatch = useDispatch();
@@ -39,11 +39,9 @@ const DailyInfo = () => {
     date: null,
   });
 
-  // const waterRecords = useSelector((state) => state.water.records);
   const isModalOpen = useSelector((state) => state.modal.isOpen);
   const modalType = useSelector((state) => state.modal.modalType);
 
-  // const handleOpen = () => dispatch(openModal("WaterForm"));
   const handleClose = () => dispatch(closeModal());
 
   useEffect(() => {
@@ -52,13 +50,7 @@ const DailyInfo = () => {
 
   const handleAddWater = () => {
     const now = new Date();
-    // const defaultTime = now
-    //   .toLocaleTimeString([], {
-    //     hour: "2-digit",
-    //     minute: "2-digit",
-    //     hour12: false,
-    //   })
-    //   .replace(/^0/, "");
+
     const defaultTime = now.toISOString().split(".")[0];
 
     dispatch(openModal("edit"));

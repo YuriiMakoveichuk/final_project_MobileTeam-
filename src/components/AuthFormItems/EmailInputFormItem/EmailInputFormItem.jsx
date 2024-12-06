@@ -1,4 +1,5 @@
 import clsx from "clsx";
+
 import css from "./EmailInputFormItem.module.css";
 
 export const EmailInputFormItem = ({ name, register, errors, required }) => {

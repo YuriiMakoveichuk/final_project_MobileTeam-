@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
+
 import { closeModal } from "../../redux/modal.js";
 import Modal from "../Modal/Modal.jsx";
 import { Container } from "../Container/Container.jsx";
-// import { deleteWater } from "../../redux/water/dailyInfoSlice.js"; //added this
-
-import css from "./DeleteWaterModal.module.css";
 import {
   apiWaterDay,
   apiWaterMonth,
@@ -13,11 +11,12 @@ import {
 } from "../../redux/water/dailyInfoThunk.js";
 import { selectCurrentSelectedFullDate } from "../../redux/date.js";
 
+import css from "./DeleteWaterModal.module.css";
+
 const DeleteWaterModal = ({ id }) => {
   const dispatch = useDispatch();
   const isOpenModal = useSelector((state) => state.modal.isOpen);
   const fullDate = useSelector(selectCurrentSelectedFullDate);
-  // const recordToDelete = useSelector((state) => state.water.recordToDelete); //added this
 
   const onCloseModal = () => {
     dispatch(closeModal());
