@@ -30,8 +30,8 @@ export const fetchWaterRecords = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to fetch water records by day"
+        error.message ||
+        "Failed to fetch water records by day"
       );
     }
   }
@@ -39,15 +39,24 @@ export const fetchWaterRecords = createAsyncThunk(
 
 export const addWaterRecord = createAsyncThunk(
   "dailyInfo/addWaterRecord",
-  async (id, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const { data } = await INSTANCE.post("water", id);
+
+      const { date, amount } = payload;
+      const fullDate = new Date(`2024-12-06T${date}:00`);
+      fullDate.setHours(fullDate.getHours() + 2);
+      const updatedDate = fullDate.toISOString().slice(0, 19);
+
+      const newData = { date: updatedDate, amount };
+
+      const { data } = await INSTANCE.post("/water", newData);
       return data;
+
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to add water record"
+        error.message ||
+        "Failed to add water record"
       );
     }
   }
@@ -62,8 +71,8 @@ export const deleteWaterRecord = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to delete water record"
+        error.message ||
+        "Failed to delete water record"
       );
     }
   }
@@ -78,8 +87,8 @@ export const updateWaterRecord = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to update water record"
+        error.message ||
+        "Failed to update water record"
       );
     }
   }

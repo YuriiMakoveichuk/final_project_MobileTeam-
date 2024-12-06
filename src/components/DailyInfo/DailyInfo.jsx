@@ -51,7 +51,9 @@ const DailyInfo = () => {
   const handleAddWater = () => {
     const now = new Date();
 
-    const defaultTime = now.toISOString().split(".")[0];
+    const defaultTime = `${new Date(now).getHours()}:${new Date(
+      now
+    ).getMinutes()}`;
 
     dispatch(openModal("edit"));
     dispatch(

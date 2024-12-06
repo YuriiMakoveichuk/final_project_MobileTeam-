@@ -24,7 +24,12 @@ const EditModal = () => {
   useEffect(() => {
     if (editingRecord) {
       setAmount(editingRecord.amount);
-      setTime(editingRecord.time);
+      setTime(
+        `${new Date().getHours().toString().padStart(2, "0")}:${new Date()
+          .getMinutes()
+          .toString()
+          .padStart(2, "0")}`
+      );
     }
   }, [editingRecord]);
 
@@ -58,7 +63,7 @@ const EditModal = () => {
 
   const handleSave = () => {
     const payload = {
-      date: new Date().toISOString().slice(0, 19),
+      date: time,
       amount,
     };
 
