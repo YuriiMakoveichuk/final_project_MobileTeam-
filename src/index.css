@@ -48,6 +48,11 @@ body {
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: #2f2f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .visually-hidden {
@@ -61,5 +66,9 @@ body {
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.no-scroll {
   overflow: hidden;
 }

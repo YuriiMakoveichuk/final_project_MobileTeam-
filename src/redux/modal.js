@@ -12,11 +12,13 @@ const modalSlice = createSlice({
     openModal: (state, action) => {
       state.isOpen = true;
       state.modalType = action.payload;
+      document.body.classList.add("no-scroll");
     },
 
     closeModal: (state) => {
       state.isOpen = false;
       state.modalType = null;
+      document.body.classList.remove("no-scroll");
     },
   },
 });
