@@ -63,6 +63,7 @@ const EditModal = () => {
 
   const handleSave = () => {
     const payload = {
+      fullDate,
       date: time,
       amount,
     };

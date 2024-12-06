@@ -36,7 +36,13 @@ const WaterForm = ({ infoEdit }) => {
   } = useForm({
     defaultValues: {
       amount: amount.toString(),
-      time: `${new Date(date).getHours()}:${new Date(date).getMinutes()}`,
+      time: `${new Date(date)
+        .getHours()
+        .toString()
+        .padStart(2, "0")}:${new Date(date)
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}`,
     },
     resolver: yupResolver(waterSchema),
   });

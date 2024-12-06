@@ -42,10 +42,15 @@ export const addWaterRecord = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
 
-      const { date, amount } = payload;
-      const fullDate = new Date(`2024-12-06T${date}:00`);
-      fullDate.setHours(fullDate.getHours() + 2);
-      const updatedDate = fullDate.toISOString().slice(0, 19);
+      const { fullDate, date, amount } = payload;
+      const updatefullDate = new Date(`${fullDate}T${date}:00`);
+      // updatefullDate.setHours(updatefullDate.getHours() + 2);
+
+      const hours = String(updatefullDate.getHours()).padStart(2, '0');
+      const minutes = String(updatefullDate.getMinutes()).padStart(2, '0');
+      const seconds = String(updatefullDate.getSeconds()).padStart(2, '0');
+
+      const updatedDate = `${updatefullDate.toISOString().slice(0, 10)}T${hours}:${minutes}:${seconds}`;
 
       const newData = { date: updatedDate, amount };
 

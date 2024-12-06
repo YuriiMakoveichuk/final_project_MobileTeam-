@@ -127,9 +127,13 @@ const DailyInfo = () => {
                         : `${record.amount} ml`}
                     </span>
                     <span className={styles.time}>
-                      {`${new Date(record.date).getHours()}:${new Date(
-                        record.date
-                      ).getMinutes()}`}
+                      {`${new Date(record.date)
+                        .getHours()
+                        .toString()
+                        .padStart(2, "0")}:${new Date(record.date)
+                        .getMinutes()
+                        .toString()
+                        .padStart(2, "0")}`}
                     </span>
                   </div>
                   <div className={styles.btnWrap}>
