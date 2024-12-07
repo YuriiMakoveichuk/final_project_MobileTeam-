@@ -22,11 +22,15 @@ const DeleteWaterModal = ({ id }) => {
     dispatch(closeModal());
   };
 
-  const deleteWater = () => {
-    dispatch(deleteWaterRecord(id));
-    dispatch(apiWaterDay(fullDate));
-    dispatch(apiWaterMonth(fullDate));
-    onCloseModal();
+  const deleteWater = async () => {
+    try {
+      await dispatch(deleteWaterRecord(id));
+      await dispatch(apiWaterDay(fullDate));
+      await dispatch(apiWaterMonth(fullDate));
+      onCloseModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

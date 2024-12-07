@@ -97,7 +97,7 @@ export const {
   setRecordToDelete,
 } = dailyInfoSlice.actions;
 
-const selectWaterInfoMonth = (state) => state.water.waterInfoMonth;
+export const selectWaterInfoMonth = (state) => state.water.waterInfoMonth;
 export const selectWaterInfoDay = (state) => state.water.waterInfoDay;
 
 export const selectDailyWaterData = createSelector(

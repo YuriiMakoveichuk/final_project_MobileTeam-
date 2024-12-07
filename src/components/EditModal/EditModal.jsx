@@ -61,16 +61,19 @@ const EditModal = () => {
     setTime(value);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const payload = {
       fullDate,
       date: time,
       amount,
     };
-
-    dispatch(addWaterRecord(payload));
-    dispatch(apiWaterDay(fullDate));
-    dispatch(closeModal());
+    try {
+      await dispatch(addWaterRecord(payload));
+      await dispatch(apiWaterDay(fullDate));
+      await dispatch(closeModal());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onCloseModal = () => {
