@@ -30,8 +30,8 @@ export const fetchWaterRecords = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-        error.message ||
-        "Failed to fetch water records by day"
+          error.message ||
+          "Failed to fetch water records by day"
       );
     }
   }
@@ -41,27 +41,27 @@ export const addWaterRecord = createAsyncThunk(
   "dailyInfo/addWaterRecord",
   async (payload, thunkAPI) => {
     try {
-
       const { fullDate, date, amount } = payload;
       const updatefullDate = new Date(`${fullDate}T${date}:00`);
       // updatefullDate.setHours(updatefullDate.getHours() + 2);
 
-      const hours = String(updatefullDate.getHours()).padStart(2, '0');
-      const minutes = String(updatefullDate.getMinutes()).padStart(2, '0');
-      const seconds = String(updatefullDate.getSeconds()).padStart(2, '0');
+      const hours = String(updatefullDate.getHours()).padStart(2, "0");
+      const minutes = String(updatefullDate.getMinutes()).padStart(2, "0");
+      const seconds = String(updatefullDate.getSeconds()).padStart(2, "0");
 
-      const updatedDate = `${updatefullDate.toISOString().slice(0, 10)}T${hours}:${minutes}:${seconds}`;
+      const updatedDate = `${updatefullDate
+        .toISOString()
+        .slice(0, 10)}T${hours}:${minutes}:${seconds}`;
 
       const newData = { date: updatedDate, amount };
 
       const { data } = await INSTANCE.post("/water", newData);
       return data;
-
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-        error.message ||
-        "Failed to add water record"
+          error.message ||
+          "Failed to add water record"
       );
     }
   }
@@ -71,13 +71,13 @@ export const deleteWaterRecord = createAsyncThunk(
   "dailyInfo/deleteWaterRecord",
   async (id, thunkAPI) => {
     try {
-      await INSTANCE.delete(`water/${id}`);
-      return;
+      const { data } = await INSTANCE.delete(`water/${id}`);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-        error.message ||
-        "Failed to delete water record"
+          error.message ||
+          "Failed to delete water record"
       );
     }
   }
@@ -90,12 +90,13 @@ export const updateWaterRecord = createAsyncThunk(
       const updatefullDate = new Date(`${fullDate}T${time}:00`);
       // updatefullDate.setHours(updatefullDate.getHours() + 2);
 
-      const hours = String(updatefullDate.getHours()).padStart(2, '0');
-      const minutes = String(updatefullDate.getMinutes()).padStart(2, '0');
-      const seconds = String(updatefullDate.getSeconds()).padStart(2, '0');
+      const hours = String(updatefullDate.getHours()).padStart(2, "0");
+      const minutes = String(updatefullDate.getMinutes()).padStart(2, "0");
+      const seconds = String(updatefullDate.getSeconds()).padStart(2, "0");
 
-
-      const updatedDate = `${updatefullDate.toISOString().slice(0, 10)}T${hours}:${minutes}:${seconds}`;
+      const updatedDate = `${updatefullDate
+        .toISOString()
+        .slice(0, 10)}T${hours}:${minutes}:${seconds}`;
 
       const newData = { date: updatedDate, amount };
 
@@ -104,8 +105,8 @@ export const updateWaterRecord = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message ||
-        error.message ||
-        "Failed to update water record"
+          error.message ||
+          "Failed to update water record"
       );
     }
   }

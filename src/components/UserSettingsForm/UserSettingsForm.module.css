@@ -38,6 +38,7 @@
   max-height: calc(65vh - 80px);
   overflow-y: scroll;
   width: 323px;
+  padding-bottom: 80px;
 }
 
 .boxScroll::-webkit-scrollbar {

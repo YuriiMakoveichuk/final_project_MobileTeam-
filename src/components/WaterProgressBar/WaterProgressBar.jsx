@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { fetchWaterRecords } from "../../redux/water/dailyInfoThunk";
 
 import styles from "./WaterProgressBar.module.css";
+import { selectWaterInfoDay } from "../../redux/water/dailyInfoSlice.js";
 
 const formatDateToYYYYMMDD = (date) => {
   const year = date.getFullYear();
@@ -14,10 +15,13 @@ const formatDateToYYYYMMDD = (date) => {
 
 const WaterProgressBar = ({ waterNorma }) => {
   const dispatch = useDispatch();
-  const RECORDS = useSelector((state) => state.water.records) || [];
-  const CONSUMEDWATER = RECORDS.reduce((sum, record) => {
-    return sum + (record.amount || 0);
-  }, 0);
+
+  const waterInfoDay = useSelector(selectWaterInfoDay);
+
+  const CONSUMEDWATER = waterInfoDay.reduce(
+    (acc, item) => acc + item.amount,
+    0
+  );
 
   const PERCENTAGE =
     CONSUMEDWATER && waterNorma ? 100 / (waterNorma / CONSUMEDWATER) : 0;

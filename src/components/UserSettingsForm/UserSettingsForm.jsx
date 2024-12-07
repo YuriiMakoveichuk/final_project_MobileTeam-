@@ -20,9 +20,9 @@ const UserSettingsValidationSchema = Yup.object().shape({
 
 const calculateWaterIntake = (weight, activeTime, gender) => {
   let waterIntake = 0;
-  if (gender === "man") {
+  if (gender === "woman") {
     waterIntake = weight * 0.03 + activeTime * 0.4;
-  } else if (gender === "woman") {
+  } else if (gender === "man") {
     waterIntake = weight * 0.04 + activeTime * 0.6;
   }
   return waterIntake.toFixed(1);
@@ -73,6 +73,16 @@ const UserSettingsForm = () => {
     });
   };
 
+  const calculateAndSetWaterIntake = (
+    setFieldValue,
+    weight,
+    activeTime,
+    gender
+  ) => {
+    const waterIntake = calculateWaterIntake(weight, activeTime, gender);
+    setFieldValue("dailyWaterIntake", waterIntake);
+  };
+
   return (
     <Formik
       initialValues={INITIAL_STATE}
@@ -80,15 +90,6 @@ const UserSettingsForm = () => {
       onSubmit={handleSubmit}
     >
       {({ setFieldValue, values }) => {
-        const updateWaterIntake = () => {
-          const waterIntake = calculateWaterIntake(
-            values.userWeight,
-            values.userActiveTime,
-            values.userGender
-          );
-          setFieldValue("dailyWaterIntake", waterIntake);
-        };
-
         return (
           <Form className={css.form}>
             <div className={css.boxAvatar}>
@@ -130,7 +131,12 @@ const UserSettingsForm = () => {
                       value="woman"
                       onChange={(e) => {
                         setFieldValue("userGender", e.target.value);
-                        updateWaterIntake();
+                        calculateAndSetWaterIntake(
+                          setFieldValue,
+                          values.userWeight,
+                          values.userActiveTime,
+                          e.target.value
+                        );
                       }}
                     />
                     Woman
@@ -142,7 +148,12 @@ const UserSettingsForm = () => {
                       value="man"
                       onChange={(e) => {
                         setFieldValue("userGender", e.target.value);
-                        updateWaterIntake();
+                        calculateAndSetWaterIntake(
+                          setFieldValue,
+                          values.userWeight,
+                          values.userActiveTime,
+                          e.target.value
+                        );
                       }}
                     />
                     Man
@@ -222,7 +233,12 @@ const UserSettingsForm = () => {
                     placeholder={newUser.weight}
                     onChange={(e) => {
                       setFieldValue("userWeight", e.target.value);
-                      updateWaterIntake();
+                      calculateAndSetWaterIntake(
+                        setFieldValue,
+                        e.target.value,
+                        values.userActiveTime,
+                        values.userGender
+                      );
                     }}
                   />
                   <ErrorMessage
@@ -240,7 +256,12 @@ const UserSettingsForm = () => {
                     placeholder={newUser.sportHours}
                     onChange={(e) => {
                       setFieldValue("userActiveTime", e.target.value);
-                      updateWaterIntake();
+                      calculateAndSetWaterIntake(
+                        setFieldValue,
+                        values.userWeight,
+                        e.target.value,
+                        values.userGender
+                      );
                     }}
                   />
                   <ErrorMessage

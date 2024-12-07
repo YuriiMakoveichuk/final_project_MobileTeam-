@@ -55,10 +55,10 @@ const WaterForm = ({ infoEdit }) => {
 
   const onSubmit = async (data) => {
     try {
-      dispatch(updateWaterRecord({ id, fullDate, ...data }));
-      dispatch(apiWaterDay(fullDate));
-      dispatch(apiWaterMonth(fullDate));
-      onCloseModal();
+      await dispatch(updateWaterRecord({ id, fullDate, ...data }));
+      await dispatch(apiWaterDay(fullDate));
+      await dispatch(apiWaterMonth(fullDate));
+      await onCloseModal();
     } catch (error) {
       console.log("Failed to add water record:", error.message);
     }
