@@ -1,7 +1,7 @@
 .box {
   text-align: center;
   width: calc((100% - 18px * 6) / 7);
-  cursor: default;
+  cursor: pointer;
 }
 
 .day {
@@ -21,14 +21,14 @@
   margin-bottom: 6px;
 }
 
-.day.today {
+.today {
   background: #323f47;
   color: #9be1a0;
   border: 1px solid #444;
   border-radius: 50%;
 }
 
-.day.selected {
+.selected {
   border: 3px solid #9be1a0;
 }
 

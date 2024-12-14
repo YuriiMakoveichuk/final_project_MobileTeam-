@@ -55,37 +55,73 @@ const dailyInfoSlice = createSlice({
         state.error = action.payload;
       })
 
+      .addCase(addWaterRecord.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(addWaterRecord.fulfilled, (state, action) => {
+        state.loading = false;
         state.records.push(action.payload);
       })
-
-      .addCase(deleteWaterRecord.fulfilled, () => {
-        // state.waterInfoDay = state.waterInfoDay.filter(
-        //   (record) => record._id !== action.payload
-        // );
-      })
-      .addCase(updateWaterRecord.fulfilled, () => {
-        // const index = state.records.findIndex(
-        //   (record) => record.id === action.payload.id
-        // );
-        // if (index !== -1) {
-        //   state.records[index] = action.payload;
-        // }
+      .addCase(addWaterRecord.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
 
-      // waterInfo for the month
-      // .addCase(apiWaterMonth.pending, (state) => { })
+      .addCase(deleteWaterRecord.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteWaterRecord.fulfilled, (state, action) => {
+        state.waterInfoDay = state.waterInfoDay.filter(
+          (record) => record._id !== action.payload
+        );
+      })
+      .addCase(deleteWaterRecord.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(updateWaterRecord.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateWaterRecord.fulfilled, (state, action) => {
+        const index = state.records.findIndex(
+          (record) => record.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.records[index] = action.payload;
+        }
+      })
+      .addCase(updateWaterRecord.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(apiWaterMonth.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(apiWaterMonth.fulfilled, (state, { payload }) => {
         state.waterInfoMonth = payload;
       })
-      // .addCase(apiWaterMonth.rejected, (state) => { })
+      .addCase(apiWaterMonth.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
 
-      // waterInfo for the day
-      // .addCase(apiWaterMonth.pending, (state) => { })
+      .addCase(apiWaterDay.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(apiWaterDay.fulfilled, (state, { payload }) => {
         state.waterInfoDay = payload;
+      })
+      .addCase(apiWaterDay.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
-    // .addCase(apiWaterMonth.rejected, (state) => { })
   },
 });
 
@@ -99,6 +135,8 @@ export const {
 
 export const selectWaterInfoMonth = (state) => state.water.waterInfoMonth;
 export const selectWaterInfoDay = (state) => state.water.waterInfoDay;
+export const selectLoading = (state) => state.water.loading;
+export const selectError = (state) => state.water.error;
 
 export const selectDailyWaterData = createSelector(
   [selectWaterInfoMonth],
